@@ -1,0 +1,16 @@
+# Development and CI dependencies. Includes everything in base.txt.
+#
+#   pip install -r requirements/dev.txt
+
+-r base.txt
+
+# Testing
+pytest>=8.3,<9.0
+pytest-django>=4.9,<5.0
+pytest-cov>=6.0,<7.0
+
+# Linting and formatting
+ruff>=0.9,<1.0
+
+# Supply-chain security: fails CI on known vulnerable dependencies.
+pip-audit>=2.7,<3.0

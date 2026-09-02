@@ -1,0 +1,50 @@
+# Tooling configuration lives here so that CI and local development cannot
+# disagree about what "passing" means.
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+exclude = ["migrations", ".venv", "frontend"]
+
+[tool.ruff.lint]
+# E,W  pycodestyle   F  pyflakes    I  import sorting
+# B    bugbear       UP pyupgrade   S  bandit security checks
+# DJ   Django-specific correctness
+select = ["E", "W", "F", "I", "B", "UP", "S", "DJ", "C4", "SIM"]
+ignore = [
+    "E501",  # line length is enforced by the formatter, not the linter
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Assertions are the entire point of a test file.
+"**/tests/**" = ["S101"]
+"**/test_*.py" = ["S101"]
+# Django settings legitimately read from the environment at import time.
+"config/settings/*" = ["S105", "F403", "F405"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.test"
+python_files = ["test_*.py", "*_test.py"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "-ra",
+]
+# Extended as each package lands: search (Phase 3), ingestion (Phase 2),
+# evaluation (Phase 3). pytest errors on a testpath that does not exist.
+testpaths = ["papers"]
+markers = [
+    "integration: requires a live service (Postgres, OpenSearch) to be running",
+    "slow: takes more than a second",
+]
+
+[tool.coverage.run]
+source = ["papers", "config"]
+omit = ["*/migrations/*", "*/tests/*", "*/__init__.py", "config/wsgi.py", "config/asgi.py"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true

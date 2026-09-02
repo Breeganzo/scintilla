@@ -1,0 +1,14 @@
+# Runtime dependencies only. The production image installs this file and
+# nothing else, so test and lint tooling never reaches the deployed container.
+#
+# Pins are ranges rather than exact versions: patch releases carry security
+# fixes we want, major releases carry breaking changes we do not.
+
+Django>=5.1,<5.3
+djangorestframework>=3.15,<4.0
+drf-spectacular>=0.28,<0.29
+psycopg[binary]>=3.2,<4.0
+dj-database-url>=2.3,<3.0
+django-cors-headers>=4.6,<5.0
+python-dotenv>=1.0,<2.0
+gunicorn>=23.0,<24.0

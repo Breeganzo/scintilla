@@ -1,0 +1,140 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancel superseded runs on the same branch rather than paying for both.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: "3.13"
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install Ruff
+        run: pip install -r requirements/dev.txt
+
+      - name: Lint
+        run: ruff check --output-format=github .
+
+      - name: Check formatting
+        run: ruff format --check .
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    # Real PostgreSQL, not SQLite. The point of choosing Postgres is lost if
+    # it is never actually exercised - and local development on a machine
+    # without Docker cannot exercise it. CI can.
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: scintilla
+          POSTGRES_PASSWORD: scintilla
+          POSTGRES_DB: scintilla_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U scintilla"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    env:
+      DJANGO_SECRET_KEY: ci-only-secret-not-used-anywhere-real
+      DJANGO_DEBUG: "False"
+      DATABASE_URL: postgres://scintilla:scintilla@localhost:5432/scintilla_test
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements/dev.txt
+
+      - name: Check for missing migrations
+        # Fails if a model was changed without generating a migration. This is
+        # a genuinely common mistake and it only surfaces at deploy time
+        # otherwise.
+        run: python manage.py makemigrations --check --dry-run
+
+      - name: Run tests
+        run: pytest --cov --cov-report=term-missing
+
+  security:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install pip-audit
+        run: pip install pip-audit
+
+      - name: Audit runtime dependencies
+        # Runtime dependencies only: a vulnerability in a linter that never
+        # runs in production is not the same risk as one in a web framework.
+        run: pip-audit -r requirements/base.txt --strict
+
+  build:
+    name: Container build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Build image
+        # Validates the Dockerfile on every push. Development happens on a
+        # machine without Docker, so this job is the only thing standing
+        # between a broken Dockerfile and a failed deployment.
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          target: runtime
+          push: false
+          load: true
+          tags: scintilla:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Verify the image starts and Django is importable
+        run: |
+          docker run --rm \
+            -e DJANGO_SECRET_KEY=ci-only \
+            -e DATABASE_URL=postgres://u:p@localhost:5432/db \
+            scintilla:ci python -c "import django; print(django.get_version())"
+
+  compose-validate:
+    name: Compose config
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate docker-compose.yml
+        run: docker compose config --quiet && echo "compose config is valid"

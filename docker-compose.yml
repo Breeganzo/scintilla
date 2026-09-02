@@ -1,0 +1,84 @@
+# Local development stack.
+#
+#   docker compose up --build
+#
+# Production overrides live in docker-compose.prod.yml (added in Phase 4):
+# gunicorn instead of runserver, DEBUG off, no published ports, security
+# plugin enabled on OpenSearch.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: scintilla
+      POSTGRES_PASSWORD: scintilla
+      POSTGRES_DB: scintilla
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      # Compose starts containers in order but does not wait for a service to
+      # be *ready*. Without this check Django races Postgres and crashes on
+      # first boot.
+      test: ["CMD-SHELL", "pg_isready -U scintilla -d scintilla"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  opensearch:
+    image: opensearchproject/opensearch:2.18.0
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      # 512 MB heap. OpenSearch defaults to far more than a free-tier VM has.
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      # Disabled for local development only. Enabled in production - see
+      # docker-compose.prod.yml and docs/SECURITY.md.
+      - DISABLE_SECURITY_PLUGIN=true
+      - DISABLE_INSTALL_DEMO_CONFIG=true
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    ports:
+      - "9200:9200"
+    volumes:
+      - opensearch_data:/usr/share/opensearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build:
+      context: .
+      target: runtime
+    command: >
+      sh -c "python manage.py migrate --noinput &&
+             python manage.py runserver 0.0.0.0:8000"
+    environment:
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:-dev-only-not-for-production}
+      DJANGO_DEBUG: "True"
+      DJANGO_ALLOWED_HOSTS: localhost,127.0.0.1,api
+      DATABASE_URL: postgres://scintilla:scintilla@postgres:5432/scintilla
+      OPENSEARCH_URL: http://opensearch:9200
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+    volumes:
+      # Bind mount so code changes reload without rebuilding the image.
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      opensearch:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  opensearch_data:

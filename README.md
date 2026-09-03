@@ -17,10 +17,16 @@ works.
 
 | Phase | Scope | State |
 |---|---|---|
-| 1 · Foundation | Django, PostgreSQL, containers, CI | 🟡 In progress |
+| 1 · Foundation | Django, PostgreSQL, containers, CI | ✅ Complete |
 | 2 · Ingestion | arXiv harvesting, embeddings, OpenSearch, Airflow | ⬜ Not started |
 | 3 · Retrieval & evaluation | BM25, dense, RRF, golden set, metrics, CI gate | ⬜ Not started |
 | 4 · Ship | React frontend, MCP server, deployment, hardening | ⬜ Not started |
+
+Phase 1 means the foundation is verified, not that the system does anything
+useful yet: a clean clone installs, migrates against PostgreSQL 16, serves a
+read-only API and passes 29 tests, and CI checks lint, tests, dependencies and
+the container build on every push. **Nothing is ingested, searched or measured
+yet.** That is Phases 2 and 3.
 
 **No evaluation numbers are published yet.** When they exist they will appear
 here, including the cases where hybrid retrieval performs *worse* than its
@@ -71,7 +77,7 @@ PostgreSQL  ◄─────────────────────�
              React frontend      LLM tool-calling host
 ```
 
-Full diagrams: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+Full diagrams are published alongside the retrieval evaluation in Phase 3.
 
 ---
 
@@ -88,7 +94,10 @@ Full diagrams: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 | Frontend | React 18 + TypeScript + Vite | Strict-mode types generated from the OpenAPI schema |
 | Protocol | Model Context Protocol | Exposes retrieval as callable tools |
 
-Every component is free to run. See [docs/TECH_STACK.md](docs/TECH_STACK.md).
+Every component is free to run: PostgreSQL, OpenSearch and Airflow are all
+self-hosted and open source, the embedding model runs on CPU, and Groq's free
+tier covers generation. The system degrades to search-only if the LLM is
+unavailable rather than failing.
 
 ---
 
@@ -121,8 +130,16 @@ pytest -m integration       # requires Postgres and OpenSearch running
 ruff check .                # lint
 ```
 
+Without `DATABASE_URL` the suite falls back to in-memory SQLite so it runs
+anywhere. To exercise the engine production uses:
+
+```bash
+DATABASE_URL=postgres://$(whoami)@localhost:5432/scintilla pytest -q
+```
+
 CI runs the unit suite, the linter, a dependency audit and a container build on
-every push.
+every push. CI always uses a real PostgreSQL 16 service container, so a green
+CI run is stronger evidence than a green local run.
 
 ---
 

@@ -66,12 +66,23 @@ createdb scintilla_test
 psql -l | grep scintilla    # confirm both exist
 ```
 
-Then set the connection string in `.env`. Note there is **no password** and the
-username is your macOS account name:
+Then set the connection string in `.env`. There is **no password** and the
+username is your macOS account name. Find it with:
 
 ```bash
-DATABASE_URL=postgres://$(whoami)@localhost:5432/scintilla
+whoami
 ```
+
+Put the **literal** name into `.env`:
+
+```
+DATABASE_URL=postgres://your-macos-username@localhost:5432/scintilla
+```
+
+> A `.env` file is read by `python-dotenv`, not by a shell. It does **not**
+> expand `$(whoami)`, `$HOME` or any other substitution. Writing
+> `postgres://$(whoami)@...` there produces a connection attempt for a role
+> literally named `$(whoami)`, which fails with `role does not exist`.
 
 Useful commands:
 
@@ -190,6 +201,23 @@ ruff check .              # lint
 ruff format .             # format
 ```
 
+### Which database do the tests use?
+
+`config/settings/test.py` uses `DATABASE_URL` if it is set and falls back to
+in-memory SQLite if it is not. SQLite is convenient but forgiving - it accepts
+things PostgreSQL rejects, so a green SQLite run is weaker evidence than a
+green PostgreSQL run.
+
+To run the suite against the real engine locally:
+
+```bash
+DATABASE_URL=postgres://$(whoami)@localhost:5432/scintilla pytest -q
+```
+
+Django creates and drops a throwaway `test_scintilla` database for the run, so
+your development data is never touched. CI always runs this way against a
+PostgreSQL 16 service container - **CI is the authority.**
+
 ---
 
 ## Everyday commands
@@ -215,8 +243,10 @@ brew services stop postgresql@16
 | Symptom | Cause | Fix |
 |---|---|---|
 | `could not connect to server` | Postgres not running | `brew services start postgresql@16` |
-| `role "scintilla" does not exist` | `DATABASE_URL` uses the container username | Use `$(whoami)` instead |
+| `role "scintilla" does not exist` | `DATABASE_URL` uses the Docker Compose username, or a literal `$(whoami)` that was never expanded | Run `whoami` and paste the result into `.env` |
 | `Connection refused` on :9200 | OpenSearch still starting, or crashed | Wait 30s, then `brew services list`. If `error`, check `/opt/homebrew/var/log/opensearch/` |
 | OpenSearch will not start | Heap larger than available RAM | Confirm the `-Xmx512m` line landed in `jvm.options` |
 | `command not found: psql` | Versioned formula not on PATH | Re-run the `export PATH` line from step 2 |
+| `psql` worked, then stopped working | Re-running `source .venv/bin/activate` calls `deactivate` first, which restores the PATH from **before** the venv was active and drops the `postgresql@16` entry | Activate the venv **first**, then export the PATH. Or open a new shell so `~/.zshrc` applies |
+| `runserver` exits with `OperationalError` | Not a bug. `runserver` runs a migration-consistency check before binding the port, so it refuses to start without a database | Start Postgres. To observe the app's own degraded behaviour instead, boot it the way production does: `gunicorn config.wsgi:application --bind 127.0.0.1:8000` |
 | `ModuleNotFoundError` | Virtual environment not active | `source .venv/bin/activate` |

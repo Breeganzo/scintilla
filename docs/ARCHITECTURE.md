@@ -296,28 +296,95 @@ above the requirement, not forced by it.
 
 ---
 
-## 6. Retrieval ⬜
+## 6. Retrieval ✅
 
-Not built. Planned shape:
+Three strategies behind one interface:
 
 ```python
 class Retriever(Protocol):
-    def retrieve(self, query: str, top_k: int) -> list[Result]: ...
+    name: str
+
+    def retrieve(self, query: str, top_k: int) -> list[RetrievalResult]: ...
 ```
 
-Three implementations — `BM25Retriever`, `DenseRetriever`, `HybridRetriever` —
-with the hybrid fusing the other two by Reciprocal Rank Fusion:
+```mermaid
+graph LR
+    Q["query"] --> M{"mode"}
+    M -->|bm25| B["BM25Retriever<br/>OpenSearch multi_match<br/>title^2, best_fields"]
+    M -->|dense| D["DenseRetriever<br/>BGE query prefix<br/>pgvector cosine"]
+    M -->|hybrid| H["HybridRetriever"]
+    H --> B2["BM25Retriever"]
+    H --> D2["DenseRetriever"]
+    B2 --> F["Reciprocal Rank Fusion<br/>k = 60"]
+    D2 --> F
+    B --> C["collapse chunks to papers"]
+    D --> C
+    F --> C
+    C --> R["ranked papers + per-retriever debug"]
+
+    classDef done fill:#dcfce7,stroke:#16a34a,color:#14532d;
+    class B,D,H,B2,D2,F,C,R done;
+```
+
+`POST /api/search/` takes `query`, `mode` and `top_k`. The `mode` parameter is
+not a user feature — it is the ablation mechanism. The evaluation harness calls
+this same endpoint once per mode, which guarantees the published numbers
+describe the code path users hit rather than a parallel implementation that can
+drift from it.
+
+### Fusion
 
 $$\text{RRF}(d) = \sum_{r \in R} \frac{1}{k + \text{rank}_r(d)}$$
 
 with $k = 60$. RRF combines ranks rather than scores, which matters because a
-BM25 score and a cosine similarity are not on a comparable scale and
-normalising them into one is a well-known source of silent bias.
+BM25 score and a cosine similarity are not on a comparable scale, and
+normalising them into one is a well-known source of silent bias — min-max
+normalisation makes the top score depend on the worst result retrieved, so
+adding an irrelevant document at rank 50 changes the score at rank 1.
 
-**Evidence this is worth doing**, collected during Phase 2: for the query
-*"learning to rank documents for search engines"*, BM25 and dense retrieval
-returned **completely disjoint** top-3 result sets. Two retrievers that
-disagree that strongly are exactly the case fusion exists for.
+What $k$ controls is how sharply the top of each list dominates. At $k = 0$,
+rank 1 contributes $1.0$ and rank 2 contributes $0.5$. At $k = 60$ they are
+$0.0164$ and $0.0161$ — nearly equal, so the fused order is driven by agreement
+across retrievers rather than by either one's top hit. A document ranked 3rd by
+both scores $2/63 = 0.0317$ and beats a document ranked 1st by one and missed by
+the other at $1/61 = 0.0164$.
+
+RRF's real cost is that it cannot distinguish a confident match from a marginal
+one, because it discards the scores that would say so. That is the price of not
+having to make two distributions comparable.
+
+### Two details that are easy to get wrong
+
+**Both retrievers search to depth 50, not to `top_k`.** Fusion can only reward a
+document some retriever returned, so cutting each list to 10 would discard
+exactly the disagreements fusion exists to resolve.
+
+**Chunk hits are collapsed to papers before fusion.** Relevance is judged per
+paper, and 69 papers in the corpus have more than one chunk. Without collapsing,
+such a paper enters fusion once per chunk and accumulates an RRF contribution
+for each — rewarding length rather than relevance. Nothing would error; the
+ablation would simply measure the wrong thing.
+
+### Observed behaviour
+
+Measured over the live corpus at the end of Phase 3 day 1, top-3 overlap between
+BM25 and dense:
+
+| Query type | Overlap | Where hybrid's top hit was ranked |
+|---|---|---|
+| `Higgs boson coupling measurement` | 1/3 | bm25 1, dense 2 |
+| `how do researchers rank documents when answering a search` | 1/3 | bm25 1, dense 2 |
+| `why is dark matter hard to detect directly` | **0/3** | bm25 2, dense 8 |
+| `neutrino mass and cosmological structure formation` | 1/3 | bm25 4, dense 2 |
+
+The two retrievers disagree substantially on every query tried, and on
+conceptual queries they agreed on nothing at all. In two of the four cases
+hybrid's top result was ranked first by *neither* retriever — it won on
+agreement. That is the behaviour RRF is supposed to produce.
+
+**These are impressions, not measurements.** They are recorded as hypotheses for
+the ablation to confirm or refute, and it is entirely possible the numbers will
+contradict them. Nothing here should be read as a quality claim until §7 exists.
 
 ---
 
@@ -387,7 +454,8 @@ trigger DAGs and exposes connection metadata.
 | OpenSearch BM25 index, versioned behind an alias | ✅ |
 | Airflow DAG, daily, verified idempotent | ✅ |
 | CI — lint, tests, dependency audit, container build, compose config | ✅ |
-| Retrieval interface, RRF fusion | ⬜ Phase 3 |
+| Retrieval interface, three retrievers, RRF fusion | ✅ |
+| `POST /api/search/` with mode selection | ✅ |
 | Golden set, metrics, ablation, regression gate | ⬜ Phase 3 |
 | Grounded answering | ⬜ Phase 3 |
 | React frontend, MCP server, deployment | ⬜ Phase 4 |
@@ -395,6 +463,8 @@ trigger DAGs and exposes connection metadata.
 Corpus at time of writing: **3,377 papers / 3,465 chunks** across `hep-ex`,
 `hep-th`, `hep-ph`, `cs.IR` and `astro-ph.HE`, fully embedded and indexed.
 
-**Nothing is fused and nothing is measured.** The system stores, schedules and
-serves. It does not yet rank well, and there is no evidence either way — which
-is precisely what Phase 3 is for.
+**Retrieval works; nothing is measured.** The system stores, schedules, serves
+and now ranks. Whether it ranks *well* is unknown: there is no golden set, no
+metric and no ablation table, so every impression recorded in §6 is a hypothesis
+rather than a result. Making that distinction is the whole argument of this
+project, so it would be a poor place to blur it.

@@ -19,7 +19,7 @@ works.
 |---|---|---|
 | 1 · Foundation | Django, PostgreSQL, containers, CI | ✅ Complete |
 | 2 · Ingestion | arXiv harvesting, embeddings, indexing, Airflow | ✅ Complete |
-| 3 · Retrieval & evaluation | BM25, dense, RRF, golden set, metrics, CI gate | ⬜ Not started |
+| 3 · Retrieval & evaluation | BM25, dense, RRF, golden set, metrics, CI gate | 🟡 Retrieval done, evaluation next |
 | 4 · Ship | React frontend, MCP server, deployment, hardening | ⬜ Not started |
 
 Phase 1 means the foundation is verified, not that the system does anything
@@ -47,9 +47,18 @@ changed. `verify` asserts that no chunk is unembedded, that the index document
 count equals the chunk count and that every paper is marked indexed — and fails
 the run if any of those is false.
 
-**Nothing is fused or measured yet.** There is no Reciprocal Rank Fusion, no
-golden set and no retrieval metrics, so no claim is made about retrieval
-quality. That is Phase 3, and it is the part of this project that matters most.
+**Nothing is measured yet.** Phase 3 has built the three retrievers and the
+fusion that combines them — `POST /api/search/` accepts `mode` as `bm25`,
+`dense` or `hybrid` — but there is no golden set and no metrics, so **no claim
+is made about retrieval quality**. The `mode` parameter exists so that the
+ablation, when it arrives, measures this endpoint rather than a script beside
+it.
+
+What can be said is that the two retrievers disagree, which is the premise
+fusion depends on. Over the live corpus their top-3 results overlapped by 1/3 on
+keyword and paraphrase queries and by **0/3** on a conceptual one. In two of
+four cases the fused top result had been ranked first by neither retriever. Those
+are impressions recorded as hypotheses, not results.
 
 **No evaluation numbers are published yet.** When they exist they will appear
 here, including the cases where hybrid retrieval performs *worse* than its
@@ -115,7 +124,8 @@ real and worth stating: OpenSearch can filter a k-NN query by category *inside*
 the vector search, whereas here a filtered dense query is a SQL `WHERE` applied
 after the HNSW scan. `ingestion/vectors.py` records this in full.
 
-Full diagrams are published alongside the retrieval evaluation in Phase 3.
+Full diagrams, including the retrieval and fusion path, are in
+[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ---
 
@@ -158,6 +168,25 @@ See [docs/LOCAL_SETUP.md](docs/LOCAL_SETUP.md).
 
 Either way the API is then at `http://localhost:8000/api/` and the schema at
 `http://localhost:8000/api/docs/`.
+
+### Searching
+
+```bash
+curl -s http://localhost:8000/api/search/ \
+  -H 'Content-Type: application/json' \
+  -d '{"query": "why is dark matter hard to detect directly", "mode": "hybrid", "top_k": 5}'
+```
+
+`mode` is `bm25`, `dense` or `hybrid` (the default). Each result carries a
+`debug` object showing which retrievers found the paper, at what rank, and what
+each contributed to the fused score — which is the first thing to read when a
+ranking looks wrong.
+
+To compare all three modes on the same queries:
+
+```bash
+python scripts/compare_modes.py
+```
 
 ---
 

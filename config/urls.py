@@ -14,6 +14,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/health/", health, name="health"),
     path("api/", include("papers.urls")),
+    path("api/", include("search.urls")),
     # The schema is the contract. The frontend generates its TypeScript types
     # from this endpoint, so a serializer change that breaks the client is
     # caught at build time rather than at runtime.

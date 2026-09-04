@@ -29,8 +29,8 @@ the container build on every push.
 
 Phase 2 harvests arXiv into PostgreSQL, chunks against the embedding model's
 own tokenizer, embeds into pgvector and indexes into OpenSearch, on a daily
-Airflow schedule. The corpus is 3,101 papers across `hep-ex`, `hep-th`,
-`hep-ph` and `cs.IR`. The phase gate was that the DAG could be triggered twice
+Airflow schedule. The corpus is 3,377 papers across `hep-ex`, `hep-th`,
+`hep-ph`, `cs.IR` and `astro-ph.HE`. The phase gate was that the DAG could be triggered twice
 and the second run index nothing; it does exactly that, which is the property
 that makes a scheduled pipeline safe to leave running.
 
@@ -158,6 +158,17 @@ See [docs/LOCAL_SETUP.md](docs/LOCAL_SETUP.md).
 
 Either way the API is then at `http://localhost:8000/api/` and the schema at
 `http://localhost:8000/api/docs/`.
+
+---
+
+## Documentation
+
+| Document | What is in it |
+|---|---|
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | High-level and low-level design, the split-index decision, data model, ingestion and orchestration flows |
+| [docs/LOCAL_SETUP.md](docs/LOCAL_SETUP.md) | Running every service natively, without Docker |
+| [docs/DOCKER_SETUP.md](docs/DOCKER_SETUP.md) | Running the stack with Docker Compose |
+| [docs/SECURITY.md](docs/SECURITY.md) | Threat model, what is enforced, and what is deliberately deferred |
 
 ---
 

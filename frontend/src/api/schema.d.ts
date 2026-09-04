@@ -174,27 +174,23 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** @description One measured sweep, with the provenance needed to reproduce it. */
         EvaluationRun: {
             readonly id: number;
             /** Format: date-time */
-            readonly started_at: string;
-            /** Format: date-time */
-            finished_at?: string | null;
-            /** @description The commit these numbers came from. A metric that cannot be traced to a specific revision cannot be reproduced, and a number that cannot be reproduced should not be quoted. */
-            git_sha: string;
-            /** @description Golden set file version. Comparing runs across different versions is invalid. */
-            golden_set_version: string;
+            readonly created_at: string;
             mode: components["schemas"]["EvaluationRunModeEnum"];
-            num_queries: number;
-            /** @description Aggregate and per-class metrics: recall@k, MRR, nDCG@10. JSON rather than columns because the metric set is still changing, and a migration per new metric would discourage adding them. */
+            top_k: number;
+            golden_set_version: number;
+            corpus_papers: number;
+            corpus_chunks: number;
+            git_sha?: string;
             metrics?: unknown;
-            /** @description Marks the run the CI regression gate compares against */
-            is_baseline?: boolean;
             notes?: string;
         };
         /**
-         * @description * `bm25` - BM25 keyword
-         *     * `dense` - Dense vector
+         * @description * `bm25` - Lexical (BM25)
+         *     * `dense` - Dense (pgvector)
          *     * `hybrid` - Hybrid (RRF)
          * @enum {string}
          */
@@ -407,6 +403,8 @@ export interface operations {
     evaluation_runs_list: {
         parameters: {
             query?: {
+                /** @description Filter to one retriever mode: bm25, dense or hybrid. */
+                mode?: "bm25" | "dense" | "hybrid";
                 /** @description A page number within the paginated result set. */
                 page?: number;
             };

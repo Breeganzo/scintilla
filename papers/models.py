@@ -1,12 +1,14 @@
 """Domain models.
 
-Four tables:
+Three tables:
 
     Paper           arXiv metadata, plus the content hash that makes
                     re-ingestion idempotent
     Chunk           the unit that gets embedded and indexed
     IngestionRun    a ledger row per harvest, so run history is queryable
-    EvaluationRun   retrieval metrics tied to the commit that produced them
+
+Evaluation runs live in the ``evaluation`` app, next to the harness that
+writes them.
 """
 
 import hashlib
@@ -300,64 +302,3 @@ class IngestionRun(models.Model):
         if self.finished_at is None:
             return None
         return (self.finished_at - self.started_at).total_seconds()
-
-
-class EvaluationRun(models.Model):
-    """Retrieval metrics from one pass over the golden set.
-
-    Persisted rather than only written to a file so that quality over time is
-    a query. Without history there is no way to answer "when did recall drop",
-    only "recall is lower than I remember".
-    """
-
-    class Mode(models.TextChoices):
-        BM25 = "bm25", "BM25 keyword"
-        DENSE = "dense", "Dense vector"
-        HYBRID = "hybrid", "Hybrid (RRF)"
-
-    started_at = models.DateTimeField(auto_now_add=True, db_index=True)
-    finished_at = models.DateTimeField(null=True, blank=True)
-
-    git_sha = models.CharField(
-        max_length=40,
-        db_index=True,
-        help_text=(
-            "The commit these numbers came from. A metric that cannot be traced "
-            "to a specific revision cannot be reproduced, and a number that "
-            "cannot be reproduced should not be quoted."
-        ),
-    )
-
-    golden_set_version = models.CharField(
-        max_length=32,
-        help_text="Golden set file version. Comparing runs across different versions is invalid.",
-    )
-
-    mode = models.CharField(max_length=16, choices=Mode.choices, db_index=True)
-
-    num_queries = models.PositiveIntegerField()
-
-    metrics = models.JSONField(
-        default=dict,
-        help_text=(
-            "Aggregate and per-class metrics: recall@k, MRR, nDCG@10. JSON "
-            "rather than columns because the metric set is still changing, and "
-            "a migration per new metric would discourage adding them."
-        ),
-    )
-
-    is_baseline = models.BooleanField(
-        default=False,
-        help_text="Marks the run the CI regression gate compares against",
-    )
-
-    notes = models.TextField(blank=True)
-
-    class Meta:
-        ordering = ["-started_at"]
-        indexes = [
-            models.Index(fields=["mode", "-started_at"]),
-        ]
-
-    def __str__(self) -> str:
-        return f"Eval {self.mode} @ {self.git_sha[:7]} ({self.started_at:%Y-%m-%d})"

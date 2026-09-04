@@ -7,7 +7,7 @@ for a result list is bandwidth spent on text the user has not asked to read.
 
 from rest_framework import serializers
 
-from papers.models import Chunk, EvaluationRun, IngestionRun, Paper
+from papers.models import Chunk, IngestionRun, Paper
 
 
 class PaperListSerializer(serializers.ModelSerializer):
@@ -102,21 +102,4 @@ class IngestionRunSerializer(serializers.ModelSerializer):
             "watermark",
             "triggered_by",
             "error_message",
-        ]
-
-
-class EvaluationRunSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = EvaluationRun
-        fields = [
-            "id",
-            "started_at",
-            "finished_at",
-            "git_sha",
-            "golden_set_version",
-            "mode",
-            "num_queries",
-            "metrics",
-            "is_baseline",
-            "notes",
         ]

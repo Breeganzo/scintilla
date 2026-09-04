@@ -8,7 +8,7 @@ while debugging a pipeline.
 from django.contrib import admin
 from django.utils.html import format_html
 
-from papers.models import Chunk, EvaluationRun, IngestionRun, Paper
+from papers.models import Chunk, IngestionRun, Paper
 
 
 @admin.register(Paper)
@@ -64,14 +64,3 @@ class IngestionRunAdmin(admin.ModelAdmin):
             colours.get(obj.status, "#000"),
             obj.get_status_display(),
         )
-
-
-@admin.register(EvaluationRun)
-class EvaluationRunAdmin(admin.ModelAdmin):
-    list_display = ("id", "started_at", "mode", "short_sha", "num_queries", "is_baseline")
-    list_filter = ("mode", "is_baseline", "golden_set_version")
-    readonly_fields = ("started_at",)
-
-    @admin.display(description="Commit")
-    def short_sha(self, obj: EvaluationRun) -> str:
-        return obj.git_sha[:7]

@@ -11,7 +11,7 @@ import pytest
 from django.db.utils import IntegrityError
 from django.utils import timezone
 
-from papers.models import Chunk, EvaluationRun, IngestionRun, Paper
+from papers.models import Chunk, IngestionRun, Paper
 
 
 class TestContentHash:
@@ -135,20 +135,3 @@ class TestIngestionRun:
         run.finished_at = run.started_at + timedelta(seconds=42)
         run.save()
         assert run.duration_seconds == pytest.approx(42.0)
-
-
-class TestEvaluationRun:
-    def test_stores_metrics_as_structured_data(self, db):
-        run = EvaluationRun.objects.create(
-            git_sha="a" * 40,
-            golden_set_version="v1",
-            mode=EvaluationRun.Mode.HYBRID,
-            num_queries=50,
-            metrics={"recall@10": 0.82, "mrr": 0.64, "by_class": {"exact_term": 0.91}},
-        )
-        run.refresh_from_db()
-        assert run.metrics["recall@10"] == 0.82
-        assert run.metrics["by_class"]["exact_term"] == 0.91
-
-    def test_mode_is_constrained_to_known_retrievers(self, db):
-        assert set(EvaluationRun.Mode.values) == {"bm25", "dense", "hybrid"}

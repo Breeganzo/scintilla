@@ -10,9 +10,8 @@ whose evaluation numbers cannot be trusted.
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import viewsets
 
-from papers.models import EvaluationRun, IngestionRun, Paper
+from papers.models import IngestionRun, Paper
 from papers.serializers import (
-    EvaluationRunSerializer,
     IngestionRunSerializer,
     PaperDetailSerializer,
     PaperListSerializer,
@@ -63,21 +62,3 @@ class IngestionRunViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = IngestionRun.objects.all()
     serializer_class = IngestionRunSerializer
-
-
-@extend_schema_view(
-    list=extend_schema(summary="List evaluation runs", tags=["evaluation"]),
-    retrieve=extend_schema(summary="Retrieve one evaluation run", tags=["evaluation"]),
-)
-class EvaluationRunViewSet(viewsets.ReadOnlyModelViewSet):
-    """Retrieval quality over time, per retriever mode."""
-
-    queryset = EvaluationRun.objects.all()
-    serializer_class = EvaluationRunSerializer
-
-    def get_queryset(self):
-        qs = super().get_queryset()
-        mode = self.request.query_params.get("mode")
-        if mode:
-            qs = qs.filter(mode=mode)
-        return qs

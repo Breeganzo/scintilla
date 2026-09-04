@@ -7,7 +7,8 @@ URL structure consistent as endpoints are added.
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from papers.views import EvaluationRunViewSet, IngestionRunViewSet, PaperViewSet
+from evaluation.views import EvaluationRunViewSet
+from papers.views import IngestionRunViewSet, PaperViewSet
 
 router = DefaultRouter()
 router.register("papers", PaperViewSet, basename="paper")

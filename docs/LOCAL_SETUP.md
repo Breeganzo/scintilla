@@ -42,8 +42,10 @@ in every new terminal.
 
 ## 2. PostgreSQL
 
-Postgres stores paper metadata, the ingestion run ledger and evaluation
-results. Homebrew runs it as a background service.
+Postgres stores paper metadata, the ingestion run ledger, evaluation results
+**and the embedding vectors** - the dense half of retrieval runs on the
+`pgvector` extension. See section 2b and `ingestion/vectors.py` for why the
+vectors are here rather than in OpenSearch.
 
 ```bash
 brew install postgresql@16
@@ -94,10 +96,67 @@ psql scintilla                          # open a shell (\dt lists tables, \q qui
 
 ---
 
+## 2b. pgvector
+
+Dense retrieval needs the `vector` extension. **Do not `brew install pgvector`.**
+The bottle is compiled against whichever Postgres major version Homebrew
+considers current, which is not `postgresql@16`, so the extension files land in
+the wrong `lib` directory and `CREATE EXTENSION vector` fails with
+`could not open extension control file`. Build it against the Postgres you are
+actually running:
+
+```bash
+mkdir -p /tmp/pgvector-build && cd /tmp/pgvector-build
+curl -L https://github.com/pgvector/pgvector/archive/refs/tags/v0.8.6.tar.gz | tar -xz
+cd pgvector-0.8.6
+
+# This is the line that matters: it points the build at postgresql@16's
+# headers and install paths rather than the default major version.
+export PG_CONFIG=/opt/homebrew/opt/postgresql@16/bin/pg_config
+make
+make install       # no sudo needed; Homebrew owns these directories
+```
+
+Enable it in both databases and confirm:
+
+```bash
+psql scintilla      -c 'CREATE EXTENSION IF NOT EXISTS vector;'
+psql scintilla_test -c 'CREATE EXTENSION IF NOT EXISTS vector;'
+
+psql scintilla -c "SELECT extversion FROM pg_extension WHERE extname='vector';"
+# 0.8.6
+
+psql scintilla -c "SELECT '[1,2,3]'::vector <=> '[1,2,4]'::vector AS cosine_distance;"
+# 0.00853986601633272
+```
+
+The migrations also run `CREATE EXTENSION`, so this is belt and braces - but
+doing it by hand first means a failure is reported here, with a clear message,
+rather than in the middle of `migrate`.
+
+---
+
 ## 3. OpenSearch
 
-OpenSearch provides BM25 keyword search and kNN vector search in one engine.
-It needs Java, which is why Java 17 is in the prerequisites.
+OpenSearch provides **BM25 keyword search only**. Vector search does *not* run
+here - it runs in Postgres via pgvector. This is not a preference, it is forced:
+
+- OpenSearch publishes **no macOS build**. Every `*-darwin-*` URL under
+  `artifacts.opensearch.org` returns HTTP 403; only `linux` and `windows`
+  artifacts exist. Homebrew works around this by compiling the *min*
+  distribution from source, which ships **zero plugins**.
+- The `opensearch-knn` plugin is a native library with JNI bindings built only
+  for Linux and Windows. `opensearch-plugin install opensearch-knn` fails with
+  `Unknown plugin opensearch-knn`, and adding `index.knn` to a mapping fails
+  with `unknown setting [index.knn]`.
+- Docker would sidestep this by running the Linux image, but Docker is not
+  available on the development machine.
+
+So the index built by `manage.py index_papers` contains **no vector field** and
+**no `index.knn` setting**. If you have seen an older revision of this file that
+suggested otherwise, it was wrong.
+
+OpenSearch needs Java, which is why Java 17 is in the prerequisites.
 
 ```bash
 brew install opensearch
@@ -128,19 +187,30 @@ curl http://localhost:9200/_cluster/health?pretty    # should be green or yellow
 ```
 
 Yellow is normal and expected on a single node - it means replicas are
-unassigned because there is nowhere to put them. Not a problem.
+unassigned because there is nowhere to put them. Not a problem. This project
+asks for zero replicas, so a single node reports **green**.
 
-**If `brew install opensearch` is unavailable**, use the tarball instead:
+> **There is no tarball fallback on macOS.** An earlier revision of this guide
+> pointed at `opensearch-2.18.0-darwin-arm64.tar.gz`. That file does not exist
+> and never did; the URL returns 403 because the S3 bucket denies `ListBucket`,
+> which makes a missing key look like a permissions error rather than a 404.
+> If `brew install opensearch` fails, there is no second route on macOS - use
+> a Linux machine or the Docker image (see `docs/DOCKER_SETUP.md`).
+
+---
+
+## 3b. The embedding model
+
+Embeddings need PyTorch, which is a large download and is deliberately kept out
+of `requirements/base.txt` so that CI and the ingestion tests do not pay for it:
 
 ```bash
-curl -LO https://artifacts.opensearch.org/releases/bundle/opensearch/2.18.0/opensearch-2.18.0-darwin-arm64.tar.gz
-tar -xzf opensearch-2.18.0-darwin-arm64.tar.gz
-cd opensearch-2.18.0
-export OPENSEARCH_INITIAL_ADMIN_PASSWORD='' DISABLE_SECURITY_PLUGIN=true
-./opensearch-tar-install.sh
+pip install -r requirements/ml.txt
 ```
 
-That runs in the foreground - leave the terminal open.
+The model itself (`BAAI/bge-small-en-v1.5`, roughly 130 MB) downloads from
+Hugging Face on first use and is cached in `~/.cache/huggingface`. The first
+`index_papers` run is therefore slower than every subsequent one.
 
 ---
 
@@ -236,6 +306,28 @@ brew services stop postgresql@16
 
 `brew services list` shows what is currently running.
 
+### Building the corpus
+
+```bash
+# Fetch papers into Postgres. Safe to re-run: unchanged abstracts cost nothing.
+python manage.py ingest_arxiv --categories hep-ex,hep-th,cs.IR --limit 1000
+
+# Embed into pgvector and index into OpenSearch, in one pass.
+python manage.py index_papers
+
+# Run it again. It should report seen=0 - everything is already current.
+python manage.py index_papers
+```
+
+`index_papers` only touches chunks that have no vector or no index timestamp.
+To force everything, use `--all`. To rebuild into a fresh index and switch the
+`papers` alias over atomically when it is finished, use `--rebuild`; the old
+index is deliberately left behind so you can verify the new one before deleting
+it.
+
+A full pass over ~3,000 abstracts on CPU takes roughly two minutes and peaks
+around 1.2 GB of resident memory, almost all of it PyTorch.
+
 ---
 
 ## Troubleshooting
@@ -250,3 +342,8 @@ brew services stop postgresql@16
 | `psql` worked, then stopped working | Re-running `source .venv/bin/activate` calls `deactivate` first, which restores the PATH from **before** the venv was active and drops the `postgresql@16` entry | Activate the venv **first**, then export the PATH. Or open a new shell so `~/.zshrc` applies |
 | `runserver` exits with `OperationalError` | Not a bug. `runserver` runs a migration-consistency check before binding the port, so it refuses to start without a database | Start Postgres. To observe the app's own degraded behaviour instead, boot it the way production does: `gunicorn config.wsgi:application --bind 127.0.0.1:8000` |
 | `ModuleNotFoundError` | Virtual environment not active | `source .venv/bin/activate` |
+| `could not open extension control file ".../vector.control"` | pgvector was installed against a different Postgres major version | Rebuild from source with `PG_CONFIG` pointing at `postgresql@16` - see section 2b |
+| `unknown setting [index.knn]` | Something is trying to create a vector field in OpenSearch | The k-NN plugin does not exist on macOS and is not used. Vectors belong in pgvector - see section 3 |
+| `ERROR: Unknown plugin opensearch-knn` | Same cause | Same answer. Do not chase this; there is no macOS build |
+| `sentence-transformers is not installed` | `requirements/ml.txt` was skipped | `pip install -r requirements/ml.txt` |
+| First `index_papers` run hangs for a minute | Downloading the 130 MB model from Hugging Face | Wait. Subsequent runs read from `~/.cache/huggingface` |

@@ -12,6 +12,13 @@ Four tables:
 import hashlib
 
 from django.db import models
+from pgvector.django import HnswIndex, VectorField
+
+# The vector width is a schema fact, not a runtime setting: it is baked into
+# the column and into the HNSW index, and changing it is a migration plus a
+# full re-embed. settings.EMBEDDING_DIM must agree with this, and
+# ingestion.vectors checks that it does before writing anything.
+EMBEDDING_DIMENSIONS = 384
 
 
 class Paper(models.Model):
@@ -164,6 +171,18 @@ class Chunk(models.Model):
     )
     embedding_dim = models.PositiveIntegerField()
 
+    embedding = VectorField(
+        dimensions=EMBEDDING_DIMENSIONS,
+        null=True,
+        blank=True,
+        help_text=(
+            "The dense vector, L2-normalised. Stored in PostgreSQL beside the "
+            "text it was computed from, so a vector and its source row are "
+            "written in one transaction and cannot drift apart. NULL means the "
+            "chunk has not been embedded yet."
+        ),
+    )
+
     indexed_at = models.DateTimeField(null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -175,6 +194,24 @@ class Chunk(models.Model):
             models.UniqueConstraint(
                 fields=["paper", "chunk_index"],
                 name="unique_chunk_per_paper_position",
+            ),
+        ]
+        indexes = [
+            # Approximate nearest neighbour over cosine distance. HNSW rather
+            # than IVFFlat because it does not need to be built against an
+            # existing sample of the data - IVFFlat trained on an empty or tiny
+            # table gives poor recall until it is rebuilt, which is a trap when
+            # the corpus grows incrementally.
+            #
+            # Approximate is the point: an exact scan is perfect and gets
+            # linearly slower, and the recall it gives up is exactly what
+            # Phase 3 measures rather than assumes.
+            HnswIndex(
+                name="chunk_embedding_hnsw",
+                fields=["embedding"],
+                m=16,
+                ef_construction=64,
+                opclasses=["vector_cosine_ops"],
             ),
         ]
 

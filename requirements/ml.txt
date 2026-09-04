@@ -1,0 +1,24 @@
+# Machine-learning dependencies, kept separate from base.txt on purpose.
+#
+# sentence-transformers pulls in PyTorch, which is an order of magnitude larger
+# than everything else in this project combined. Putting it in base.txt would
+# mean:
+#
+#   * CI installing PyTorch to run a test suite that never embeds anything
+#     (tests use ingestion.embedding.HashingEmbedder instead)
+#   * the lint job downloading it to check formatting
+#   * every `manage.py` invocation paying the import cost
+#
+# So `ingestion.embedding` imports it lazily and this file is installed only
+# where embedding actually happens: the ingestion worker and, from Day 7, the
+# search API which embeds incoming queries.
+#
+# The production image currently installs base.txt only. Whether the model
+# ships inside that image or behind a separate embedding service is a
+# deployment question, decided on Day 12.
+#
+# Install with:  pip install -r requirements/ml.txt
+
+-r base.txt
+
+sentence-transformers>=3.3,<6.0

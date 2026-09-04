@@ -17,8 +17,12 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 import pytest
+from opensearchpy.exceptions import NotFoundError
 
 from ingestion.arxiv_client import ArxivClient, ArxivPaper
+from ingestion.embedding import HashingEmbedder
+from ingestion.indexing import SearchIndex
+from papers.models import EMBEDDING_DIMENSIONS
 
 FIXTURE_DIR = Path(__file__).parent / "fixtures"
 
@@ -146,3 +150,168 @@ class StubClient:
             {"categories": categories, "limit": limit, "page_size": page_size, "since": since}
         )
         yield from self.papers[:limit]
+
+
+# ---------------------------------------------------------------------------
+# OpenSearch
+# ---------------------------------------------------------------------------
+#
+# An in-memory stand-in rather than a live node. The indexing logic worth
+# testing is ours - per-item bulk error handling, alias switching, what gets
+# marked as indexed and when - and none of it needs a JVM. Tests that require a
+# running cluster get skipped on the machines where it matters most, so the
+# behaviour they cover ends up effectively untested.
+#
+# The mapping itself is verified against a real node in the Day 5 manual
+# checks, because only a real node can reject it.
+
+
+class FakeIndices:
+    """The ``client.indices`` namespace."""
+
+    def __init__(self, store: FakeOpenSearch) -> None:
+        self.store = store
+
+    def exists(self, index: str) -> bool:
+        return index in self.store.documents
+
+    def create(self, index: str, body: dict | None = None) -> dict:
+        self.store.documents.setdefault(index, {})
+        self.store.bodies[index] = body or {}
+        self.store.created.append(index)
+        return {"acknowledged": True}
+
+    def get_alias(self, name: str) -> dict:
+        matched = {
+            index: {"aliases": {name: {}}}
+            for index, aliases in self.store.aliases.items()
+            if name in aliases
+        }
+        if not matched:
+            raise NotFoundError(404, "alias_not_found_exception", {"alias": name})
+        return matched
+
+    def update_aliases(self, body: dict) -> dict:
+        # Recorded whole so a test can assert the remove and the add travelled
+        # in one request. Two requests would leave a window with no alias.
+        self.store.alias_calls.append(body)
+        for action in body["actions"]:
+            if "remove" in action:
+                spec = action["remove"]
+                self.store.aliases.get(spec["index"], set()).discard(spec["alias"])
+            if "add" in action:
+                spec = action["add"]
+                self.store.aliases.setdefault(spec["index"], set()).add(spec["alias"])
+        return {"acknowledged": True}
+
+    def refresh(self, index: str | None = None) -> dict:
+        self.store.refreshes.append(index)
+        return {"_shards": {"failed": 0}}
+
+
+class FakeOpenSearch:
+    """In-memory OpenSearch with just enough behaviour to be honest.
+
+    ``fail_ids`` makes named documents fail inside a bulk request the way a
+    real one does: HTTP 200 overall, the error buried in the per-item response.
+    ``retry_fail_ids`` makes the individual retry fail too, which is the only
+    path that should ever produce a reported failure.
+    """
+
+    def __init__(
+        self,
+        *,
+        fail_ids: set[str] | None = None,
+        retry_fail_ids: set[str] | None = None,
+    ) -> None:
+        self.documents: dict[str, dict[str, dict]] = {}
+        self.bodies: dict[str, dict] = {}
+        self.aliases: dict[str, set[str]] = {}
+        self.created: list[str] = []
+        self.alias_calls: list[dict] = []
+        self.refreshes: list[str | None] = []
+        self.bulk_calls: list[list] = []
+        self.deleted_by_query: list[dict] = []
+        self.fail_ids = fail_ids or set()
+        self.retry_fail_ids = retry_fail_ids or set()
+        self.indices = FakeIndices(self)
+
+    def _resolve(self, index: str) -> str:
+        for name, aliases in self.aliases.items():
+            if index in aliases:
+                return name
+        return index
+
+    def bulk(self, body: list) -> dict:
+        self.bulk_calls.append(body)
+        items = []
+        errors = False
+        for action, source in zip(body[0::2], body[1::2], strict=True):
+            spec = action["index"]
+            index, doc_id = spec["_index"], spec["_id"]
+            if doc_id in self.fail_ids:
+                errors = True
+                items.append(
+                    {
+                        "index": {
+                            "_id": doc_id,
+                            "status": 400,
+                            "error": {
+                                "type": "mapper_parsing_exception",
+                                "reason": "simulated per-item failure",
+                            },
+                        }
+                    }
+                )
+                continue
+            self.documents.setdefault(index, {})[doc_id] = source
+            items.append({"index": {"_id": doc_id, "status": 201}})
+        return {"errors": errors, "items": items}
+
+    def index(self, index: str, id: str, body: dict) -> dict:  # noqa: A002
+        if id in self.retry_fail_ids:
+            raise RuntimeError("simulated retry failure")
+        self.documents.setdefault(index, {})[id] = body
+        return {"result": "created"}
+
+    def count(self, index: str) -> dict:
+        return {"count": len(self.documents.get(self._resolve(index), {}))}
+
+    def delete_by_query(self, index: str, body: dict, conflicts: str = "abort") -> dict:
+        self.deleted_by_query.append({"index": index, "body": body})
+        filters = body["query"]["bool"]["filter"]
+        wanted = set(filters[0]["terms"]["arxiv_id"])
+        minimum = filters[1]["range"]["chunk_index"]["gte"]
+        target = self.documents.setdefault(self._resolve(index), {})
+        doomed = [
+            doc_id
+            for doc_id, source in target.items()
+            if source["arxiv_id"] in wanted and source["chunk_index"] >= minimum
+        ]
+        for doc_id in doomed:
+            del target[doc_id]
+        return {"deleted": len(doomed)}
+
+    def search(self, index: str, body: dict) -> dict:
+        sources = self.documents.get(self._resolve(index), {})
+        hits = [
+            {"_id": doc_id, "_score": 1.0, "_source": source}
+            for doc_id, source in list(sources.items())[: body.get("size", 10)]
+        ]
+        return {"hits": {"total": {"value": len(sources)}, "hits": hits}}
+
+
+@pytest.fixture
+def fake_opensearch() -> FakeOpenSearch:
+    return FakeOpenSearch()
+
+
+@pytest.fixture
+def search_index(fake_opensearch: FakeOpenSearch) -> SearchIndex:
+    return SearchIndex(fake_opensearch, alias="papers-test")
+
+
+@pytest.fixture
+def embedder() -> HashingEmbedder:
+    """Matches the width of the pgvector column, which is fixed by a migration."""
+    return HashingEmbedder(dimension=EMBEDDING_DIMENSIONS)

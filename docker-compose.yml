@@ -8,7 +8,11 @@
 
 services:
   postgres:
-    image: postgres:16-alpine
+    # pgvector/pgvector rather than the plain postgres image: dense retrieval
+    # uses the `vector` extension, and `CREATE EXTENSION vector` fails on an
+    # image that does not ship the extension files. See ingestion/vectors.py
+    # for why the vectors live in PostgreSQL rather than in OpenSearch.
+    image: pgvector/pgvector:pg16
     environment:
       POSTGRES_USER: scintilla
       POSTGRES_PASSWORD: scintilla
@@ -27,6 +31,9 @@ services:
       retries: 10
 
   opensearch:
+    # Lexical retrieval (BM25) only. Vectors are in PostgreSQL, so the k-NN
+    # plugin is unused here - which is also what lets development happen on
+    # macOS, where that plugin has no build.
     image: opensearchproject/opensearch:2.18.0
     environment:
       - discovery.type=single-node

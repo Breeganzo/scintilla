@@ -18,15 +18,24 @@ works.
 | Phase | Scope | State |
 |---|---|---|
 | 1 · Foundation | Django, PostgreSQL, containers, CI | ✅ Complete |
-| 2 · Ingestion | arXiv harvesting, embeddings, OpenSearch, Airflow | ⬜ Not started |
+| 2 · Ingestion | arXiv harvesting, embeddings, indexing, Airflow | 🔄 Airflow outstanding |
 | 3 · Retrieval & evaluation | BM25, dense, RRF, golden set, metrics, CI gate | ⬜ Not started |
 | 4 · Ship | React frontend, MCP server, deployment, hardening | ⬜ Not started |
 
 Phase 1 means the foundation is verified, not that the system does anything
 useful yet: a clean clone installs, migrates against PostgreSQL 16, serves a
 read-only API and passes 29 tests, and CI checks lint, tests, dependencies and
-the container build on every push. **Nothing is ingested, searched or measured
-yet.** That is Phases 2 and 3.
+the container build on every push.
+
+Phase 2 currently harvests arXiv into PostgreSQL, chunks against the embedding
+model's own tokenizer, embeds into pgvector and indexes into OpenSearch. The
+corpus is 2,975 papers across `hep-ex`, `hep-th` and `cs.IR`, and re-running
+either command indexes nothing, which is the property that makes a scheduled
+pipeline safe. Orchestrating that with Airflow is the remaining piece.
+
+**Nothing is fused or measured yet.** There is no Reciprocal Rank Fusion, no
+golden set and no retrieval metrics, so no claim is made about retrieval
+quality. That is Phase 3, and it is the part of this project that matters most.
 
 **No evaluation numbers are published yet.** When they exist they will appear
 here, including the cases where hybrid retrieval performs *worse* than its
@@ -58,24 +67,39 @@ of query it hurt. That check is the point of this project.
 arXiv API
     │
     ▼
-Airflow DAG ──► parse ──► embed (BGE-small) ──► OpenSearch
-    │                                              │  BM25 + kNN
-    ▼                                              │
-PostgreSQL  ◄─────────────────────────────────────┘
- metadata,                    │
- run ledger,                  ▼
- eval results        Reciprocal Rank Fusion
-                              │
-                              ▼
-                     grounded answer + citations
-                              │
-                    ┌─────────┴─────────┐
-                    ▼                   ▼
-              REST API (DRF)       MCP server
-                    │                   │
-                    ▼                   ▼
-             React frontend      LLM tool-calling host
+Airflow DAG ──► parse ──► chunk ──► embed (BGE-small)
+    │                                    │
+    │                    ┌───────────────┴───────────────┐
+    │                    ▼                               ▼
+    │            OpenSearch (BM25)          PostgreSQL + pgvector (kNN)
+    │             lexical index              metadata, run ledger,
+    │                    │                   eval results, vectors
+    ▼                    │                               │
+  ledger                 └───────────────┬───────────────┘
+                                         ▼
+                              Reciprocal Rank Fusion
+                                         │
+                                         ▼
+                              grounded answer + citations
+                                         │
+                               ┌─────────┴─────────┐
+                               ▼                   ▼
+                         REST API (DRF)       MCP server
+                               │                   │
+                               ▼                   ▼
+                        React frontend      LLM tool-calling host
 ```
+
+The two indexes are split on purpose. OpenSearch publishes no macOS build and
+its k-NN plugin has native libraries only for Linux and Windows, so vector
+search could not run there on the development machine. Putting the vectors in
+Postgres turned out to be the better design anyway: a chunk and its embedding
+are written in one transaction, the deployment target runs one JVM instead of a
+larger one, and Reciprocal Rank Fusion combines *ranked lists*, so it does not
+care that the two runs came from different systems. The trade-off given up is
+real and worth stating: OpenSearch can filter a k-NN query by category *inside*
+the vector search, whereas here a filtered dense query is a SQL `WHERE` applied
+after the HNSW scan. `ingestion/vectors.py` records this in full.
 
 Full diagrams are published alongside the retrieval evaluation in Phase 3.
 
@@ -87,7 +111,8 @@ Full diagrams are published alongside the retrieval evaluation in Phase 3.
 |---|---|---|
 | API | Django 5 + Django REST Framework | Migrations, admin and auth without assembling them by hand |
 | Metadata | PostgreSQL 16 | Relational integrity for the run ledger and evaluation history |
-| Index | OpenSearch 2 | BM25 and kNN vector search in one engine, Apache-2.0 |
+| Lexical index | OpenSearch 2 | BM25, Apache-2.0, the reference implementation of the algorithm |
+| Vector index | pgvector (HNSW, cosine) | Vectors live beside the rows they describe, written in one transaction |
 | Embeddings | BAAI/bge-small-en-v1.5 | 384-dim, runs on CPU, small enough for a free-tier VM |
 | Orchestration | Apache Airflow | Retries, backfill and run history that cron cannot express |
 | Generation | Llama 3.3 70B via Groq | Free tier; the system degrades to search-only without it |

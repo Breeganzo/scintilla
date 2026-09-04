@@ -44,7 +44,9 @@ jobs:
     # without Docker cannot exercise it. CI can.
     services:
       postgres:
-        image: postgres:16-alpine
+        # pgvector/pgvector, not plain postgres: the migrations create the
+        # `vector` extension, which does not exist in the stock image.
+        image: pgvector/pgvector:pg16
         env:
           POSTGRES_USER: scintilla
           POSTGRES_PASSWORD: scintilla

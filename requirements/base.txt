@@ -18,3 +18,10 @@ gunicorn>=23.0,<24.0
 # trusted" is an assumption that outlives the reason it was true.
 requests>=2.32,<3.0
 defusedxml>=0.7.1,<0.8
+
+# Search. The OpenSearch client is pure Python and small, so it belongs here;
+# the embedding model is neither, which is why it lives in ml.txt instead.
+# pgvector adds the vector column type and the HNSW index used for dense
+# retrieval - see docs/ARCHITECTURE notes on why vectors live in PostgreSQL.
+opensearch-py>=2.8,<4.0
+pgvector>=0.3,<0.5

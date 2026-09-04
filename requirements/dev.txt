@@ -4,6 +4,10 @@
 
 -r base.txt
 
+# The MCP server is a separate process with its own dependencies, but its
+# tests run in the same suite, so CI needs them here.
+-r mcp.txt
+
 # Testing
 pytest>=8.3,<9.0
 pytest-django>=4.9,<5.0

@@ -20,7 +20,7 @@ works.
 | 1 · Foundation | Django, PostgreSQL, containers, CI | ✅ Complete |
 | 2 · Ingestion | arXiv harvesting, embeddings, indexing, Airflow | ✅ Complete |
 | 3 · Retrieval & evaluation | BM25, dense, RRF, golden set, metrics, CI gate | ✅ Complete |
-| 4 · Ship | React frontend ✅ · MCP server ⬜ · deployment ⬜ · hardening ⬜ | 🟡 In progress |
+| 4 · Ship | React frontend ✅ · MCP server ✅ · deployment ⬜ · hardening ⬜ | 🟡 In progress |
 
 Phase 1 means the foundation is verified, not that the system does anything
 useful yet: a clean clone installs, migrates against PostgreSQL 16, serves a
@@ -415,6 +415,39 @@ a serializer change that breaks the client is a **build error rather than a
 runtime one**. CI regenerates both the schema and the types and fails if either
 is stale.
 
+### The MCP server
+
+The same retrieval, exposed to a language model instead of a browser.
+
+```bash
+pip install -r requirements/mcp.txt
+python -m mcp_server                          # stdio, for a local MCP client
+python -m mcp_server --transport streamable-http --port 8081
+```
+
+It needs the API running; point it somewhere else with `SCINTILLA_API_URL`.
+Three tools: `search_papers`, `get_paper`, `retrieval_report`.
+
+It talks to the **HTTP API rather than the database**. That keeps a second copy
+of the embedding model out of a 12 GB deployment, and it makes the model and
+the browser two consumers of one published contract, so they cannot disagree
+about a ranking.
+
+The tool descriptions carry the caveats, because that is the only documentation
+a model reads before choosing arguments: that the system **does not abstain**,
+so ten confident-looking results are not evidence the corpus contains an
+answer; that `dense` is the measured best and hybrid is *not* significantly
+better. Every result carries the same `why this result` explanation the browser
+shows. `retrieval_report` returns the recorded metrics with the commit and
+golden-set version behind them, and says explicitly when no measurement exists
+rather than reporting a zero.
+
+Building it found a real bug. It was the first consumer to *ask* the API for
+the evaluation numbers rather than display a copy, and got back an empty list:
+two `EvaluationRun` models existed and the API was wired to the one nothing
+wrote to. No test had ever exercised that endpoint. Written up in
+[§7e](docs/ARCHITECTURE.md).
+
 ---
 
 ## Documentation
@@ -422,6 +455,7 @@ is stale.
 | Document | What is in it |
 |---|---|
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | High-level and low-level design, the split-index decision, data model, ingestion and orchestration flows |
+| [docs/MCP_SESSION.md](docs/MCP_SESSION.md) | A verbatim MCP session against the live system, including a query the corpus cannot answer |
 | [docs/LOCAL_SETUP.md](docs/LOCAL_SETUP.md) | Running every service natively, without Docker |
 | [docs/DOCKER_SETUP.md](docs/DOCKER_SETUP.md) | Running the stack with Docker Compose |
 | [docs/SECURITY.md](docs/SECURITY.md) | Threat model, what is enforced, and what is deliberately deferred |

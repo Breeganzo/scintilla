@@ -169,11 +169,16 @@ erDiagram
     EvaluationRun {
         int id PK
         string mode
-        float recall_at_k
-        float mrr
-        float ndcg
+        int top_k
+        int golden_set_version
+        int corpus_papers
+        string git_sha
+        json metrics
     }
 ```
+
+`EvaluationRun` lives in the `evaluation` app, next to the harness that writes
+it — see §7e for what happened when it did not.
 
 Two schema decisions worth knowing:
 
@@ -642,6 +647,90 @@ claim, which is what this interface is for.
 
 ---
 
+## 7e. The MCP server ✅
+
+The same retrieval, exposed to a language model instead of a browser.
+
+```mermaid
+graph LR
+    CLIENT["MCP client<br/>(Claude Desktop, IDE, agent)"]
+    subgraph proc["scintilla-mcp - separate process"]
+        TOOLS["search_papers<br/>get_paper<br/>retrieval_report"]
+    end
+    API["Django REST API"]
+    CLIENT -->|"stdio or streamable-http"| TOOLS
+    TOOLS -->|"HTTP"| API
+```
+
+### It is a client of the API, not of the database
+
+The obvious design is to import the retrievers and call them in-process. That
+was rejected for two reasons.
+
+The practical one: the dense retriever loads BGE-small, and the deployment
+target has 12 GB of RAM already carrying PostgreSQL, OpenSearch and gunicorn.
+An in-process MCP server means a second copy of the model — about a gigabyte —
+for no functional gain.
+
+The one that matters more: going over HTTP makes the MCP server a *second
+independent consumer of the published contract*. The browser and the model now
+reach the same ranking through the same endpoint, so there is no path by which
+they can disagree. That property paid for itself immediately — see below.
+
+### The tools carry the caveats, not just the data
+
+A tool description is the only documentation a model reads before it chooses
+arguments. So the findings that contradict intuition live there:
+
+- The server's instructions state that the system **does not abstain**. Ten
+  confident-looking results are not evidence the corpus contains an answer.
+  A model that does not know this will happily summarise ten irrelevant papers.
+- `search_papers` names `dense` as the measured best and states that hybrid is
+  **not significantly better** (§7). Left unsaid, a model would reasonably
+  assume the fancier retriever is the better one.
+- Every result carries `why_this_ranked_here`, the same prose the browser shows.
+- `retrieval_report` returns the recorded metrics *with the commit, golden-set
+  version and corpus size they came from*, and distinguishes "no measurement
+  exists here" from "the measurement was zero".
+
+`search_papers` deliberately returns metadata and ranking evidence but **not**
+abstract text; fetching text is a second, explicit `get_paper` call. Ten
+abstracts inlined into every search response would crowd the context window
+with material the model usually does not need.
+
+### What building it found
+
+The MCP server was the first consumer to *ask the API for the evaluation
+numbers* rather than display a copy of them. It got back an empty list.
+
+There were two `EvaluationRun` models: one scaffolded in Phase 1 under `papers`,
+and the one under `evaluation` that the Day 9 harness actually writes to. The
+API was wired to the first. `/api/evaluation-runs/` had been returning
+`{"count": 0, "results": []}` against a database holding six real runs.
+
+It survived because nothing had reason to notice. The model unit tests created
+rows in the scaffolded table and read them back, so they passed. No test
+exercised the endpoint at all. The frontend displays the Day 9 figures from a
+constant, so it never queried it either.
+
+The fix deletes the duplicate model, moves the serialiser and viewset into the
+app that owns the data, and adds the API tests that were missing — each of
+which writes through the harness's model and reads back over HTTP, because a
+test that mocked the queryset would have passed against the broken wiring too.
+
+The general lesson is one this project keeps relearning: **a test that
+constructs its own fixture through the same wrong path as the code under test
+proves nothing.** The endpoint publishing the honesty numbers was itself
+unverified.
+
+### Not built here
+
+No answering tool — §7b measures it and it is not served, and exposing an
+unserved capability over MCP would be worse than not having it. No write tools;
+the corpus is read-only for the same reason the REST API is (§4).
+
+---
+
 ## 8. Deployment ⬜
 
 ```mermaid
@@ -675,7 +764,7 @@ trigger DAGs and exposes connection metadata.
 | Subsystem | State |
 |---|---|
 | Django project, split settings, read-only DRF API | ✅ |
-| Schema: Paper, Chunk, IngestionRun, EvaluationRun | ✅ PostgreSQL 16 |
+| Schema: Paper, Chunk, IngestionRun (papers), EvaluationRun (evaluation) | ✅ PostgreSQL 16 |
 | arXiv client — rate limiting, retry, timeout, `defusedxml` | ✅ |
 | Chunking against the embedding model's own tokenizer | ✅ |
 | Ingestion pipeline, three idempotency mechanisms | ✅ |
@@ -690,7 +779,8 @@ trigger DAGs and exposes connection metadata.
 | Grounded answering, abstention and citation checking | ✅ measured, not yet served |
 | CI regression gate, proven by injected faults | ✅ |
 | React frontend, types generated from the OpenAPI schema | ✅ |
-| MCP server, deployment, hardening | ⬜ Phase 4 |
+| MCP server — three tools over stdio or streamable-http | ✅ |
+| Deployment, hardening | ⬜ Phase 4 |
 
 Corpus at time of writing: **3,377 papers / 3,465 chunks** across `hep-ex`,
 `hep-th`, `hep-ph`, `cs.IR` and `astro-ph.HE`, fully embedded and indexed.

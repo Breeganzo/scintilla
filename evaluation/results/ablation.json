@@ -1,0 +1,5840 @@
+{
+  "meta": {
+    "golden_set_version": 1,
+    "top_k": 10,
+    "corpus_papers": 3377,
+    "corpus_chunks": 3465,
+    "git_sha": "010720aac5ad437d8cfe078ccbde665dce4573df"
+  },
+  "modes": {
+    "bm25": {
+      "mode": "bm25",
+      "top_k": 10,
+      "golden_set_version": 1,
+      "overall": {
+        "recall@1": 0.10023809523809524,
+        "precision@1": 0.425,
+        "ndcg@1": 0.425,
+        "recall@5": 0.3743154761904762,
+        "precision@5": 0.35,
+        "ndcg@5": 0.4210515225334963,
+        "recall@10": 0.526547619047619,
+        "precision@10": 0.25,
+        "ndcg@10": 0.4733346864918187,
+        "mrr": 0.5650595238095237
+      },
+      "by_class": {
+        "exact_term": {
+          "recall@1": 0.2783333333333333,
+          "precision@1": 1.0,
+          "ndcg@1": 1.0,
+          "recall@5": 0.73,
+          "precision@5": 0.56,
+          "ndcg@5": 0.8103446529371376,
+          "recall@10": 0.8550000000000001,
+          "precision@10": 0.33999999999999997,
+          "ndcg@10": 0.8636919608783534,
+          "mrr": 1.0
+        },
+        "paraphrase": {
+          "recall@1": 0.025,
+          "precision@1": 0.1,
+          "ndcg@1": 0.1,
+          "recall@5": 0.10595238095238095,
+          "precision@5": 0.1,
+          "ndcg@5": 0.1133315490949823,
+          "recall@10": 0.20595238095238094,
+          "precision@10": 0.08,
+          "ndcg@10": 0.15252337394763138,
+          "mrr": 0.22261904761904763
+        },
+        "conceptual": {
+          "recall@1": 0.030952380952380953,
+          "precision@1": 0.2,
+          "ndcg@1": 0.2,
+          "recall@5": 0.2754761904761905,
+          "precision@5": 0.32,
+          "ndcg@5": 0.2964887921565468,
+          "recall@10": 0.40857142857142853,
+          "precision@10": 0.24,
+          "ndcg@10": 0.34246736742052275,
+          "mrr": 0.41761904761904767
+        },
+        "multi_hop": {
+          "recall@1": 0.06666666666666667,
+          "precision@1": 0.4,
+          "ndcg@1": 0.4,
+          "recall@5": 0.38583333333333336,
+          "precision@5": 0.42000000000000004,
+          "ndcg@5": 0.4640410959453184,
+          "recall@10": 0.6366666666666666,
+          "precision@10": 0.33999999999999997,
+          "ndcg@10": 0.5346560437207672,
+          "mrr": 0.62
+        }
+      },
+      "median_latency_ms": 5.069708495284431,
+      "queries": [
+        {
+          "query_id": "exact_01",
+          "query_class": "exact_term",
+          "query": "axion-like particle diphoton decay search",
+          "retrieved_ids": [
+            "2607.07800",
+            "2608.12616",
+            "2608.18506",
+            "2607.21168",
+            "2607.28381",
+            "2607.29205",
+            "2608.24161",
+            "2606.20525",
+            "2606.19299",
+            "2607.27190"
+          ],
+          "relevant_ids": [
+            "2607.07800",
+            "2608.18506",
+            "2608.12616",
+            "2607.29205",
+            "2608.24161",
+            "2609.00123"
+          ],
+          "metrics": {
+            "recall@1": 0.16666666666666666,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.5,
+            "precision@5": 0.6,
+            "ndcg@5": 0.7227265726449519,
+            "recall@10": 0.8333333333333334,
+            "precision@10": 0.5,
+            "ndcg@10": 0.8534811121179371,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2609.00123"
+          ],
+          "elapsed_ms": 6.56
+        },
+        {
+          "query_id": "exact_02",
+          "query_class": "exact_term",
+          "query": "look-elsewhere effect trials factor",
+          "retrieved_ids": [
+            "2608.24872",
+            "2606.13780",
+            "2608.19764",
+            "2608.20294",
+            "2606.11230",
+            "2609.02303",
+            "2607.03531",
+            "2607.29138",
+            "2609.02823",
+            "2607.09216"
+          ],
+          "relevant_ids": [
+            "2608.24872",
+            "2606.13780",
+            "2608.19764"
+          ],
+          "metrics": {
+            "recall@1": 0.3333333333333333,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 1.0,
+            "precision@5": 0.6,
+            "ndcg@5": 1.0,
+            "recall@10": 1.0,
+            "precision@10": 0.3,
+            "ndcg@10": 1.0,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 5.62
+        },
+        {
+          "query_id": "exact_03",
+          "query_class": "exact_term",
+          "query": "pseudo-relevance feedback query expansion",
+          "retrieved_ids": [
+            "2607.18626",
+            "2608.16071",
+            "2608.15851",
+            "2608.17632",
+            "2607.12098",
+            "2608.00452",
+            "2608.25521",
+            "2607.04008",
+            "2609.00844",
+            "2608.25571"
+          ],
+          "relevant_ids": [
+            "2607.18626",
+            "2607.12098",
+            "2608.25521",
+            "2608.15851",
+            "2608.17632",
+            "2609.00844"
+          ],
+          "metrics": {
+            "recall@1": 0.16666666666666666,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.6666666666666666,
+            "precision@5": 0.8,
+            "ndcg@5": 0.7860137352654724,
+            "recall@10": 1.0,
+            "precision@10": 0.6,
+            "ndcg@10": 0.8932498536862836,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 5.32
+        },
+        {
+          "query_id": "exact_04",
+          "query_class": "exact_term",
+          "query": "hyperon bulk viscosity neutron star inspiral",
+          "retrieved_ids": [
+            "2608.28000",
+            "2608.20989",
+            "2608.26274",
+            "2608.24796",
+            "2608.30995",
+            "2608.20921",
+            "2609.01022",
+            "2608.22058",
+            "2608.06224",
+            "2608.19690"
+          ],
+          "relevant_ids": [
+            "2608.28000",
+            "2608.20989",
+            "2608.20921",
+            "2607.09280"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.5,
+            "precision@5": 0.4,
+            "ndcg@5": 0.6366824387328317,
+            "recall@10": 0.75,
+            "precision@10": 0.3,
+            "ndcg@10": 0.7757386182436072,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2607.09280"
+          ],
+          "elapsed_ms": 6.05
+        },
+        {
+          "query_id": "exact_05",
+          "query_class": "exact_term",
+          "query": "core-collapse supernova shock revival simulation",
+          "retrieved_ids": [
+            "2608.28358",
+            "2608.18198",
+            "2608.24578",
+            "2606.30756",
+            "2608.17757",
+            "2608.26390",
+            "2608.24170",
+            "2609.00200",
+            "2608.25571",
+            "2608.17681"
+          ],
+          "relevant_ids": [
+            "2608.28358",
+            "2608.24578",
+            "2606.30756",
+            "2608.26681",
+            "2608.18198"
+          ],
+          "metrics": {
+            "recall@1": 0.2,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.8,
+            "precision@5": 0.8,
+            "ndcg@5": 0.8687949224876582,
+            "recall@10": 0.8,
+            "precision@10": 0.4,
+            "ndcg@10": 0.8687949224876582,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.26681"
+          ],
+          "elapsed_ms": 6.57
+        },
+        {
+          "query_id": "exact_06",
+          "query_class": "exact_term",
+          "query": "charged-current quasi-elastic cross section",
+          "retrieved_ids": [
+            "2608.12293",
+            "2606.14669",
+            "2607.11286",
+            "2607.10644",
+            "2609.02989",
+            "2606.18347",
+            "2608.26255",
+            "2609.01179",
+            "2607.15050",
+            "2606.21702"
+          ],
+          "relevant_ids": [
+            "2608.12293",
+            "2606.00745",
+            "2607.10644",
+            "2608.23057"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.5,
+            "precision@5": 0.4,
+            "ndcg@5": 0.5585075862632192,
+            "recall@10": 0.5,
+            "precision@10": 0.2,
+            "ndcg@10": 0.5585075862632192,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2606.00745",
+            "2608.23057"
+          ],
+          "elapsed_ms": 3.86
+        },
+        {
+          "query_id": "exact_07",
+          "query_class": "exact_term",
+          "query": "Hough transform online track reconstruction",
+          "retrieved_ids": [
+            "2607.04067",
+            "2607.04723",
+            "2608.10900",
+            "2607.12821",
+            "2606.20437",
+            "2606.17631",
+            "2608.31148",
+            "2607.15361",
+            "2606.23621",
+            "2607.20863"
+          ],
+          "relevant_ids": [
+            "2607.04067",
+            "2607.04723",
+            "2607.04271"
+          ],
+          "metrics": {
+            "recall@1": 0.3333333333333333,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.6666666666666666,
+            "precision@5": 0.4,
+            "ndcg@5": 0.7653606369886217,
+            "recall@10": 0.6666666666666666,
+            "precision@10": 0.2,
+            "ndcg@10": 0.7653606369886217,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2607.04271"
+          ],
+          "elapsed_ms": 4.94
+        },
+        {
+          "query_id": "exact_08",
+          "query_class": "exact_term",
+          "query": "fast radio burst dispersion measure",
+          "retrieved_ids": [
+            "2608.23868",
+            "2608.27779",
+            "2608.18455",
+            "2609.02037",
+            "2609.04118",
+            "2608.30943",
+            "2608.23522",
+            "2608.21940",
+            "2608.28370",
+            "2608.26857"
+          ],
+          "relevant_ids": [
+            "2608.23868",
+            "2608.27779",
+            "2608.23522"
+          ],
+          "metrics": {
+            "recall@1": 0.3333333333333333,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.6666666666666666,
+            "precision@5": 0.4,
+            "ndcg@5": 0.7653606369886217,
+            "recall@10": 1.0,
+            "precision@10": 0.3,
+            "ndcg@10": 0.9217868789962071,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 4.53
+        },
+        {
+          "query_id": "exact_09",
+          "query_class": "exact_term",
+          "query": "blazar jet accretion regime",
+          "retrieved_ids": [
+            "2609.03435",
+            "2609.02550",
+            "2608.25763",
+            "2608.18707",
+            "2608.18249",
+            "2609.00174",
+            "2609.02867",
+            "2608.21158",
+            "2608.29244",
+            "2608.00376"
+          ],
+          "relevant_ids": [
+            "2609.03435",
+            "2609.02550",
+            "2608.25763",
+            "2608.18707"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 1.0,
+            "precision@5": 0.8,
+            "ndcg@5": 1.0,
+            "recall@10": 1.0,
+            "precision@10": 0.4,
+            "ndcg@10": 1.0,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 4.02
+        },
+        {
+          "query_id": "exact_10",
+          "query_class": "exact_term",
+          "query": "integrated luminosity measurement proton-proton collisions",
+          "retrieved_ids": [
+            "2606.26832",
+            "2609.02989",
+            "2607.28396",
+            "2608.01289",
+            "2607.25653",
+            "2606.20558",
+            "2609.01285",
+            "2608.10148",
+            "2607.02441",
+            "2608.05323"
+          ],
+          "relevant_ids": [
+            "2606.26832",
+            "2609.02989"
+          ],
+          "metrics": {
+            "recall@1": 0.5,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 1.0,
+            "precision@5": 0.4,
+            "ndcg@5": 1.0,
+            "recall@10": 1.0,
+            "precision@10": 0.2,
+            "ndcg@10": 1.0,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 4.65
+        },
+        {
+          "query_id": "para_01",
+          "query_class": "paraphrase",
+          "query": "how do websites decide which short clips to show a viewer next",
+          "retrieved_ids": [
+            "2607.02885",
+            "2608.29430",
+            "2607.24798",
+            "2608.30309",
+            "2606.17132",
+            "2608.04302",
+            "2608.23221",
+            "2608.10700",
+            "2608.14278",
+            "2608.22859"
+          ],
+          "relevant_ids": [
+            "2608.29430",
+            "2608.13990",
+            "2608.04807"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.3333333333333333,
+            "precision@5": 0.2,
+            "ndcg@5": 0.2960819109658652,
+            "recall@10": 0.3333333333333333,
+            "precision@10": 0.1,
+            "ndcg@10": 0.2960819109658652,
+            "mrr": 0.5
+          },
+          "first_hit_rank": 2,
+          "misses": [
+            "2608.13990",
+            "2608.04807"
+          ],
+          "elapsed_ms": 8.88
+        },
+        {
+          "query_id": "para_02",
+          "query_class": "paraphrase",
+          "query": "improving a search engine by re-reading its own top results",
+          "retrieved_ids": [
+            "2607.03421",
+            "2607.09264",
+            "2608.02376",
+            "2607.14835",
+            "2608.24924",
+            "2607.04043",
+            "2608.05441",
+            "2608.00452",
+            "2607.15253",
+            "2607.01170"
+          ],
+          "relevant_ids": [
+            "2607.18626",
+            "2607.12098",
+            "2608.25521",
+            "2608.15851"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.0,
+            "precision@5": 0.0,
+            "ndcg@5": 0.0,
+            "recall@10": 0.0,
+            "precision@10": 0.0,
+            "ndcg@10": 0.0,
+            "mrr": 0.0
+          },
+          "first_hit_rank": null,
+          "misses": [
+            "2607.18626",
+            "2607.12098",
+            "2608.25521",
+            "2608.15851"
+          ],
+          "elapsed_ms": 13.75
+        },
+        {
+          "query_id": "para_03",
+          "query_class": "paraphrase",
+          "query": "what happens when a star wanders too close to a black hole",
+          "retrieved_ids": [
+            "2608.27596",
+            "2608.21609",
+            "2608.06224",
+            "2608.21511",
+            "2608.23077",
+            "2608.30995",
+            "2608.28947",
+            "2608.10594",
+            "2608.19402",
+            "2609.00934"
+          ],
+          "relevant_ids": [
+            "2608.19402",
+            "2608.28947",
+            "2609.03701",
+            "2608.27596"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.25,
+            "precision@5": 0.2,
+            "ndcg@5": 0.3903800499921017,
+            "recall@10": 0.75,
+            "precision@10": 0.3,
+            "ndcg@10": 0.6380228380792293,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2609.03701"
+          ],
+          "elapsed_ms": 6.4
+        },
+        {
+          "query_id": "para_04",
+          "query_class": "paraphrase",
+          "query": "using neural networks to work out particle paths in a detector",
+          "retrieved_ids": [
+            "2606.03745",
+            "2607.22281",
+            "2609.03417",
+            "2607.04723",
+            "2607.24818",
+            "2608.21588",
+            "2608.19331",
+            "2608.15001",
+            "2606.28218",
+            "2608.23773"
+          ],
+          "relevant_ids": [
+            "2607.04723",
+            "2607.15361",
+            "2606.20437",
+            "2606.30485",
+            "2606.14373",
+            "2607.07263",
+            "2607.04271"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.14285714285714285,
+            "precision@5": 0.2,
+            "ndcg@5": 0.14606834984270645,
+            "recall@10": 0.14285714285714285,
+            "precision@10": 0.1,
+            "ndcg@10": 0.11838279295536293,
+            "mrr": 0.25
+          },
+          "first_hit_rank": 4,
+          "misses": [
+            "2607.15361",
+            "2606.20437",
+            "2606.30485",
+            "2606.14373",
+            "2607.07263",
+            "2607.04271"
+          ],
+          "elapsed_ms": 5.43
+        },
+        {
+          "query_id": "para_05",
+          "query_class": "paraphrase",
+          "query": "how bright was the beam when the collisions were recorded",
+          "retrieved_ids": [
+            "2606.20830",
+            "2608.30466",
+            "2607.06765",
+            "2607.18512",
+            "2608.10988",
+            "2609.03452",
+            "2606.26832",
+            "2608.25159",
+            "2606.15798",
+            "2607.22684"
+          ],
+          "relevant_ids": [
+            "2606.26832",
+            "2609.02989"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.0,
+            "precision@5": 0.0,
+            "ndcg@5": 0.0,
+            "recall@10": 0.5,
+            "precision@10": 0.1,
+            "ndcg@10": 0.20438239758848611,
+            "mrr": 0.14285714285714285
+          },
+          "first_hit_rank": 7,
+          "misses": [
+            "2609.02989"
+          ],
+          "elapsed_ms": 4.63
+        },
+        {
+          "query_id": "para_06",
+          "query_class": "paraphrase",
+          "query": "finding a signal that could be anywhere in the data without fooling yourself",
+          "retrieved_ids": [
+            "2608.11395",
+            "2608.28738",
+            "2608.26090",
+            "2608.04103",
+            "2608.27366",
+            "2609.02228",
+            "2608.17817",
+            "2608.07152",
+            "2607.24651",
+            "2607.28571"
+          ],
+          "relevant_ids": [
+            "2608.24872",
+            "2606.13780",
+            "2608.19764",
+            "2605.31103"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.0,
+            "precision@5": 0.0,
+            "ndcg@5": 0.0,
+            "recall@10": 0.0,
+            "precision@10": 0.0,
+            "ndcg@10": 0.0,
+            "mrr": 0.0
+          },
+          "first_hit_rank": null,
+          "misses": [
+            "2608.24872",
+            "2606.13780",
+            "2608.19764",
+            "2605.31103"
+          ],
+          "elapsed_ms": 4.46
+        },
+        {
+          "query_id": "para_07",
+          "query_class": "paraphrase",
+          "query": "checking whether a scientific statement really came from the work it cites",
+          "retrieved_ids": [
+            "2608.04763",
+            "2609.03654",
+            "2607.22684",
+            "2608.15231",
+            "2608.15909",
+            "2609.01846",
+            "2608.25663",
+            "2608.19833",
+            "2608.11190",
+            "2606.29560"
+          ],
+          "relevant_ids": [
+            "2607.15875",
+            "2607.04043",
+            "2608.30145",
+            "2607.24802",
+            "2607.24803"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.0,
+            "precision@5": 0.0,
+            "ndcg@5": 0.0,
+            "recall@10": 0.0,
+            "precision@10": 0.0,
+            "ndcg@10": 0.0,
+            "mrr": 0.0
+          },
+          "first_hit_rank": null,
+          "misses": [
+            "2607.15875",
+            "2607.04043",
+            "2608.30145",
+            "2607.24802",
+            "2607.24803"
+          ],
+          "elapsed_ms": 4.84
+        },
+        {
+          "query_id": "para_08",
+          "query_class": "paraphrase",
+          "query": "searching for very light dark matter that barely interacts with ordinary matter",
+          "retrieved_ids": [
+            "2608.04763",
+            "2607.24448",
+            "2607.24524",
+            "2608.26274",
+            "2608.18204",
+            "2609.03648",
+            "2609.01727",
+            "2608.29947",
+            "2608.26289",
+            "2609.02823"
+          ],
+          "relevant_ids": [
+            "2607.19319",
+            "2607.24524",
+            "2606.07008",
+            "2609.02501",
+            "2608.18204",
+            "2608.07136"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.3333333333333333,
+            "precision@5": 0.4,
+            "ndcg@5": 0.30078518014914984,
+            "recall@10": 0.3333333333333333,
+            "precision@10": 0.2,
+            "ndcg@10": 0.2683637998873703,
+            "mrr": 0.3333333333333333
+          },
+          "first_hit_rank": 3,
+          "misses": [
+            "2607.19319",
+            "2606.07008",
+            "2609.02501",
+            "2608.07136"
+          ],
+          "elapsed_ms": 13.47
+        },
+        {
+          "query_id": "para_09",
+          "query_class": "paraphrase",
+          "query": "how a dying massive star manages to explode outward",
+          "retrieved_ids": [
+            "2608.18897",
+            "2609.00200",
+            "2607.29104",
+            "2608.18196",
+            "2607.21503",
+            "2606.20830",
+            "2608.19896",
+            "2606.28218",
+            "2608.14267",
+            "2608.11945"
+          ],
+          "relevant_ids": [
+            "2608.28358",
+            "2608.24578",
+            "2606.30756",
+            "2608.26681"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.0,
+            "precision@5": 0.0,
+            "ndcg@5": 0.0,
+            "recall@10": 0.0,
+            "precision@10": 0.0,
+            "ndcg@10": 0.0,
+            "mrr": 0.0
+          },
+          "first_hit_rank": null,
+          "misses": [
+            "2608.28358",
+            "2608.24578",
+            "2606.30756",
+            "2608.26681"
+          ],
+          "elapsed_ms": 7.63
+        },
+        {
+          "query_id": "para_10",
+          "query_class": "paraphrase",
+          "query": "ranking documents when the reader's words differ from the author's words",
+          "retrieved_ids": [
+            "2608.22118",
+            "2607.27739",
+            "2607.29274",
+            "2607.03456",
+            "2608.25382",
+            "2608.01450",
+            "2608.20786",
+            "2607.24475",
+            "2609.03654",
+            "2608.26762"
+          ],
+          "relevant_ids": [
+            "2608.00452",
+            "2608.15851",
+            "2608.25521"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.0,
+            "precision@5": 0.0,
+            "ndcg@5": 0.0,
+            "recall@10": 0.0,
+            "precision@10": 0.0,
+            "ndcg@10": 0.0,
+            "mrr": 0.0
+          },
+          "first_hit_rank": null,
+          "misses": [
+            "2608.00452",
+            "2608.15851",
+            "2608.25521"
+          ],
+          "elapsed_ms": 7.79
+        },
+        {
+          "query_id": "conc_01",
+          "query_class": "conceptual",
+          "query": "why is dark matter so hard to detect directly",
+          "retrieved_ids": [
+            "2608.05082",
+            "2608.15240",
+            "2608.08592",
+            "2608.04763",
+            "2608.20745",
+            "2607.29492",
+            "2609.04144",
+            "2608.03019",
+            "2608.24960",
+            "2608.10761"
+          ],
+          "relevant_ids": [
+            "2606.25129",
+            "2608.20745",
+            "2608.10105",
+            "2608.26289",
+            "2607.24448",
+            "2608.10761",
+            "2608.24960"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.14285714285714285,
+            "precision@5": 0.2,
+            "ndcg@5": 0.13120507751234178,
+            "recall@10": 0.42857142857142855,
+            "precision@10": 0.3,
+            "ndcg@10": 0.26853978176831733,
+            "mrr": 0.2
+          },
+          "first_hit_rank": 5,
+          "misses": [
+            "2606.25129",
+            "2608.10105",
+            "2608.26289",
+            "2607.24448"
+          ],
+          "elapsed_ms": 4.93
+        },
+        {
+          "query_id": "conc_02",
+          "query_class": "conceptual",
+          "query": "why do neutrino experiments need such enormous detectors",
+          "retrieved_ids": [
+            "2609.00842",
+            "2606.14015",
+            "2606.20780",
+            "2607.13143",
+            "2607.10644",
+            "2606.26856",
+            "2607.13216",
+            "2606.26720",
+            "2608.25595",
+            "2607.01496"
+          ],
+          "relevant_ids": [
+            "2607.13143",
+            "2608.28095",
+            "2606.27007",
+            "2606.20780"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.5,
+            "precision@5": 0.4,
+            "ndcg@5": 0.36331756126716835,
+            "recall@10": 0.5,
+            "precision@10": 0.2,
+            "ndcg@10": 0.36331756126716835,
+            "mrr": 0.3333333333333333
+          },
+          "first_hit_rank": 3,
+          "misses": [
+            "2608.28095",
+            "2606.27007"
+          ],
+          "elapsed_ms": 5.55
+        },
+        {
+          "query_id": "conc_03",
+          "query_class": "conceptual",
+          "query": "what limits the precision of collider measurements",
+          "retrieved_ids": [
+            "2607.12010",
+            "2606.26832",
+            "2606.20144",
+            "2608.26376",
+            "2609.02972",
+            "2608.12793",
+            "2608.12071",
+            "2608.16309",
+            "2608.01353",
+            "2607.23949"
+          ],
+          "relevant_ids": [
+            "2606.26832",
+            "2608.26376",
+            "2606.28498",
+            "2609.02972",
+            "2608.12071"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.6,
+            "precision@5": 0.6,
+            "ndcg@5": 0.4912596920895758,
+            "recall@10": 0.8,
+            "precision@10": 0.4,
+            "ndcg@10": 0.6043130938474478,
+            "mrr": 0.5
+          },
+          "first_hit_rank": 2,
+          "misses": [
+            "2606.28498"
+          ],
+          "elapsed_ms": 4.54
+        },
+        {
+          "query_id": "conc_04",
+          "query_class": "conceptual",
+          "query": "how are large language models changing information retrieval",
+          "retrieved_ids": [
+            "2607.05441",
+            "2608.08143",
+            "2608.25663",
+            "2608.23102",
+            "2607.26670",
+            "2608.26150",
+            "2608.28649",
+            "2608.15909",
+            "2608.00669",
+            "2607.04270"
+          ],
+          "relevant_ids": [
+            "2607.15555",
+            "2607.26670",
+            "2608.25663",
+            "2607.15771",
+            "2608.25521",
+            "2608.17632",
+            "2608.18352",
+            "2607.01040"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.25,
+            "precision@5": 0.4,
+            "ndcg@5": 0.30078518014914984,
+            "recall@10": 0.25,
+            "precision@10": 0.2,
+            "ndcg@10": 0.224322946018989,
+            "mrr": 0.3333333333333333
+          },
+          "first_hit_rank": 3,
+          "misses": [
+            "2607.15555",
+            "2607.15771",
+            "2608.25521",
+            "2608.17632",
+            "2608.18352",
+            "2607.01040"
+          ],
+          "elapsed_ms": 5.09
+        },
+        {
+          "query_id": "conc_05",
+          "query_class": "conceptual",
+          "query": "how do we learn about black holes if light cannot escape them",
+          "retrieved_ids": [
+            "2608.29466",
+            "2606.20830",
+            "2608.01398",
+            "2606.21790",
+            "2608.10071",
+            "2606.29652",
+            "2608.18208",
+            "2607.13418",
+            "2608.27596",
+            "2609.00119"
+          ],
+          "relevant_ids": [
+            "2608.29466",
+            "2608.10071",
+            "2608.26785",
+            "2608.27637",
+            "2608.18208",
+            "2608.26399",
+            "2608.13643"
+          ],
+          "metrics": {
+            "recall@1": 0.14285714285714285,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.2857142857142857,
+            "precision@5": 0.4,
+            "ndcg@5": 0.4703652827859579,
+            "recall@10": 0.42857142857142855,
+            "precision@10": 0.3,
+            "ndcg@10": 0.47283845824928433,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.26785",
+            "2608.27637",
+            "2608.26399",
+            "2608.13643"
+          ],
+          "elapsed_ms": 5.14
+        },
+        {
+          "query_id": "conc_06",
+          "query_class": "conceptual",
+          "query": "why is it hard to evaluate a recommender system offline",
+          "retrieved_ids": [
+            "2607.25097",
+            "2608.16872",
+            "2608.22022",
+            "2607.11354",
+            "2609.01627",
+            "2609.02499",
+            "2607.25640",
+            "2608.21641",
+            "2607.13418",
+            "2608.24815"
+          ],
+          "relevant_ids": [
+            "2607.25097",
+            "2607.11354",
+            "2608.16872",
+            "2608.22022",
+            "2609.02499",
+            "2608.29600"
+          ],
+          "metrics": {
+            "recall@1": 0.16666666666666666,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.6666666666666666,
+            "precision@5": 0.8,
+            "ndcg@5": 0.8687949224876582,
+            "recall@10": 0.8333333333333334,
+            "precision@10": 0.5,
+            "ndcg@10": 0.8829374068620365,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.29600"
+          ],
+          "elapsed_ms": 4.52
+        },
+        {
+          "query_id": "conc_07",
+          "query_class": "conceptual",
+          "query": "what makes quantum gravity difficult to test experimentally",
+          "retrieved_ids": [
+            "2608.20246",
+            "2608.09858",
+            "2608.26282",
+            "2607.12281",
+            "2606.22979",
+            "2608.31152",
+            "2608.28901",
+            "2608.17364",
+            "2608.16309",
+            "2608.29402"
+          ],
+          "relevant_ids": [
+            "2608.26420",
+            "2608.28901",
+            "2608.24796",
+            "2607.27313"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.0,
+            "precision@5": 0.0,
+            "ndcg@5": 0.0,
+            "recall@10": 0.25,
+            "precision@10": 0.1,
+            "ndcg@10": 0.13012668333070054,
+            "mrr": 0.14285714285714285
+          },
+          "first_hit_rank": 7,
+          "misses": [
+            "2608.26420",
+            "2608.24796",
+            "2607.27313"
+          ],
+          "elapsed_ms": 5.68
+        },
+        {
+          "query_id": "conc_08",
+          "query_class": "conceptual",
+          "query": "why does symmetry violation matter in particle physics",
+          "retrieved_ids": [
+            "2608.16772",
+            "2607.08131",
+            "2609.02691",
+            "2608.09531",
+            "2607.27351",
+            "2606.14373",
+            "2607.00295",
+            "2608.02740",
+            "2606.10256",
+            "2607.23377"
+          ],
+          "relevant_ids": [
+            "2609.02475",
+            "2606.23580",
+            "2609.02691",
+            "2605.28671",
+            "2606.25982",
+            "2606.20830"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.16666666666666666,
+            "precision@5": 0.2,
+            "ndcg@5": 0.16958010263680806,
+            "recall@10": 0.16666666666666666,
+            "precision@10": 0.1,
+            "ndcg@10": 0.15130120674940675,
+            "mrr": 0.3333333333333333
+          },
+          "first_hit_rank": 3,
+          "misses": [
+            "2609.02475",
+            "2606.23580",
+            "2605.28671",
+            "2606.25982",
+            "2606.20830"
+          ],
+          "elapsed_ms": 4.45
+        },
+        {
+          "query_id": "conc_09",
+          "query_class": "conceptual",
+          "query": "how does a detector tell one kind of particle from another",
+          "retrieved_ids": [
+            "2608.01398",
+            "2609.01720",
+            "2608.07861",
+            "2608.29775",
+            "2608.06661",
+            "2608.28232",
+            "2608.12616",
+            "2606.30485",
+            "2606.27165",
+            "2608.01842"
+          ],
+          "relevant_ids": [
+            "2608.11028",
+            "2608.19064",
+            "2607.11139",
+            "2608.23773"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.0,
+            "precision@5": 0.0,
+            "ndcg@5": 0.0,
+            "recall@10": 0.0,
+            "precision@10": 0.0,
+            "ndcg@10": 0.0,
+            "mrr": 0.0
+          },
+          "first_hit_rank": null,
+          "misses": [
+            "2608.11028",
+            "2608.19064",
+            "2607.11139",
+            "2608.23773"
+          ],
+          "elapsed_ms": 4.35
+        },
+        {
+          "query_id": "conc_10",
+          "query_class": "conceptual",
+          "query": "why do retrieval augmented systems produce confident wrong answers",
+          "retrieved_ids": [
+            "2608.22856",
+            "2607.29402",
+            "2608.10008",
+            "2608.22688",
+            "2608.21252",
+            "2608.22228",
+            "2608.11922",
+            "2606.13535",
+            "2607.26339",
+            "2607.04008"
+          ],
+          "relevant_ids": [
+            "2608.22228",
+            "2608.25487",
+            "2607.25600",
+            "2607.07380",
+            "2608.11922",
+            "2608.10008",
+            "2607.03615"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.14285714285714285,
+            "precision@5": 0.2,
+            "ndcg@5": 0.16958010263680806,
+            "recall@10": 0.42857142857142855,
+            "precision@10": 0.3,
+            "ndcg@10": 0.3269765361118768,
+            "mrr": 0.3333333333333333
+          },
+          "first_hit_rank": 3,
+          "misses": [
+            "2608.25487",
+            "2607.25600",
+            "2607.07380",
+            "2607.03615"
+          ],
+          "elapsed_ms": 4.33
+        },
+        {
+          "query_id": "hop_01",
+          "query_class": "multi_hop",
+          "query": "neutrino mass and cosmological structure formation",
+          "retrieved_ids": [
+            "2608.26203",
+            "2608.05150",
+            "2607.19340",
+            "2607.24742",
+            "2606.03745",
+            "2609.00907",
+            "2608.24666",
+            "2608.06460",
+            "2608.13736",
+            "2606.14121"
+          ],
+          "relevant_ids": [
+            "2607.24742",
+            "2608.06460"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.5,
+            "precision@5": 0.2,
+            "ndcg@5": 0.2640681225725909,
+            "recall@10": 1.0,
+            "precision@10": 0.2,
+            "ndcg@10": 0.45749452618986164,
+            "mrr": 0.25
+          },
+          "first_hit_rank": 4,
+          "misses": [],
+          "elapsed_ms": 4.47
+        },
+        {
+          "query_id": "hop_02",
+          "query_class": "multi_hop",
+          "query": "machine learning applied to particle detector reconstruction",
+          "retrieved_ids": [
+            "2608.09531",
+            "2607.11585",
+            "2606.14373",
+            "2606.30485",
+            "2608.11330",
+            "2606.26089",
+            "2605.29391",
+            "2608.21327",
+            "2608.23141",
+            "2608.05146"
+          ],
+          "relevant_ids": [
+            "2606.14373",
+            "2606.30485",
+            "2607.11585",
+            "2609.00611",
+            "2606.26089",
+            "2608.22873",
+            "2605.29391",
+            "2607.04723",
+            "2608.21327"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.3333333333333333,
+            "precision@5": 0.6,
+            "ndcg@5": 0.5296347172140421,
+            "recall@10": 0.6666666666666666,
+            "precision@10": 0.6,
+            "ndcg@10": 0.6032706592454552,
+            "mrr": 0.5
+          },
+          "first_hit_rank": 2,
+          "misses": [
+            "2609.00611",
+            "2608.22873",
+            "2607.04723"
+          ],
+          "elapsed_ms": 4.71
+        },
+        {
+          "query_id": "hop_03",
+          "query_class": "multi_hop",
+          "query": "dark matter effects on neutron star collapse",
+          "retrieved_ids": [
+            "2608.26274",
+            "2608.10594",
+            "2608.18198",
+            "2608.20460",
+            "2608.28000",
+            "2608.28879",
+            "2608.20921",
+            "2608.25587",
+            "2608.30995",
+            "2608.16064"
+          ],
+          "relevant_ids": [
+            "2608.10594",
+            "2608.06224",
+            "2608.20921",
+            "2609.03964",
+            "2608.16064"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.2,
+            "precision@5": 0.2,
+            "ndcg@5": 0.21398626473452756,
+            "recall@10": 0.6,
+            "precision@10": 0.3,
+            "ndcg@10": 0.42507895232375664,
+            "mrr": 0.5
+          },
+          "first_hit_rank": 2,
+          "misses": [
+            "2608.06224",
+            "2609.03964"
+          ],
+          "elapsed_ms": 6.0
+        },
+        {
+          "query_id": "hop_04",
+          "query_class": "multi_hop",
+          "query": "gravitational wave observations and black hole population statistics",
+          "retrieved_ids": [
+            "2608.25715",
+            "2609.00613",
+            "2608.23957",
+            "2608.29059",
+            "2609.02678",
+            "2609.00945",
+            "2609.01784",
+            "2609.01193",
+            "2608.21609",
+            "2609.01391"
+          ],
+          "relevant_ids": [
+            "2608.29072",
+            "2609.01784",
+            "2609.02678",
+            "2609.03859",
+            "2608.21609"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.2,
+            "precision@5": 0.2,
+            "ndcg@5": 0.13120507751234178,
+            "recall@10": 0.6,
+            "precision@10": 0.3,
+            "ndcg@10": 0.34635587439312543,
+            "mrr": 0.2
+          },
+          "first_hit_rank": 5,
+          "misses": [
+            "2608.29072",
+            "2609.03859"
+          ],
+          "elapsed_ms": 6.26
+        },
+        {
+          "query_id": "hop_05",
+          "query_class": "multi_hop",
+          "query": "transformer efficiency for sparse detector data",
+          "retrieved_ids": [
+            "2606.17631",
+            "2606.20437",
+            "2607.11933",
+            "2607.04723",
+            "2607.00379",
+            "2606.31517",
+            "2607.06199",
+            "2607.05322",
+            "2608.02735",
+            "2608.02583"
+          ],
+          "relevant_ids": [
+            "2606.17631",
+            "2606.20437",
+            "2608.02735",
+            "2608.16061"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.5,
+            "precision@5": 0.4,
+            "ndcg@5": 0.6366824387328317,
+            "recall@10": 0.75,
+            "precision@10": 0.3,
+            "ndcg@10": 0.7541985434892589,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.16061"
+          ],
+          "elapsed_ms": 5.01
+        },
+        {
+          "query_id": "hop_06",
+          "query_class": "multi_hop",
+          "query": "axion searches with haloscopes and with colliders",
+          "retrieved_ids": [
+            "2607.28883",
+            "2608.07718",
+            "2606.20422",
+            "2607.03240",
+            "2609.02828",
+            "2609.00123",
+            "2608.10292",
+            "2609.03879",
+            "2607.25466",
+            "2608.12616"
+          ],
+          "relevant_ids": [
+            "2607.28883",
+            "2608.07718",
+            "2608.10292",
+            "2606.20422",
+            "2609.02828",
+            "2609.03879",
+            "2607.07800",
+            "2608.18506"
+          ],
+          "metrics": {
+            "recall@1": 0.125,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.5,
+            "precision@5": 0.8,
+            "ndcg@5": 0.8539316501572937,
+            "recall@10": 0.75,
+            "precision@10": 0.6,
+            "ndcg@10": 0.8009634987298764,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2607.07800",
+            "2608.18506"
+          ],
+          "elapsed_ms": 4.41
+        },
+        {
+          "query_id": "hop_07",
+          "query_class": "multi_hop",
+          "query": "large language models used for recommendation ranking",
+          "retrieved_ids": [
+            "2608.00669",
+            "2607.04270",
+            "2608.18952",
+            "2608.10187",
+            "2607.24829",
+            "2607.09502",
+            "2608.25663",
+            "2608.12184",
+            "2607.21519",
+            "2607.26670"
+          ],
+          "relevant_ids": [
+            "2608.10257",
+            "2608.00669",
+            "2607.04270",
+            "2608.09605",
+            "2608.18952",
+            "2606.29947",
+            "2608.03091",
+            "2608.12184"
+          ],
+          "metrics": {
+            "recall@1": 0.125,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.375,
+            "precision@5": 0.6,
+            "ndcg@5": 0.7227265726449519,
+            "recall@10": 0.5,
+            "precision@10": 0.4,
+            "ndcg@10": 0.6187976698388302,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.10257",
+            "2608.09605",
+            "2606.29947",
+            "2608.03091"
+          ],
+          "elapsed_ms": 5.9
+        },
+        {
+          "query_id": "hop_08",
+          "query_class": "multi_hop",
+          "query": "supernova modelling constrained by neutrino observations",
+          "retrieved_ids": [
+            "2608.18954",
+            "2606.27007",
+            "2607.01339",
+            "2606.14015",
+            "2606.18337",
+            "2608.06460",
+            "2608.26847",
+            "2608.22374",
+            "2608.17681",
+            "2607.29205"
+          ],
+          "relevant_ids": [
+            "2606.30756",
+            "2606.18337",
+            "2608.26847",
+            "2606.27007"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.5,
+            "precision@5": 0.4,
+            "ndcg@5": 0.3973220069685352,
+            "recall@10": 0.75,
+            "precision@10": 0.3,
+            "ndcg@10": 0.5274486902992358,
+            "mrr": 0.5
+          },
+          "first_hit_rank": 2,
+          "misses": [
+            "2606.30756"
+          ],
+          "elapsed_ms": 4.92
+        },
+        {
+          "query_id": "hop_09",
+          "query_class": "multi_hop",
+          "query": "evaluation datasets for scientific claim retrieval",
+          "retrieved_ids": [
+            "2607.15875",
+            "2607.24803",
+            "2607.04043",
+            "2607.05443",
+            "2607.05970",
+            "2608.27746",
+            "2607.24663",
+            "2608.05227",
+            "2608.03756",
+            "2608.03860"
+          ],
+          "relevant_ids": [
+            "2607.15875",
+            "2607.04043",
+            "2607.24803",
+            "2608.15624",
+            "2608.27394",
+            "2608.11415"
+          ],
+          "metrics": {
+            "recall@1": 0.16666666666666666,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.5,
+            "precision@5": 0.6,
+            "ndcg@5": 0.7227265726449519,
+            "recall@10": 0.5,
+            "precision@10": 0.3,
+            "ndcg@10": 0.644824486427155,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.15624",
+            "2608.27394",
+            "2608.11415"
+          ],
+          "elapsed_ms": 5.05
+        },
+        {
+          "query_id": "hop_10",
+          "query_class": "multi_hop",
+          "query": "quantum field theory methods applied to condensed matter systems",
+          "retrieved_ids": [
+            "2607.27133",
+            "2608.06282",
+            "2609.01714",
+            "2608.07655",
+            "2608.00670",
+            "2608.04387",
+            "2608.02702",
+            "2608.01989",
+            "2609.02383",
+            "2608.22623"
+          ],
+          "relevant_ids": [
+            "2608.06449",
+            "2607.27920",
+            "2608.07655",
+            "2608.13664"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.25,
+            "precision@5": 0.2,
+            "ndcg@5": 0.16812753627111746,
+            "recall@10": 0.25,
+            "precision@10": 0.1,
+            "ndcg@10": 0.16812753627111746,
+            "mrr": 0.25
+          },
+          "first_hit_rank": 4,
+          "misses": [
+            "2608.06449",
+            "2607.27920",
+            "2608.13664"
+          ],
+          "elapsed_ms": 4.6
+        },
+        {
+          "query_id": "none_01",
+          "query_class": "unanswerable",
+          "query": "protein folding structure prediction from amino acid sequence",
+          "retrieved_ids": [
+            "2608.16050",
+            "2608.11946",
+            "2608.21218",
+            "2606.24524",
+            "2607.29067",
+            "2608.12986",
+            "2608.15429",
+            "2608.29502",
+            "2609.01240",
+            "2606.03703"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 5.45
+        },
+        {
+          "query_id": "none_02",
+          "query_class": "unanswerable",
+          "query": "CRISPR off-target editing effects in human cells",
+          "retrieved_ids": [
+            "2608.25370",
+            "2608.20707",
+            "2608.18952",
+            "2609.03450",
+            "2608.24924",
+            "2607.11267",
+            "2608.21792",
+            "2608.16050",
+            "2608.21121",
+            "2607.22328"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 5.67
+        },
+        {
+          "query_id": "none_03",
+          "query_class": "unanswerable",
+          "query": "predicting mortgage default risk from credit history",
+          "retrieved_ids": [
+            "2608.17618",
+            "2608.23221",
+            "2608.12049",
+            "2608.27388",
+            "2608.22751",
+            "2607.07183",
+            "2608.29502",
+            "2608.14997",
+            "2607.14331",
+            "2609.02162"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 4.84
+        },
+        {
+          "query_id": "none_04",
+          "query_class": "unanswerable",
+          "query": "diagnosing diabetic retinopathy from retinal photographs",
+          "retrieved_ids": [
+            "2609.03810",
+            "2606.29718",
+            "2608.01913",
+            "2606.29947",
+            "2608.18694",
+            "2607.19836",
+            "2608.23920",
+            "2608.29336",
+            "2608.11037",
+            "2608.07412"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 4.14
+        },
+        {
+          "query_id": "none_05",
+          "query_class": "unanswerable",
+          "query": "randomised controlled trial of a new hypertension drug",
+          "retrieved_ids": [
+            "2607.20938",
+            "2608.25294",
+            "2608.07622",
+            "2608.06068",
+            "2607.14604",
+            "2609.02802",
+            "2608.25370",
+            "2608.12570",
+            "2606.07278",
+            "2608.23674"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 5.76
+        },
+        {
+          "query_id": "none_06",
+          "query_class": "unanswerable",
+          "query": "automated review of commercial lease contracts",
+          "retrieved_ids": [
+            "2608.13710",
+            "2606.13535",
+            "2608.16096",
+            "2608.26825",
+            "2608.08776",
+            "2606.30760",
+            "2608.30145",
+            "2608.29290",
+            "2606.29894",
+            "2606.21658"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 6.15
+        },
+        {
+          "query_id": "none_07",
+          "query_class": "unanswerable",
+          "query": "coral reef bleaching and ocean acidification",
+          "retrieved_ids": [
+            "2606.20780",
+            "2606.13273",
+            "2607.10245",
+            "2606.15680"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 2.61
+        },
+        {
+          "query_id": "none_08",
+          "query_class": "unanswerable",
+          "query": "congestion pricing in urban road networks",
+          "retrieved_ids": [
+            "2607.29492",
+            "2609.01030",
+            "2608.24133",
+            "2608.04432",
+            "2606.31857",
+            "2609.01628",
+            "2606.06603",
+            "2609.02062",
+            "2608.21588",
+            "2608.19331"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 6.68
+        },
+        {
+          "query_id": "none_09",
+          "query_class": "unanswerable",
+          "query": "second language acquisition in bilingual children",
+          "retrieved_ids": [
+            "2608.26754",
+            "2608.10441",
+            "2608.16997",
+            "2608.22977",
+            "2608.19545",
+            "2608.09897",
+            "2608.05998",
+            "2607.21519",
+            "2608.25663",
+            "2607.29274"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 6.21
+        },
+        {
+          "query_id": "none_10",
+          "query_class": "unanswerable",
+          "query": "supply chain inventory optimisation for perishable goods",
+          "retrieved_ids": [
+            "2608.29430",
+            "2607.29104",
+            "2609.03822",
+            "2608.20246",
+            "2608.09695",
+            "2607.03880",
+            "2607.27193",
+            "2607.25182",
+            "2608.30398",
+            "2608.30291"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 4.37
+        }
+      ]
+    },
+    "dense": {
+      "mode": "dense",
+      "top_k": 10,
+      "golden_set_version": 1,
+      "overall": {
+        "recall@1": 0.16614087301587302,
+        "precision@1": 0.675,
+        "ndcg@1": 0.675,
+        "recall@5": 0.5629861111111112,
+        "precision@5": 0.53,
+        "ndcg@5": 0.638020258763893,
+        "recall@10": 0.7440873015873015,
+        "precision@10": 0.35750000000000004,
+        "ndcg@10": 0.6909485782669981,
+        "mrr": 0.7747916666666667
+      },
+      "by_class": {
+        "exact_term": {
+          "recall@1": 0.2783333333333333,
+          "precision@1": 1.0,
+          "ndcg@1": 1.0,
+          "recall@5": 0.7633333333333333,
+          "precision@5": 0.6,
+          "ndcg@5": 0.8315887758110551,
+          "recall@10": 0.905,
+          "precision@10": 0.36,
+          "ndcg@10": 0.8835647402202419,
+          "mrr": 1.0
+        },
+        "paraphrase": {
+          "recall@1": 0.15333333333333332,
+          "precision@1": 0.5,
+          "ndcg@1": 0.5,
+          "recall@5": 0.4754761904761905,
+          "precision@5": 0.4,
+          "ndcg@5": 0.5012821326420748,
+          "recall@10": 0.6154761904761905,
+          "precision@10": 0.26,
+          "ndcg@10": 0.5579618437817006,
+          "mrr": 0.6375
+        },
+        "conceptual": {
+          "recall@1": 0.10511904761904763,
+          "precision@1": 0.6,
+          "ndcg@1": 0.6,
+          "recall@5": 0.48119047619047617,
+          "precision@5": 0.56,
+          "ndcg@5": 0.5699535335964648,
+          "recall@10": 0.6597619047619048,
+          "precision@10": 0.38,
+          "ndcg@10": 0.603755942931885,
+          "mrr": 0.6783333333333333
+        },
+        "multi_hop": {
+          "recall@1": 0.12777777777777777,
+          "precision@1": 0.6,
+          "ndcg@1": 0.6,
+          "recall@5": 0.5319444444444444,
+          "precision@5": 0.56,
+          "ndcg@5": 0.6492565930059774,
+          "recall@10": 0.7961111111111111,
+          "precision@10": 0.43,
+          "ndcg@10": 0.7185117861341647,
+          "mrr": 0.7833333333333333
+        }
+      },
+      "median_latency_ms": 24.912561995733995,
+      "queries": [
+        {
+          "query_id": "exact_01",
+          "query_class": "exact_term",
+          "query": "axion-like particle diphoton decay search",
+          "retrieved_ids": [
+            "2608.18506",
+            "2608.12616",
+            "2607.11589",
+            "2607.29205",
+            "2609.00123",
+            "2607.07800",
+            "2607.27190",
+            "2608.24161",
+            "2606.20525",
+            "2607.21168"
+          ],
+          "relevant_ids": [
+            "2607.07800",
+            "2608.18506",
+            "2608.12616",
+            "2607.29205",
+            "2608.24161",
+            "2609.00123"
+          ],
+          "metrics": {
+            "recall@1": 0.16666666666666666,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.6666666666666666,
+            "precision@5": 0.8,
+            "ndcg@5": 0.830419897363192,
+            "recall@10": 1.0,
+            "precision@10": 0.6,
+            "ndcg@10": 0.9441592263400607,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 27.52
+        },
+        {
+          "query_id": "exact_02",
+          "query_class": "exact_term",
+          "query": "look-elsewhere effect trials factor",
+          "retrieved_ids": [
+            "2608.24872",
+            "2607.14604",
+            "2608.29430",
+            "2608.01731",
+            "2608.18352",
+            "2608.16872",
+            "2608.10008",
+            "2608.04432",
+            "2608.19764",
+            "2608.24815"
+          ],
+          "relevant_ids": [
+            "2608.24872",
+            "2606.13780",
+            "2608.19764"
+          ],
+          "metrics": {
+            "recall@1": 0.3333333333333333,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.3333333333333333,
+            "precision@5": 0.2,
+            "ndcg@5": 0.46927872602275644,
+            "recall@10": 0.6666666666666666,
+            "precision@10": 0.2,
+            "ndcg@10": 0.6105456988825855,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2606.13780"
+          ],
+          "elapsed_ms": 24.85
+        },
+        {
+          "query_id": "exact_03",
+          "query_class": "exact_term",
+          "query": "pseudo-relevance feedback query expansion",
+          "retrieved_ids": [
+            "2608.25521",
+            "2607.12098",
+            "2607.23561",
+            "2608.15851",
+            "2608.17632",
+            "2609.03482",
+            "2608.00452",
+            "2607.18626",
+            "2608.01738",
+            "2608.23862"
+          ],
+          "relevant_ids": [
+            "2607.18626",
+            "2607.12098",
+            "2608.25521",
+            "2608.15851",
+            "2608.17632",
+            "2609.00844"
+          ],
+          "metrics": {
+            "recall@1": 0.16666666666666666,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.6666666666666666,
+            "precision@5": 0.8,
+            "ndcg@5": 0.830419897363192,
+            "recall@10": 0.8333333333333334,
+            "precision@10": 0.5,
+            "ndcg@10": 0.8363700718155498,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2609.00844"
+          ],
+          "elapsed_ms": 39.36
+        },
+        {
+          "query_id": "exact_04",
+          "query_class": "exact_term",
+          "query": "hyperon bulk viscosity neutron star inspiral",
+          "retrieved_ids": [
+            "2608.28000",
+            "2608.20989",
+            "2608.20921",
+            "2609.02863",
+            "2607.09280",
+            "2608.26274",
+            "2608.28879",
+            "2608.24796",
+            "2608.21196",
+            "2608.20876"
+          ],
+          "relevant_ids": [
+            "2608.28000",
+            "2608.20989",
+            "2608.20921",
+            "2607.09280"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 1.0,
+            "precision@5": 0.8,
+            "ndcg@5": 0.9828920819566879,
+            "recall@10": 1.0,
+            "precision@10": 0.4,
+            "ndcg@10": 0.9828920819566879,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 28.04
+        },
+        {
+          "query_id": "exact_05",
+          "query_class": "exact_term",
+          "query": "core-collapse supernova shock revival simulation",
+          "retrieved_ids": [
+            "2608.28358",
+            "2608.24578",
+            "2606.30756",
+            "2608.18897",
+            "2608.26681",
+            "2608.26390",
+            "2608.25571",
+            "2608.24170",
+            "2608.18342",
+            "2608.27878"
+          ],
+          "relevant_ids": [
+            "2608.28358",
+            "2608.24578",
+            "2606.30756",
+            "2608.26681",
+            "2608.18198"
+          ],
+          "metrics": {
+            "recall@1": 0.2,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.8,
+            "precision@5": 0.8,
+            "ndcg@5": 0.8539316501572937,
+            "recall@10": 0.8,
+            "precision@10": 0.4,
+            "ndcg@10": 0.8539316501572937,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.18198"
+          ],
+          "elapsed_ms": 26.48
+        },
+        {
+          "query_id": "exact_06",
+          "query_class": "exact_term",
+          "query": "charged-current quasi-elastic cross section",
+          "retrieved_ids": [
+            "2608.12293",
+            "2606.00745",
+            "2606.16126",
+            "2607.13523",
+            "2609.02989",
+            "2608.25985",
+            "2609.01179",
+            "2608.23057",
+            "2606.14669",
+            "2605.30281"
+          ],
+          "relevant_ids": [
+            "2608.12293",
+            "2606.00745",
+            "2607.10644",
+            "2608.23057"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.5,
+            "precision@5": 0.4,
+            "ndcg@5": 0.6366824387328317,
+            "recall@10": 0.75,
+            "precision@10": 0.3,
+            "ndcg@10": 0.7598336331031966,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2607.10644"
+          ],
+          "elapsed_ms": 25.63
+        },
+        {
+          "query_id": "exact_07",
+          "query_class": "exact_term",
+          "query": "Hough transform online track reconstruction",
+          "retrieved_ids": [
+            "2607.04067",
+            "2607.04723",
+            "2607.15361",
+            "2606.20437",
+            "2608.18694",
+            "2608.22262",
+            "2606.29927",
+            "2606.17631",
+            "2607.28571",
+            "2607.04271"
+          ],
+          "relevant_ids": [
+            "2607.04067",
+            "2607.04723",
+            "2607.04271"
+          ],
+          "metrics": {
+            "recall@1": 0.3333333333333333,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.6666666666666666,
+            "precision@5": 0.4,
+            "ndcg@5": 0.7653606369886217,
+            "recall@10": 1.0,
+            "precision@10": 0.3,
+            "ndcg@10": 0.9010126104210695,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 27.57
+        },
+        {
+          "query_id": "exact_08",
+          "query_class": "exact_term",
+          "query": "fast radio burst dispersion measure",
+          "retrieved_ids": [
+            "2608.23522",
+            "2608.23868",
+            "2608.18455",
+            "2608.19102",
+            "2608.27779",
+            "2608.30943",
+            "2609.02037",
+            "2608.19713",
+            "2608.26857",
+            "2609.04118"
+          ],
+          "relevant_ids": [
+            "2608.23868",
+            "2608.27779",
+            "2608.23522"
+          ],
+          "metrics": {
+            "recall@1": 0.3333333333333333,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 1.0,
+            "precision@5": 0.6,
+            "ndcg@5": 0.9469024295259745,
+            "recall@10": 1.0,
+            "precision@10": 0.3,
+            "ndcg@10": 0.9469024295259745,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 24.57
+        },
+        {
+          "query_id": "exact_09",
+          "query_class": "exact_term",
+          "query": "blazar jet accretion regime",
+          "retrieved_ids": [
+            "2609.03435",
+            "2609.02550",
+            "2608.18707",
+            "2608.25763",
+            "2608.27955",
+            "2608.21158",
+            "2608.22046",
+            "2608.21576",
+            "2609.00174",
+            "2608.20672"
+          ],
+          "relevant_ids": [
+            "2609.03435",
+            "2609.02550",
+            "2608.25763",
+            "2608.18707"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 1.0,
+            "precision@5": 0.8,
+            "ndcg@5": 1.0,
+            "recall@10": 1.0,
+            "precision@10": 0.4,
+            "ndcg@10": 1.0,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 26.1
+        },
+        {
+          "query_id": "exact_10",
+          "query_class": "exact_term",
+          "query": "integrated luminosity measurement proton-proton collisions",
+          "retrieved_ids": [
+            "2606.26832",
+            "2609.02989",
+            "2606.28098",
+            "2606.19064",
+            "2606.14669",
+            "2608.01289",
+            "2608.12293",
+            "2608.25476",
+            "2607.11139",
+            "2608.28449"
+          ],
+          "relevant_ids": [
+            "2606.26832",
+            "2609.02989"
+          ],
+          "metrics": {
+            "recall@1": 0.5,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 1.0,
+            "precision@5": 0.4,
+            "ndcg@5": 1.0,
+            "recall@10": 1.0,
+            "precision@10": 0.2,
+            "ndcg@10": 1.0,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 27.67
+        },
+        {
+          "query_id": "para_01",
+          "query_class": "paraphrase",
+          "query": "how do websites decide which short clips to show a viewer next",
+          "retrieved_ids": [
+            "2608.29430",
+            "2608.13990",
+            "2608.04807",
+            "2607.12882",
+            "2608.18322",
+            "2608.04455",
+            "2608.04302",
+            "2608.28359",
+            "2608.21877",
+            "2608.07434"
+          ],
+          "relevant_ids": [
+            "2608.29430",
+            "2608.13990",
+            "2608.04807"
+          ],
+          "metrics": {
+            "recall@1": 0.3333333333333333,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 1.0,
+            "precision@5": 0.6,
+            "ndcg@5": 1.0,
+            "recall@10": 1.0,
+            "precision@10": 0.3,
+            "ndcg@10": 1.0,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 22.83
+        },
+        {
+          "query_id": "para_02",
+          "query_class": "paraphrase",
+          "query": "improving a search engine by re-reading its own top results",
+          "retrieved_ids": [
+            "2608.01738",
+            "2608.25115",
+            "2608.30466",
+            "2608.15851",
+            "2608.06305",
+            "2608.25521",
+            "2608.07152",
+            "2607.01040",
+            "2607.03421",
+            "2608.02097"
+          ],
+          "relevant_ids": [
+            "2607.18626",
+            "2607.12098",
+            "2608.25521",
+            "2608.15851"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.25,
+            "precision@5": 0.2,
+            "ndcg@5": 0.16812753627111746,
+            "recall@10": 0.5,
+            "precision@10": 0.2,
+            "ndcg@10": 0.3071837157818931,
+            "mrr": 0.25
+          },
+          "first_hit_rank": 4,
+          "misses": [
+            "2607.18626",
+            "2607.12098"
+          ],
+          "elapsed_ms": 22.94
+        },
+        {
+          "query_id": "para_03",
+          "query_class": "paraphrase",
+          "query": "what happens when a star wanders too close to a black hole",
+          "retrieved_ids": [
+            "2608.19402",
+            "2608.28947",
+            "2608.27596",
+            "2609.03701",
+            "2608.27637",
+            "2608.12469",
+            "2608.19796",
+            "2608.06224",
+            "2608.00471",
+            "2609.03071"
+          ],
+          "relevant_ids": [
+            "2608.19402",
+            "2608.28947",
+            "2609.03701",
+            "2608.27596"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 1.0,
+            "precision@5": 0.8,
+            "ndcg@5": 1.0,
+            "recall@10": 1.0,
+            "precision@10": 0.4,
+            "ndcg@10": 1.0,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 25.5
+        },
+        {
+          "query_id": "para_04",
+          "query_class": "paraphrase",
+          "query": "using neural networks to work out particle paths in a detector",
+          "retrieved_ids": [
+            "2608.21327",
+            "2607.04723",
+            "2607.07263",
+            "2606.30485",
+            "2606.14373",
+            "2607.22281",
+            "2606.06603",
+            "2609.00611",
+            "2608.28084",
+            "2606.26089"
+          ],
+          "relevant_ids": [
+            "2607.04723",
+            "2607.15361",
+            "2606.20437",
+            "2606.30485",
+            "2606.14373",
+            "2607.07263",
+            "2607.04271"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.5714285714285714,
+            "precision@5": 0.8,
+            "ndcg@5": 0.6608397947263839,
+            "recall@10": 0.5714285714285714,
+            "precision@10": 0.4,
+            "ndcg@10": 0.5355852974309777,
+            "mrr": 0.5
+          },
+          "first_hit_rank": 2,
+          "misses": [
+            "2607.15361",
+            "2606.20437",
+            "2607.04271"
+          ],
+          "elapsed_ms": 24.17
+        },
+        {
+          "query_id": "para_05",
+          "query_class": "paraphrase",
+          "query": "how bright was the beam when the collisions were recorded",
+          "retrieved_ids": [
+            "2609.02989",
+            "2606.26284",
+            "2608.10988",
+            "2605.27273",
+            "2607.07476",
+            "2606.03466",
+            "2607.12984",
+            "2609.03452",
+            "2607.28477",
+            "2609.04078"
+          ],
+          "relevant_ids": [
+            "2606.26832",
+            "2609.02989"
+          ],
+          "metrics": {
+            "recall@1": 0.5,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.5,
+            "precision@5": 0.2,
+            "ndcg@5": 0.6131471927654584,
+            "recall@10": 0.5,
+            "precision@10": 0.1,
+            "ndcg@10": 0.6131471927654584,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2606.26832"
+          ],
+          "elapsed_ms": 26.0
+        },
+        {
+          "query_id": "para_06",
+          "query_class": "paraphrase",
+          "query": "finding a signal that could be anywhere in the data without fooling yourself",
+          "retrieved_ids": [
+            "2605.31103",
+            "2606.20525",
+            "2608.19764",
+            "2607.03611",
+            "2608.09203",
+            "2606.13780",
+            "2608.10441",
+            "2607.04070",
+            "2608.19994",
+            "2608.24872"
+          ],
+          "relevant_ids": [
+            "2608.24872",
+            "2606.13780",
+            "2608.19764",
+            "2605.31103"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.5,
+            "precision@5": 0.4,
+            "ndcg@5": 0.5855700749881525,
+            "recall@10": 1.0,
+            "precision@10": 0.4,
+            "ndcg@10": 0.8374713958478633,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 24.45
+        },
+        {
+          "query_id": "para_07",
+          "query_class": "paraphrase",
+          "query": "checking whether a scientific statement really came from the work it cites",
+          "retrieved_ids": [
+            "2607.15875",
+            "2608.11415",
+            "2607.04043",
+            "2609.00313",
+            "2608.30145",
+            "2608.25663",
+            "2607.24802",
+            "2607.28618",
+            "2607.24803",
+            "2607.25151"
+          ],
+          "relevant_ids": [
+            "2607.15875",
+            "2607.04043",
+            "2608.30145",
+            "2607.24802",
+            "2607.24803"
+          ],
+          "metrics": {
+            "recall@1": 0.2,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.6,
+            "precision@5": 0.6,
+            "ndcg@5": 0.639945385422766,
+            "recall@10": 1.0,
+            "precision@10": 0.5,
+            "ndcg@10": 0.8550961823035496,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 24.26
+        },
+        {
+          "query_id": "para_08",
+          "query_class": "paraphrase",
+          "query": "searching for very light dark matter that barely interacts with ordinary matter",
+          "retrieved_ids": [
+            "2608.20464",
+            "2606.07008",
+            "2609.02823",
+            "2608.15240",
+            "2607.19319",
+            "2608.29546",
+            "2608.24960",
+            "2606.30760",
+            "2607.03240",
+            "2609.04186"
+          ],
+          "relevant_ids": [
+            "2607.19319",
+            "2607.24524",
+            "2606.07008",
+            "2609.02501",
+            "2608.18204",
+            "2608.07136"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.3333333333333333,
+            "precision@5": 0.4,
+            "ndcg@5": 0.34519134224686937,
+            "recall@10": 0.3333333333333333,
+            "precision@10": 0.2,
+            "ndcg@10": 0.30798345931689824,
+            "mrr": 0.5
+          },
+          "first_hit_rank": 2,
+          "misses": [
+            "2607.24524",
+            "2609.02501",
+            "2608.18204",
+            "2608.07136"
+          ],
+          "elapsed_ms": 23.78
+        },
+        {
+          "query_id": "para_09",
+          "query_class": "paraphrase",
+          "query": "how a dying massive star manages to explode outward",
+          "retrieved_ids": [
+            "2608.24170",
+            "2608.18897",
+            "2608.19512",
+            "2608.27596",
+            "2608.18249",
+            "2608.28947",
+            "2608.25253",
+            "2608.28358",
+            "2609.03011",
+            "2609.03701"
+          ],
+          "relevant_ids": [
+            "2608.28358",
+            "2608.24578",
+            "2606.30756",
+            "2608.26681"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.0,
+            "precision@5": 0.0,
+            "ndcg@5": 0.0,
+            "recall@10": 0.25,
+            "precision@10": 0.1,
+            "ndcg@10": 0.123151194370365,
+            "mrr": 0.125
+          },
+          "first_hit_rank": 8,
+          "misses": [
+            "2608.24578",
+            "2606.30756",
+            "2608.26681"
+          ],
+          "elapsed_ms": 25.87
+        },
+        {
+          "query_id": "para_10",
+          "query_class": "paraphrase",
+          "query": "ranking documents when the reader's words differ from the author's words",
+          "retrieved_ids": [
+            "2607.27739",
+            "2607.09316",
+            "2608.23419",
+            "2608.30398",
+            "2608.13879",
+            "2608.01704",
+            "2608.25318",
+            "2607.09324",
+            "2608.30466",
+            "2607.23507"
+          ],
+          "relevant_ids": [
+            "2608.00452",
+            "2608.15851",
+            "2608.25521"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.0,
+            "precision@5": 0.0,
+            "ndcg@5": 0.0,
+            "recall@10": 0.0,
+            "precision@10": 0.0,
+            "ndcg@10": 0.0,
+            "mrr": 0.0
+          },
+          "first_hit_rank": null,
+          "misses": [
+            "2608.00452",
+            "2608.15851",
+            "2608.25521"
+          ],
+          "elapsed_ms": 22.55
+        },
+        {
+          "query_id": "conc_01",
+          "query_class": "conceptual",
+          "query": "why is dark matter so hard to detect directly",
+          "retrieved_ids": [
+            "2606.25795",
+            "2608.29546",
+            "2606.25129",
+            "2608.10105",
+            "2608.26289",
+            "2608.15240",
+            "2609.00118",
+            "2609.02608",
+            "2606.30760",
+            "2607.09352"
+          ],
+          "relevant_ids": [
+            "2606.25129",
+            "2608.20745",
+            "2608.10105",
+            "2608.26289",
+            "2607.24448",
+            "2608.10761",
+            "2608.24960"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.42857142857142855,
+            "precision@5": 0.6,
+            "ndcg@5": 0.4468535299918563,
+            "recall@10": 0.42857142857142855,
+            "precision@10": 0.3,
+            "ndcg@10": 0.36215764044273824,
+            "mrr": 0.3333333333333333
+          },
+          "first_hit_rank": 3,
+          "misses": [
+            "2608.20745",
+            "2607.24448",
+            "2608.10761",
+            "2608.24960"
+          ],
+          "elapsed_ms": 26.1
+        },
+        {
+          "query_id": "conc_02",
+          "query_class": "conceptual",
+          "query": "why do neutrino experiments need such enormous detectors",
+          "retrieved_ids": [
+            "2606.09571",
+            "2609.00842",
+            "2609.02950",
+            "2606.10234",
+            "2608.28095",
+            "2606.20780",
+            "2608.04091",
+            "2607.13143",
+            "2606.27007",
+            "2607.05834"
+          ],
+          "relevant_ids": [
+            "2607.13143",
+            "2608.28095",
+            "2606.27007",
+            "2606.20780"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.25,
+            "precision@5": 0.2,
+            "ndcg@5": 0.15101961822780524,
+            "recall@10": 1.0,
+            "precision@10": 0.4,
+            "ndcg@10": 0.5307430968653729,
+            "mrr": 0.2
+          },
+          "first_hit_rank": 5,
+          "misses": [],
+          "elapsed_ms": 22.54
+        },
+        {
+          "query_id": "conc_03",
+          "query_class": "conceptual",
+          "query": "what limits the precision of collider measurements",
+          "retrieved_ids": [
+            "2606.26832",
+            "2608.01353",
+            "2609.02972",
+            "2606.28498",
+            "2608.12071",
+            "2609.01385",
+            "2605.28147",
+            "2608.28089",
+            "2608.24553",
+            "2608.03369"
+          ],
+          "relevant_ids": [
+            "2606.26832",
+            "2608.26376",
+            "2606.28498",
+            "2609.02972",
+            "2608.12071"
+          ],
+          "metrics": {
+            "recall@1": 0.2,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.8,
+            "precision@5": 0.8,
+            "ndcg@5": 0.7860137352654724,
+            "recall@10": 0.8,
+            "precision@10": 0.4,
+            "ndcg@10": 0.7860137352654724,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.26376"
+          ],
+          "elapsed_ms": 23.43
+        },
+        {
+          "query_id": "conc_04",
+          "query_class": "conceptual",
+          "query": "how are large language models changing information retrieval",
+          "retrieved_ids": [
+            "2607.15555",
+            "2607.27178",
+            "2607.26670",
+            "2608.25663",
+            "2608.25521",
+            "2607.23561",
+            "2607.15771",
+            "2607.23507",
+            "2608.17632",
+            "2608.23419"
+          ],
+          "relevant_ids": [
+            "2607.15555",
+            "2607.26670",
+            "2608.25663",
+            "2607.15771",
+            "2608.25521",
+            "2608.17632",
+            "2608.18352",
+            "2607.01040"
+          ],
+          "metrics": {
+            "recall@1": 0.125,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.5,
+            "precision@5": 0.8,
+            "ndcg@5": 0.7860137352654724,
+            "recall@10": 0.75,
+            "precision@10": 0.6,
+            "ndcg@10": 0.7466597163776713,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.18352",
+            "2607.01040"
+          ],
+          "elapsed_ms": 21.86
+        },
+        {
+          "query_id": "conc_05",
+          "query_class": "conceptual",
+          "query": "how do we learn about black holes if light cannot escape them",
+          "retrieved_ids": [
+            "2608.03538",
+            "2608.08208",
+            "2608.00590",
+            "2608.10071",
+            "2608.26785",
+            "2609.01391",
+            "2608.10085",
+            "2609.03071",
+            "2608.26399",
+            "2608.12139"
+          ],
+          "relevant_ids": [
+            "2608.29466",
+            "2608.10071",
+            "2608.26785",
+            "2608.27637",
+            "2608.18208",
+            "2608.26399",
+            "2608.13643"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.2857142857142857,
+            "precision@5": 0.4,
+            "ndcg@5": 0.27727342735504823,
+            "recall@10": 0.42857142857142855,
+            "precision@10": 0.3,
+            "ndcg@10": 0.30746549529091277,
+            "mrr": 0.25
+          },
+          "first_hit_rank": 4,
+          "misses": [
+            "2608.29466",
+            "2608.27637",
+            "2608.18208",
+            "2608.13643"
+          ],
+          "elapsed_ms": 23.05
+        },
+        {
+          "query_id": "conc_06",
+          "query_class": "conceptual",
+          "query": "why is it hard to evaluate a recommender system offline",
+          "retrieved_ids": [
+            "2607.25097",
+            "2607.11354",
+            "2609.01627",
+            "2609.02499",
+            "2608.21662",
+            "2607.26074",
+            "2607.19189",
+            "2608.21641",
+            "2608.16872",
+            "2608.10008"
+          ],
+          "relevant_ids": [
+            "2607.25097",
+            "2607.11354",
+            "2608.16872",
+            "2608.22022",
+            "2609.02499",
+            "2608.29600"
+          ],
+          "metrics": {
+            "recall@1": 0.16666666666666666,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.5,
+            "precision@5": 0.6,
+            "ndcg@5": 0.6992148198508501,
+            "recall@10": 0.6666666666666666,
+            "precision@10": 0.4,
+            "ndcg@10": 0.7149394488115769,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.22022",
+            "2608.29600"
+          ],
+          "elapsed_ms": 25.98
+        },
+        {
+          "query_id": "conc_07",
+          "query_class": "conceptual",
+          "query": "what makes quantum gravity difficult to test experimentally",
+          "retrieved_ids": [
+            "2608.26420",
+            "2608.28901",
+            "2607.27313",
+            "2608.24796",
+            "2609.03314",
+            "2609.03409",
+            "2608.00590",
+            "2608.20463",
+            "2608.17364",
+            "2608.14703"
+          ],
+          "relevant_ids": [
+            "2608.26420",
+            "2608.28901",
+            "2608.24796",
+            "2607.27313"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 1.0,
+            "precision@5": 0.8,
+            "ndcg@5": 1.0,
+            "recall@10": 1.0,
+            "precision@10": 0.4,
+            "ndcg@10": 1.0,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 23.01
+        },
+        {
+          "query_id": "conc_08",
+          "query_class": "conceptual",
+          "query": "why does symmetry violation matter in particle physics",
+          "retrieved_ids": [
+            "2609.02691",
+            "2609.02475",
+            "2608.24872",
+            "2608.01353",
+            "2606.22215",
+            "2606.23580",
+            "2609.01196",
+            "2608.30936",
+            "2605.28671",
+            "2609.03000"
+          ],
+          "relevant_ids": [
+            "2609.02475",
+            "2606.23580",
+            "2609.02691",
+            "2605.28671",
+            "2606.25982",
+            "2606.20830"
+          ],
+          "metrics": {
+            "recall@1": 0.16666666666666666,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.3333333333333333,
+            "precision@5": 0.4,
+            "ndcg@5": 0.5531464700081437,
+            "recall@10": 0.6666666666666666,
+            "precision@10": 0.4,
+            "ndcg@10": 0.6924048374257172,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2606.25982",
+            "2606.20830"
+          ],
+          "elapsed_ms": 25.38
+        },
+        {
+          "query_id": "conc_09",
+          "query_class": "conceptual",
+          "query": "how does a detector tell one kind of particle from another",
+          "retrieved_ids": [
+            "2606.30485",
+            "2607.04723",
+            "2607.12821",
+            "2606.26856",
+            "2608.18204",
+            "2608.10105",
+            "2607.22477",
+            "2609.00611",
+            "2609.04078",
+            "2608.06661"
+          ],
+          "relevant_ids": [
+            "2608.11028",
+            "2608.19064",
+            "2607.11139",
+            "2608.23773"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.0,
+            "precision@5": 0.0,
+            "ndcg@5": 0.0,
+            "recall@10": 0.0,
+            "precision@10": 0.0,
+            "ndcg@10": 0.0,
+            "mrr": 0.0
+          },
+          "first_hit_rank": null,
+          "misses": [
+            "2608.11028",
+            "2608.19064",
+            "2607.11139",
+            "2608.23773"
+          ],
+          "elapsed_ms": 22.94
+        },
+        {
+          "query_id": "conc_10",
+          "query_class": "conceptual",
+          "query": "why do retrieval augmented systems produce confident wrong answers",
+          "retrieved_ids": [
+            "2607.25600",
+            "2607.03615",
+            "2608.25487",
+            "2608.22228",
+            "2607.07380",
+            "2608.22856",
+            "2608.26379",
+            "2608.11922",
+            "2606.29959",
+            "2608.25245"
+          ],
+          "relevant_ids": [
+            "2608.22228",
+            "2608.25487",
+            "2607.25600",
+            "2607.07380",
+            "2608.11922",
+            "2608.10008",
+            "2607.03615"
+          ],
+          "metrics": {
+            "recall@1": 0.14285714285714285,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.7142857142857143,
+            "precision@5": 1.0,
+            "ndcg@5": 1.0,
+            "recall@10": 0.8571428571428571,
+            "precision@10": 0.6,
+            "ndcg@10": 0.8971754588393883,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.10008"
+          ],
+          "elapsed_ms": 24.54
+        },
+        {
+          "query_id": "hop_01",
+          "query_class": "multi_hop",
+          "query": "neutrino mass and cosmological structure formation",
+          "retrieved_ids": [
+            "2608.06460",
+            "2607.24742",
+            "2607.19340",
+            "2607.02644",
+            "2607.28754",
+            "2608.29746",
+            "2609.01716",
+            "2608.10062",
+            "2607.14243",
+            "2607.19254"
+          ],
+          "relevant_ids": [
+            "2607.24742",
+            "2608.06460"
+          ],
+          "metrics": {
+            "recall@1": 0.5,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 1.0,
+            "precision@5": 0.4,
+            "ndcg@5": 1.0,
+            "recall@10": 1.0,
+            "precision@10": 0.2,
+            "ndcg@10": 1.0,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 24.75
+        },
+        {
+          "query_id": "hop_02",
+          "query_class": "multi_hop",
+          "query": "machine learning applied to particle detector reconstruction",
+          "retrieved_ids": [
+            "2606.14373",
+            "2606.30485",
+            "2609.00611",
+            "2608.28314",
+            "2606.26089",
+            "2608.22873",
+            "2607.04723",
+            "2607.21702",
+            "2608.21327",
+            "2608.10900"
+          ],
+          "relevant_ids": [
+            "2606.14373",
+            "2606.30485",
+            "2607.11585",
+            "2609.00611",
+            "2606.26089",
+            "2608.22873",
+            "2605.29391",
+            "2607.04723",
+            "2608.21327"
+          ],
+          "metrics": {
+            "recall@1": 0.1111111111111111,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.4444444444444444,
+            "precision@5": 0.8,
+            "ndcg@5": 0.8539316501572937,
+            "recall@10": 0.7777777777777778,
+            "precision@10": 0.7,
+            "ndcg@10": 0.8246227765026254,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2607.11585",
+            "2605.29391"
+          ],
+          "elapsed_ms": 21.22
+        },
+        {
+          "query_id": "hop_03",
+          "query_class": "multi_hop",
+          "query": "dark matter effects on neutron star collapse",
+          "retrieved_ids": [
+            "2608.26274",
+            "2608.06224",
+            "2608.20921",
+            "2608.24796",
+            "2609.00118",
+            "2609.01646",
+            "2608.25587",
+            "2608.16064",
+            "2608.12173",
+            "2609.03964"
+          ],
+          "relevant_ids": [
+            "2608.10594",
+            "2608.06224",
+            "2608.20921",
+            "2609.03964",
+            "2608.16064"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.4,
+            "precision@5": 0.4,
+            "ndcg@5": 0.38356636737133565,
+            "recall@10": 0.8,
+            "precision@10": 0.4,
+            "ndcg@10": 0.5885987855699565,
+            "mrr": 0.5
+          },
+          "first_hit_rank": 2,
+          "misses": [
+            "2608.10594"
+          ],
+          "elapsed_ms": 25.28
+        },
+        {
+          "query_id": "hop_04",
+          "query_class": "multi_hop",
+          "query": "gravitational wave observations and black hole population statistics",
+          "retrieved_ids": [
+            "2608.25715",
+            "2608.29072",
+            "2609.01784",
+            "2609.03859",
+            "2608.25507",
+            "2609.02678",
+            "2608.23477",
+            "2608.26203",
+            "2609.00200",
+            "2608.27637"
+          ],
+          "relevant_ids": [
+            "2608.29072",
+            "2609.01784",
+            "2609.02678",
+            "2609.03859",
+            "2608.21609"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.6,
+            "precision@5": 0.6,
+            "ndcg@5": 0.5296347172140421,
+            "recall@10": 0.8,
+            "precision@10": 0.4,
+            "ndcg@10": 0.6504460199135362,
+            "mrr": 0.5
+          },
+          "first_hit_rank": 2,
+          "misses": [
+            "2608.21609"
+          ],
+          "elapsed_ms": 26.24
+        },
+        {
+          "query_id": "hop_05",
+          "query_class": "multi_hop",
+          "query": "transformer efficiency for sparse detector data",
+          "retrieved_ids": [
+            "2606.17631",
+            "2607.10109",
+            "2607.03611",
+            "2608.16309",
+            "2608.30384",
+            "2607.11585",
+            "2606.11304",
+            "2608.25528",
+            "2608.25780",
+            "2608.16061"
+          ],
+          "relevant_ids": [
+            "2606.17631",
+            "2606.20437",
+            "2608.02735",
+            "2608.16061"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.25,
+            "precision@5": 0.2,
+            "ndcg@5": 0.3903800499921017,
+            "recall@10": 0.5,
+            "precision@10": 0.2,
+            "ndcg@10": 0.5032251913410369,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2606.20437",
+            "2608.02735"
+          ],
+          "elapsed_ms": 25.61
+        },
+        {
+          "query_id": "hop_06",
+          "query_class": "multi_hop",
+          "query": "axion searches with haloscopes and with colliders",
+          "retrieved_ids": [
+            "2607.28883",
+            "2608.10292",
+            "2608.07718",
+            "2606.20422",
+            "2608.12616",
+            "2609.03879",
+            "2607.28095",
+            "2607.21363",
+            "2606.20826",
+            "2607.07476"
+          ],
+          "relevant_ids": [
+            "2607.28883",
+            "2608.07718",
+            "2608.10292",
+            "2606.20422",
+            "2609.02828",
+            "2609.03879",
+            "2607.07800",
+            "2608.18506"
+          ],
+          "metrics": {
+            "recall@1": 0.125,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.5,
+            "precision@5": 0.8,
+            "ndcg@5": 0.8687949224876582,
+            "recall@10": 0.625,
+            "precision@10": 0.5,
+            "ndcg@10": 0.7380396325465056,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2609.02828",
+            "2607.07800",
+            "2608.18506"
+          ],
+          "elapsed_ms": 23.91
+        },
+        {
+          "query_id": "hop_07",
+          "query_class": "multi_hop",
+          "query": "large language models used for recommendation ranking",
+          "retrieved_ids": [
+            "2608.10257",
+            "2608.00669",
+            "2608.09605",
+            "2606.29947",
+            "2607.04270",
+            "2607.19739",
+            "2608.03091",
+            "2608.17316",
+            "2608.18952",
+            "2607.21519"
+          ],
+          "relevant_ids": [
+            "2608.10257",
+            "2608.00669",
+            "2607.04270",
+            "2608.09605",
+            "2608.18952",
+            "2606.29947",
+            "2608.03091",
+            "2608.12184"
+          ],
+          "metrics": {
+            "recall@1": 0.125,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.625,
+            "precision@5": 1.0,
+            "ndcg@5": 1.0,
+            "recall@10": 0.875,
+            "precision@10": 0.7,
+            "ndcg@10": 0.9062487935025676,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.12184"
+          ],
+          "elapsed_ms": 25.33
+        },
+        {
+          "query_id": "hop_08",
+          "query_class": "multi_hop",
+          "query": "supernova modelling constrained by neutrino observations",
+          "retrieved_ids": [
+            "2609.01716",
+            "2608.17681",
+            "2606.18337",
+            "2608.27567",
+            "2606.27007",
+            "2606.30756",
+            "2606.29381",
+            "2607.19254",
+            "2608.26847",
+            "2607.01339"
+          ],
+          "relevant_ids": [
+            "2606.30756",
+            "2606.18337",
+            "2608.26847",
+            "2606.27007"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.5,
+            "precision@5": 0.4,
+            "ndcg@5": 0.34620964322385606,
+            "recall@10": 1.0,
+            "precision@10": 0.4,
+            "ndcg@10": 0.6027819274910589,
+            "mrr": 0.3333333333333333
+          },
+          "first_hit_rank": 3,
+          "misses": [],
+          "elapsed_ms": 21.72
+        },
+        {
+          "query_id": "hop_09",
+          "query_class": "multi_hop",
+          "query": "evaluation datasets for scientific claim retrieval",
+          "retrieved_ids": [
+            "2607.04043",
+            "2607.15875",
+            "2607.24803",
+            "2608.26379",
+            "2608.03860",
+            "2608.27394",
+            "2608.28555",
+            "2608.03756",
+            "2608.15624",
+            "2607.04008"
+          ],
+          "relevant_ids": [
+            "2607.15875",
+            "2607.04043",
+            "2607.24803",
+            "2608.15624",
+            "2608.27394",
+            "2608.11415"
+          ],
+          "metrics": {
+            "recall@1": 0.16666666666666666,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.5,
+            "precision@5": 0.6,
+            "ndcg@5": 0.7227265726449519,
+            "recall@10": 0.8333333333333334,
+            "precision@10": 0.5,
+            "ndcg@10": 0.843706044175124,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.11415"
+          ],
+          "elapsed_ms": 19.57
+        },
+        {
+          "query_id": "hop_10",
+          "query_class": "multi_hop",
+          "query": "quantum field theory methods applied to condensed matter systems",
+          "retrieved_ids": [
+            "2608.01989",
+            "2608.06449",
+            "2608.08855",
+            "2608.16677",
+            "2607.27920",
+            "2608.26277",
+            "2608.13664",
+            "2608.27457",
+            "2608.00670",
+            "2608.00169"
+          ],
+          "relevant_ids": [
+            "2608.06449",
+            "2607.27920",
+            "2608.07655",
+            "2608.13664"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.5,
+            "precision@5": 0.4,
+            "ndcg@5": 0.3973220069685352,
+            "recall@10": 0.75,
+            "precision@10": 0.3,
+            "ndcg@10": 0.5274486902992358,
+            "mrr": 0.5
+          },
+          "first_hit_rank": 2,
+          "misses": [
+            "2608.07655"
+          ],
+          "elapsed_ms": 25.08
+        },
+        {
+          "query_id": "none_01",
+          "query_class": "unanswerable",
+          "query": "protein folding structure prediction from amino acid sequence",
+          "retrieved_ids": [
+            "2608.22183",
+            "2606.02785",
+            "2608.11262",
+            "2607.24818",
+            "2608.27629",
+            "2608.23214",
+            "2608.16050",
+            "2607.28498",
+            "2608.07055",
+            "2607.19750"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 21.15
+        },
+        {
+          "query_id": "none_02",
+          "query_class": "unanswerable",
+          "query": "CRISPR off-target editing effects in human cells",
+          "retrieved_ids": [
+            "2608.23214",
+            "2608.05227",
+            "2608.08944",
+            "2609.03450",
+            "2608.13786",
+            "2608.26661",
+            "2608.09650",
+            "2608.31139",
+            "2607.27763",
+            "2607.22969"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 24.76
+        },
+        {
+          "query_id": "none_03",
+          "query_class": "unanswerable",
+          "query": "predicting mortgage default risk from credit history",
+          "retrieved_ids": [
+            "2608.23221",
+            "2607.14556",
+            "2609.03654",
+            "2608.13874",
+            "2608.05571",
+            "2608.18534",
+            "2607.27523",
+            "2608.17618",
+            "2608.16872",
+            "2607.29606"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 24.89
+        },
+        {
+          "query_id": "none_04",
+          "query_class": "unanswerable",
+          "query": "diagnosing diabetic retinopathy from retinal photographs",
+          "retrieved_ids": [
+            "2607.27763",
+            "2607.13826",
+            "2608.11037",
+            "2607.12621",
+            "2608.10688",
+            "2608.22183",
+            "2607.24651",
+            "2608.26658",
+            "2608.18289",
+            "2607.08143"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 21.29
+        },
+        {
+          "query_id": "none_05",
+          "query_class": "unanswerable",
+          "query": "randomised controlled trial of a new hypertension drug",
+          "retrieved_ids": [
+            "2608.15382",
+            "2607.24829",
+            "2607.14604",
+            "2608.15909",
+            "2607.04025",
+            "2608.13786",
+            "2608.26150",
+            "2608.30893",
+            "2608.26414",
+            "2607.25038"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 26.7
+        },
+        {
+          "query_id": "none_06",
+          "query_class": "unanswerable",
+          "query": "automated review of commercial lease contracts",
+          "retrieved_ids": [
+            "2608.26145",
+            "2608.26091",
+            "2607.26075",
+            "2607.05582",
+            "2608.09393",
+            "2607.10179",
+            "2609.02745",
+            "2607.24449",
+            "2607.18039",
+            "2607.03325"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 27.28
+        },
+        {
+          "query_id": "none_07",
+          "query_class": "unanswerable",
+          "query": "coral reef bleaching and ocean acidification",
+          "retrieved_ids": [
+            "2608.28193",
+            "2609.02648",
+            "2608.18201",
+            "2608.28344",
+            "2608.24181",
+            "2608.18481",
+            "2607.28571",
+            "2608.27629",
+            "2608.24170",
+            "2608.21529"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 42.94
+        },
+        {
+          "query_id": "none_08",
+          "query_class": "unanswerable",
+          "query": "congestion pricing in urban road networks",
+          "retrieved_ids": [
+            "2606.31857",
+            "2608.11675",
+            "2608.27840",
+            "2608.18764",
+            "2608.16922",
+            "2608.23876",
+            "2608.07998",
+            "2607.05242",
+            "2607.12578",
+            "2606.29991"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 24.94
+        },
+        {
+          "query_id": "none_09",
+          "query_class": "unanswerable",
+          "query": "second language acquisition in bilingual children",
+          "retrieved_ids": [
+            "2608.15909",
+            "2608.23920",
+            "2607.15555",
+            "2608.26150",
+            "2608.28151",
+            "2607.22969",
+            "2607.13304",
+            "2607.22042",
+            "2607.27178",
+            "2608.30052"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 25.74
+        },
+        {
+          "query_id": "none_10",
+          "query_class": "unanswerable",
+          "query": "supply chain inventory optimisation for perishable goods",
+          "retrieved_ids": [
+            "2609.01628",
+            "2608.30333",
+            "2607.05242",
+            "2608.27366",
+            "2608.14066",
+            "2607.22949",
+            "2607.03880",
+            "2608.11675",
+            "2608.25635",
+            "2608.20640"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 27.07
+        }
+      ]
+    },
+    "hybrid": {
+      "mode": "hybrid",
+      "top_k": 10,
+      "golden_set_version": 1,
+      "overall": {
+        "recall@1": 0.1584623015873016,
+        "precision@1": 0.675,
+        "ndcg@1": 0.675,
+        "recall@5": 0.5328670634920635,
+        "precision@5": 0.49000000000000005,
+        "ndcg@5": 0.6092127459237691,
+        "recall@10": 0.6824603174603174,
+        "precision@10": 0.3225,
+        "ndcg@10": 0.6494877165381878,
+        "mrr": 0.7764880952380953
+      },
+      "by_class": {
+        "exact_term": {
+          "recall@1": 0.2783333333333333,
+          "precision@1": 1.0,
+          "ndcg@1": 1.0,
+          "recall@5": 0.7766666666666666,
+          "precision@5": 0.6,
+          "ndcg@5": 0.8485160081376899,
+          "recall@10": 0.9333333333333333,
+          "precision@10": 0.37,
+          "ndcg@10": 0.9089603842133303,
+          "mrr": 1.0
+        },
+        "paraphrase": {
+          "recall@1": 0.09761904761904762,
+          "precision@1": 0.4,
+          "ndcg@1": 0.4,
+          "recall@5": 0.3069047619047619,
+          "precision@5": 0.24000000000000005,
+          "ndcg@5": 0.3233565018837275,
+          "recall@10": 0.39714285714285713,
+          "precision@10": 0.17,
+          "ndcg@10": 0.3657427706141487,
+          "mrr": 0.5083333333333333
+        },
+        "conceptual": {
+          "recall@1": 0.10511904761904763,
+          "precision@1": 0.6,
+          "ndcg@1": 0.6,
+          "recall@5": 0.453452380952381,
+          "precision@5": 0.52,
+          "ndcg@5": 0.5534585985599141,
+          "recall@10": 0.6204761904761905,
+          "precision@10": 0.35,
+          "ndcg@10": 0.5862403620707248,
+          "mrr": 0.7642857142857143
+        },
+        "multi_hop": {
+          "recall@1": 0.15277777777777776,
+          "precision@1": 0.7,
+          "ndcg@1": 0.7,
+          "recall@5": 0.5944444444444444,
+          "precision@5": 0.6,
+          "ndcg@5": 0.711519875113745,
+          "recall@10": 0.7788888888888889,
+          "precision@10": 0.4,
+          "ndcg@10": 0.7370073492545475,
+          "mrr": 0.8333333333333334
+        }
+      },
+      "median_latency_ms": 36.110666500462685,
+      "queries": [
+        {
+          "query_id": "exact_01",
+          "query_class": "exact_term",
+          "query": "axion-like particle diphoton decay search",
+          "retrieved_ids": [
+            "2608.18506",
+            "2608.12616",
+            "2607.07800",
+            "2607.29205",
+            "2607.21168",
+            "2608.24161",
+            "2607.27190",
+            "2606.20525",
+            "2609.00123",
+            "2607.25466"
+          ],
+          "relevant_ids": [
+            "2607.07800",
+            "2608.18506",
+            "2608.12616",
+            "2607.29205",
+            "2608.24161",
+            "2609.00123"
+          ],
+          "metrics": {
+            "recall@1": 0.16666666666666666,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.6666666666666666,
+            "precision@5": 0.8,
+            "ndcg@5": 0.8687949224876582,
+            "recall@10": 1.0,
+            "precision@10": 0.6,
+            "ndcg@10": 0.9740298100854945,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 39.5
+        },
+        {
+          "query_id": "exact_02",
+          "query_class": "exact_term",
+          "query": "look-elsewhere effect trials factor",
+          "retrieved_ids": [
+            "2608.24872",
+            "2608.19764",
+            "2606.13780",
+            "2607.14604",
+            "2608.29430",
+            "2608.01731",
+            "2608.20294",
+            "2606.11230",
+            "2608.18352",
+            "2608.16872"
+          ],
+          "relevant_ids": [
+            "2608.24872",
+            "2606.13780",
+            "2608.19764"
+          ],
+          "metrics": {
+            "recall@1": 0.3333333333333333,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 1.0,
+            "precision@5": 0.6,
+            "ndcg@5": 1.0,
+            "recall@10": 1.0,
+            "precision@10": 0.3,
+            "ndcg@10": 1.0,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 36.15
+        },
+        {
+          "query_id": "exact_03",
+          "query_class": "exact_term",
+          "query": "pseudo-relevance feedback query expansion",
+          "retrieved_ids": [
+            "2607.12098",
+            "2608.15851",
+            "2608.25521",
+            "2607.18626",
+            "2608.17632",
+            "2608.00452",
+            "2607.23561",
+            "2609.03482",
+            "2607.04008",
+            "2608.02446"
+          ],
+          "relevant_ids": [
+            "2607.18626",
+            "2607.12098",
+            "2608.25521",
+            "2608.15851",
+            "2608.17632",
+            "2609.00844"
+          ],
+          "metrics": {
+            "recall@1": 0.16666666666666666,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.8333333333333334,
+            "precision@5": 1.0,
+            "ndcg@5": 1.0,
+            "recall@10": 0.8333333333333334,
+            "precision@10": 0.5,
+            "ndcg@10": 0.8922108454754891,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2609.00844"
+          ],
+          "elapsed_ms": 40.62
+        },
+        {
+          "query_id": "exact_04",
+          "query_class": "exact_term",
+          "query": "hyperon bulk viscosity neutron star inspiral",
+          "retrieved_ids": [
+            "2608.28000",
+            "2608.20989",
+            "2608.20921",
+            "2608.26274",
+            "2608.24796",
+            "2608.28879",
+            "2607.09280",
+            "2608.20460",
+            "2609.01022",
+            "2609.00965"
+          ],
+          "relevant_ids": [
+            "2608.28000",
+            "2608.20989",
+            "2608.20921",
+            "2607.09280"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.75,
+            "precision@5": 0.6,
+            "ndcg@5": 0.8318724637288826,
+            "recall@10": 1.0,
+            "precision@10": 0.4,
+            "ndcg@10": 0.961999147059583,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 40.51
+        },
+        {
+          "query_id": "exact_05",
+          "query_class": "exact_term",
+          "query": "core-collapse supernova shock revival simulation",
+          "retrieved_ids": [
+            "2608.28358",
+            "2608.24578",
+            "2606.30756",
+            "2608.26390",
+            "2608.24170",
+            "2608.25571",
+            "2608.26681",
+            "2609.01715",
+            "2608.30309",
+            "2608.18198"
+          ],
+          "relevant_ids": [
+            "2608.28358",
+            "2608.24578",
+            "2606.30756",
+            "2608.26681",
+            "2608.18198"
+          ],
+          "metrics": {
+            "recall@1": 0.2,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.6,
+            "precision@5": 0.6,
+            "ndcg@5": 0.7227265726449519,
+            "recall@10": 1.0,
+            "precision@10": 0.5,
+            "ndcg@10": 0.9338192602341809,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 46.69
+        },
+        {
+          "query_id": "exact_06",
+          "query_class": "exact_term",
+          "query": "charged-current quasi-elastic cross section",
+          "retrieved_ids": [
+            "2608.12293",
+            "2609.02989",
+            "2606.14669",
+            "2609.01179",
+            "2607.11286",
+            "2607.13523",
+            "2606.00745",
+            "2606.18347",
+            "2607.15050",
+            "2607.04481"
+          ],
+          "relevant_ids": [
+            "2608.12293",
+            "2606.00745",
+            "2607.10644",
+            "2608.23057"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.25,
+            "precision@5": 0.2,
+            "ndcg@5": 0.3903800499921017,
+            "recall@10": 0.5,
+            "precision@10": 0.2,
+            "ndcg@10": 0.5205067333228022,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2607.10644",
+            "2608.23057"
+          ],
+          "elapsed_ms": 29.0
+        },
+        {
+          "query_id": "exact_07",
+          "query_class": "exact_term",
+          "query": "Hough transform online track reconstruction",
+          "retrieved_ids": [
+            "2607.04067",
+            "2607.04723",
+            "2606.20437",
+            "2607.15361",
+            "2606.17631",
+            "2607.12821",
+            "2608.10900",
+            "2608.02735",
+            "2606.29927",
+            "2607.04271"
+          ],
+          "relevant_ids": [
+            "2607.04067",
+            "2607.04723",
+            "2607.04271"
+          ],
+          "metrics": {
+            "recall@1": 0.3333333333333333,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.6666666666666666,
+            "precision@5": 0.4,
+            "ndcg@5": 0.7653606369886217,
+            "recall@10": 1.0,
+            "precision@10": 0.3,
+            "ndcg@10": 0.9010126104210695,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 29.83
+        },
+        {
+          "query_id": "exact_08",
+          "query_class": "exact_term",
+          "query": "fast radio burst dispersion measure",
+          "retrieved_ids": [
+            "2608.23868",
+            "2608.18455",
+            "2608.27779",
+            "2608.23522",
+            "2609.02037",
+            "2608.30943",
+            "2609.04118",
+            "2608.26857",
+            "2608.19713",
+            "2608.28370"
+          ],
+          "relevant_ids": [
+            "2608.23868",
+            "2608.27779",
+            "2608.23522"
+          ],
+          "metrics": {
+            "recall@1": 0.3333333333333333,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 1.0,
+            "precision@5": 0.6,
+            "ndcg@5": 0.9060254355346823,
+            "recall@10": 1.0,
+            "precision@10": 0.3,
+            "ndcg@10": 0.9060254355346823,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 39.86
+        },
+        {
+          "query_id": "exact_09",
+          "query_class": "exact_term",
+          "query": "blazar jet accretion regime",
+          "retrieved_ids": [
+            "2609.03435",
+            "2609.02550",
+            "2608.18707",
+            "2608.25763",
+            "2608.21158",
+            "2609.00174",
+            "2609.02867",
+            "2608.22046",
+            "2608.18249",
+            "2608.24522"
+          ],
+          "relevant_ids": [
+            "2609.03435",
+            "2609.02550",
+            "2608.25763",
+            "2608.18707"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 1.0,
+            "precision@5": 0.8,
+            "ndcg@5": 1.0,
+            "recall@10": 1.0,
+            "precision@10": 0.4,
+            "ndcg@10": 1.0,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 33.28
+        },
+        {
+          "query_id": "exact_10",
+          "query_class": "exact_term",
+          "query": "integrated luminosity measurement proton-proton collisions",
+          "retrieved_ids": [
+            "2606.26832",
+            "2609.02989",
+            "2608.01289",
+            "2607.09621",
+            "2606.28098",
+            "2607.25653",
+            "2606.03222",
+            "2605.31205",
+            "2606.23646",
+            "2606.10018"
+          ],
+          "relevant_ids": [
+            "2606.26832",
+            "2609.02989"
+          ],
+          "metrics": {
+            "recall@1": 0.5,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 1.0,
+            "precision@5": 0.4,
+            "ndcg@5": 1.0,
+            "recall@10": 1.0,
+            "precision@10": 0.2,
+            "ndcg@10": 1.0,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 34.08
+        },
+        {
+          "query_id": "para_01",
+          "query_class": "paraphrase",
+          "query": "how do websites decide which short clips to show a viewer next",
+          "retrieved_ids": [
+            "2608.29430",
+            "2608.04302",
+            "2608.13990",
+            "2608.10700",
+            "2608.04455",
+            "2608.18322",
+            "2608.04432",
+            "2607.17092",
+            "2607.15730",
+            "2607.02885"
+          ],
+          "relevant_ids": [
+            "2608.29430",
+            "2608.13990",
+            "2608.04807"
+          ],
+          "metrics": {
+            "recall@1": 0.3333333333333333,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.6666666666666666,
+            "precision@5": 0.4,
+            "ndcg@5": 0.7039180890341347,
+            "recall@10": 0.6666666666666666,
+            "precision@10": 0.2,
+            "ndcg@10": 0.7039180890341347,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.04807"
+          ],
+          "elapsed_ms": 35.57
+        },
+        {
+          "query_id": "para_02",
+          "query_class": "paraphrase",
+          "query": "improving a search engine by re-reading its own top results",
+          "retrieved_ids": [
+            "2607.03421",
+            "2608.06305",
+            "2607.15253",
+            "2608.18352",
+            "2607.27172",
+            "2608.01738",
+            "2607.09264",
+            "2608.25115",
+            "2608.02376",
+            "2608.30466"
+          ],
+          "relevant_ids": [
+            "2607.18626",
+            "2607.12098",
+            "2608.25521",
+            "2608.15851"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.0,
+            "precision@5": 0.0,
+            "ndcg@5": 0.0,
+            "recall@10": 0.0,
+            "precision@10": 0.0,
+            "ndcg@10": 0.0,
+            "mrr": 0.0
+          },
+          "first_hit_rank": null,
+          "misses": [
+            "2607.18626",
+            "2607.12098",
+            "2608.25521",
+            "2608.15851"
+          ],
+          "elapsed_ms": 39.42
+        },
+        {
+          "query_id": "para_03",
+          "query_class": "paraphrase",
+          "query": "what happens when a star wanders too close to a black hole",
+          "retrieved_ids": [
+            "2608.27596",
+            "2608.28947",
+            "2608.19402",
+            "2608.06224",
+            "2609.03701",
+            "2608.30995",
+            "2608.25253",
+            "2608.21609",
+            "2608.10594",
+            "2608.12469"
+          ],
+          "relevant_ids": [
+            "2608.19402",
+            "2608.28947",
+            "2609.03701",
+            "2608.27596"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 1.0,
+            "precision@5": 0.8,
+            "ndcg@5": 0.9828920819566879,
+            "recall@10": 1.0,
+            "precision@10": 0.4,
+            "ndcg@10": 0.9828920819566879,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 32.88
+        },
+        {
+          "query_id": "para_04",
+          "query_class": "paraphrase",
+          "query": "using neural networks to work out particle paths in a detector",
+          "retrieved_ids": [
+            "2607.04723",
+            "2607.22281",
+            "2607.07263",
+            "2606.03745",
+            "2608.28084",
+            "2606.30485",
+            "2608.21327",
+            "2607.04271",
+            "2608.23773",
+            "2606.26089"
+          ],
+          "relevant_ids": [
+            "2607.04723",
+            "2607.15361",
+            "2606.20437",
+            "2606.30485",
+            "2606.14373",
+            "2607.07263",
+            "2607.04271"
+          ],
+          "metrics": {
+            "recall@1": 0.14285714285714285,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.2857142857142857,
+            "precision@5": 0.4,
+            "ndcg@5": 0.5087403079104241,
+            "recall@10": 0.5714285714285714,
+            "precision@10": 0.4,
+            "ndcg@10": 0.5969412532155238,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2607.15361",
+            "2606.20437",
+            "2606.14373"
+          ],
+          "elapsed_ms": 40.03
+        },
+        {
+          "query_id": "para_05",
+          "query_class": "paraphrase",
+          "query": "how bright was the beam when the collisions were recorded",
+          "retrieved_ids": [
+            "2608.10988",
+            "2609.03452",
+            "2607.12984",
+            "2606.26832",
+            "2605.27273",
+            "2608.31148",
+            "2607.28477",
+            "2608.02383",
+            "2608.12661",
+            "2606.20830"
+          ],
+          "relevant_ids": [
+            "2606.26832",
+            "2609.02989"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.5,
+            "precision@5": 0.2,
+            "ndcg@5": 0.2640681225725909,
+            "recall@10": 0.5,
+            "precision@10": 0.1,
+            "ndcg@10": 0.2640681225725909,
+            "mrr": 0.25
+          },
+          "first_hit_rank": 4,
+          "misses": [
+            "2609.02989"
+          ],
+          "elapsed_ms": 35.36
+        },
+        {
+          "query_id": "para_06",
+          "query_class": "paraphrase",
+          "query": "finding a signal that could be anywhere in the data without fooling yourself",
+          "retrieved_ids": [
+            "2605.31103",
+            "2607.28571",
+            "2608.00585",
+            "2608.11395",
+            "2606.20525",
+            "2608.28738",
+            "2608.19764",
+            "2608.26090",
+            "2607.03611",
+            "2608.04103"
+          ],
+          "relevant_ids": [
+            "2608.24872",
+            "2606.13780",
+            "2608.19764",
+            "2605.31103"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.25,
+            "precision@5": 0.2,
+            "ndcg@5": 0.3903800499921017,
+            "recall@10": 0.5,
+            "precision@10": 0.2,
+            "ndcg@10": 0.5205067333228022,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.24872",
+            "2606.13780"
+          ],
+          "elapsed_ms": 36.2
+        },
+        {
+          "query_id": "para_07",
+          "query_class": "paraphrase",
+          "query": "checking whether a scientific statement really came from the work it cites",
+          "retrieved_ids": [
+            "2608.25663",
+            "2607.22684",
+            "2608.30145",
+            "2607.12257",
+            "2608.11415",
+            "2607.24802",
+            "2607.27955",
+            "2608.15624",
+            "2608.02457",
+            "2608.29612"
+          ],
+          "relevant_ids": [
+            "2607.15875",
+            "2607.04043",
+            "2608.30145",
+            "2607.24802",
+            "2607.24803"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.2,
+            "precision@5": 0.2,
+            "ndcg@5": 0.16958010263680806,
+            "recall@10": 0.4,
+            "precision@10": 0.2,
+            "ndcg@10": 0.29039140533630226,
+            "mrr": 0.3333333333333333
+          },
+          "first_hit_rank": 3,
+          "misses": [
+            "2607.15875",
+            "2607.04043",
+            "2607.24803"
+          ],
+          "elapsed_ms": 35.06
+        },
+        {
+          "query_id": "para_08",
+          "query_class": "paraphrase",
+          "query": "searching for very light dark matter that barely interacts with ordinary matter",
+          "retrieved_ids": [
+            "2609.02823",
+            "2607.24524",
+            "2608.20464",
+            "2608.04763",
+            "2609.01727",
+            "2607.19319",
+            "2608.26274",
+            "2608.24960",
+            "2607.24448",
+            "2607.20620"
+          ],
+          "relevant_ids": [
+            "2607.19319",
+            "2607.24524",
+            "2606.07008",
+            "2609.02501",
+            "2608.18204",
+            "2608.07136"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.16666666666666666,
+            "precision@5": 0.2,
+            "ndcg@5": 0.21398626473452756,
+            "recall@10": 0.3333333333333333,
+            "precision@10": 0.2,
+            "ndcg@10": 0.2987100207034456,
+            "mrr": 0.5
+          },
+          "first_hit_rank": 2,
+          "misses": [
+            "2606.07008",
+            "2609.02501",
+            "2608.18204",
+            "2608.07136"
+          ],
+          "elapsed_ms": 37.29
+        },
+        {
+          "query_id": "para_09",
+          "query_class": "paraphrase",
+          "query": "how a dying massive star manages to explode outward",
+          "retrieved_ids": [
+            "2608.18897",
+            "2609.00200",
+            "2608.27596",
+            "2608.18196",
+            "2608.23677",
+            "2609.03701",
+            "2608.19402",
+            "2609.02533",
+            "2608.27595",
+            "2608.24170"
+          ],
+          "relevant_ids": [
+            "2608.28358",
+            "2608.24578",
+            "2606.30756",
+            "2608.26681"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.0,
+            "precision@5": 0.0,
+            "ndcg@5": 0.0,
+            "recall@10": 0.0,
+            "precision@10": 0.0,
+            "ndcg@10": 0.0,
+            "mrr": 0.0
+          },
+          "first_hit_rank": null,
+          "misses": [
+            "2608.28358",
+            "2608.24578",
+            "2606.30756",
+            "2608.26681"
+          ],
+          "elapsed_ms": 34.08
+        },
+        {
+          "query_id": "para_10",
+          "query_class": "paraphrase",
+          "query": "ranking documents when the reader's words differ from the author's words",
+          "retrieved_ids": [
+            "2607.27739",
+            "2608.30466",
+            "2608.26762",
+            "2608.13879",
+            "2608.20786",
+            "2608.01704",
+            "2608.15624",
+            "2608.06607",
+            "2607.10341",
+            "2608.22118"
+          ],
+          "relevant_ids": [
+            "2608.00452",
+            "2608.15851",
+            "2608.25521"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.0,
+            "precision@5": 0.0,
+            "ndcg@5": 0.0,
+            "recall@10": 0.0,
+            "precision@10": 0.0,
+            "ndcg@10": 0.0,
+            "mrr": 0.0
+          },
+          "first_hit_rank": null,
+          "misses": [
+            "2608.00452",
+            "2608.15851",
+            "2608.25521"
+          ],
+          "elapsed_ms": 40.3
+        },
+        {
+          "query_id": "conc_01",
+          "query_class": "conceptual",
+          "query": "why is dark matter so hard to detect directly",
+          "retrieved_ids": [
+            "2608.15240",
+            "2608.10761",
+            "2608.04763",
+            "2608.24960",
+            "2606.22814",
+            "2607.24448",
+            "2607.24524",
+            "2608.18204",
+            "2606.05299",
+            "2608.07136"
+          ],
+          "relevant_ids": [
+            "2606.25129",
+            "2608.20745",
+            "2608.10105",
+            "2608.26289",
+            "2607.24448",
+            "2608.10761",
+            "2608.24960"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.2857142857142857,
+            "precision@5": 0.4,
+            "ndcg@5": 0.36005461457723403,
+            "recall@10": 0.42857142857142855,
+            "precision@10": 0.3,
+            "ndcg@10": 0.3897233752935702,
+            "mrr": 0.5
+          },
+          "first_hit_rank": 2,
+          "misses": [
+            "2606.25129",
+            "2608.20745",
+            "2608.10105",
+            "2608.26289"
+          ],
+          "elapsed_ms": 34.85
+        },
+        {
+          "query_id": "conc_02",
+          "query_class": "conceptual",
+          "query": "why do neutrino experiments need such enormous detectors",
+          "retrieved_ids": [
+            "2609.00842",
+            "2606.20780",
+            "2607.13143",
+            "2606.09571",
+            "2608.04091",
+            "2608.25595",
+            "2606.16864",
+            "2608.28095",
+            "2607.01496",
+            "2607.20419"
+          ],
+          "relevant_ids": [
+            "2607.13143",
+            "2608.28095",
+            "2606.27007",
+            "2606.20780"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.5,
+            "precision@5": 0.4,
+            "ndcg@5": 0.44149241373678083,
+            "recall@10": 0.75,
+            "precision@10": 0.3,
+            "ndcg@10": 0.5646436081071458,
+            "mrr": 0.5
+          },
+          "first_hit_rank": 2,
+          "misses": [
+            "2606.27007"
+          ],
+          "elapsed_ms": 32.25
+        },
+        {
+          "query_id": "conc_03",
+          "query_class": "conceptual",
+          "query": "what limits the precision of collider measurements",
+          "retrieved_ids": [
+            "2606.26832",
+            "2609.02972",
+            "2608.01353",
+            "2608.12071",
+            "2606.20144",
+            "2607.12010",
+            "2608.28089",
+            "2608.26376",
+            "2608.11028",
+            "2607.09861"
+          ],
+          "relevant_ids": [
+            "2606.26832",
+            "2608.26376",
+            "2606.28498",
+            "2609.02972",
+            "2608.12071"
+          ],
+          "metrics": {
+            "recall@1": 0.2,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.6,
+            "precision@5": 0.6,
+            "ndcg@5": 0.6992148198508501,
+            "recall@10": 0.8,
+            "precision@10": 0.4,
+            "ndcg@10": 0.8062079522181139,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2606.28498"
+          ],
+          "elapsed_ms": 34.95
+        },
+        {
+          "query_id": "conc_04",
+          "query_class": "conceptual",
+          "query": "how are large language models changing information retrieval",
+          "retrieved_ids": [
+            "2608.25663",
+            "2607.26670",
+            "2607.25346",
+            "2608.28649",
+            "2607.15771",
+            "2607.08540",
+            "2607.05441",
+            "2607.15555",
+            "2607.27178",
+            "2608.08143"
+          ],
+          "relevant_ids": [
+            "2607.15555",
+            "2607.26670",
+            "2608.25663",
+            "2607.15771",
+            "2608.25521",
+            "2608.17632",
+            "2608.18352",
+            "2607.01040"
+          ],
+          "metrics": {
+            "recall@1": 0.125,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.375,
+            "precision@5": 0.6,
+            "ndcg@5": 0.6843515475204855,
+            "recall@10": 0.5,
+            "precision@10": 0.4,
+            "ndcg@10": 0.5901779130901621,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.25521",
+            "2608.17632",
+            "2608.18352",
+            "2607.01040"
+          ],
+          "elapsed_ms": 45.56
+        },
+        {
+          "query_id": "conc_05",
+          "query_class": "conceptual",
+          "query": "how do we learn about black holes if light cannot escape them",
+          "retrieved_ids": [
+            "2608.10071",
+            "2608.03538",
+            "2608.29466",
+            "2608.00590",
+            "2608.27637",
+            "2609.01391",
+            "2608.27596",
+            "2607.28746",
+            "2609.00119",
+            "2608.10085"
+          ],
+          "relevant_ids": [
+            "2608.29466",
+            "2608.10071",
+            "2608.26785",
+            "2608.27637",
+            "2608.18208",
+            "2608.26399",
+            "2608.13643"
+          ],
+          "metrics": {
+            "recall@1": 0.14285714285714285,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.42857142857142855,
+            "precision@5": 0.6,
+            "ndcg@5": 0.639945385422766,
+            "recall@10": 0.42857142857142855,
+            "precision@10": 0.3,
+            "ndcg@10": 0.5186511804016662,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.26785",
+            "2608.18208",
+            "2608.26399",
+            "2608.13643"
+          ],
+          "elapsed_ms": 25.89
+        },
+        {
+          "query_id": "conc_06",
+          "query_class": "conceptual",
+          "query": "why is it hard to evaluate a recommender system offline",
+          "retrieved_ids": [
+            "2607.25097",
+            "2607.11354",
+            "2609.01627",
+            "2609.02499",
+            "2608.16872",
+            "2608.21641",
+            "2608.22022",
+            "2607.26074",
+            "2607.13418",
+            "2608.24815"
+          ],
+          "relevant_ids": [
+            "2607.25097",
+            "2607.11354",
+            "2608.16872",
+            "2608.22022",
+            "2609.02499",
+            "2608.29600"
+          ],
+          "metrics": {
+            "recall@1": 0.16666666666666666,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.6666666666666666,
+            "precision@5": 0.8,
+            "ndcg@5": 0.830419897363192,
+            "recall@10": 0.8333333333333334,
+            "precision@10": 0.5,
+            "ndcg@10": 0.8417771098923534,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.29600"
+          ],
+          "elapsed_ms": 32.98
+        },
+        {
+          "query_id": "conc_07",
+          "query_class": "conceptual",
+          "query": "what makes quantum gravity difficult to test experimentally",
+          "retrieved_ids": [
+            "2608.28901",
+            "2608.17364",
+            "2608.26282",
+            "2608.24796",
+            "2608.26420",
+            "2607.27313",
+            "2608.18847",
+            "2608.20463",
+            "2608.20246",
+            "2608.09858"
+          ],
+          "relevant_ids": [
+            "2608.26420",
+            "2608.28901",
+            "2608.24796",
+            "2607.27313"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.75,
+            "precision@5": 0.6,
+            "ndcg@5": 0.7095272044910244,
+            "recall@10": 1.0,
+            "precision@10": 0.4,
+            "ndcg@10": 0.8485833840018,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 37.46
+        },
+        {
+          "query_id": "conc_08",
+          "query_class": "conceptual",
+          "query": "why does symmetry violation matter in particle physics",
+          "retrieved_ids": [
+            "2609.02691",
+            "2606.22215",
+            "2609.02475",
+            "2606.23580",
+            "2608.29051",
+            "2608.30936",
+            "2609.02383",
+            "2609.02312",
+            "2608.14703",
+            "2608.16772"
+          ],
+          "relevant_ids": [
+            "2609.02475",
+            "2606.23580",
+            "2609.02691",
+            "2605.28671",
+            "2606.25982",
+            "2606.20830"
+          ],
+          "metrics": {
+            "recall@1": 0.16666666666666666,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.5,
+            "precision@5": 0.6,
+            "ndcg@5": 0.6548086577531307,
+            "recall@10": 0.5,
+            "precision@10": 0.3,
+            "ndcg@10": 0.5842273861585909,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2605.28671",
+            "2606.25982",
+            "2606.20830"
+          ],
+          "elapsed_ms": 39.0
+        },
+        {
+          "query_id": "conc_09",
+          "query_class": "conceptual",
+          "query": "how does a detector tell one kind of particle from another",
+          "retrieved_ids": [
+            "2606.30485",
+            "2608.06661",
+            "2608.12616",
+            "2609.00611",
+            "2606.26089",
+            "2607.22281",
+            "2608.11028",
+            "2607.29205",
+            "2608.01398",
+            "2607.04723"
+          ],
+          "relevant_ids": [
+            "2608.11028",
+            "2608.19064",
+            "2607.11139",
+            "2608.23773"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.0,
+            "precision@5": 0.0,
+            "ndcg@5": 0.0,
+            "recall@10": 0.25,
+            "precision@10": 0.1,
+            "ndcg@10": 0.13012668333070054,
+            "mrr": 0.14285714285714285
+          },
+          "first_hit_rank": 7,
+          "misses": [
+            "2608.19064",
+            "2607.11139",
+            "2608.23773"
+          ],
+          "elapsed_ms": 33.5
+        },
+        {
+          "query_id": "conc_10",
+          "query_class": "conceptual",
+          "query": "why do retrieval augmented systems produce confident wrong answers",
+          "retrieved_ids": [
+            "2608.22856",
+            "2608.22228",
+            "2608.11922",
+            "2607.29402",
+            "2607.25600",
+            "2608.06828",
+            "2607.07380",
+            "2608.26379",
+            "2608.10406",
+            "2608.25487"
+          ],
+          "relevant_ids": [
+            "2608.22228",
+            "2608.25487",
+            "2607.25600",
+            "2607.07380",
+            "2608.11922",
+            "2608.10008",
+            "2607.03615"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.42857142857142855,
+            "precision@5": 0.6,
+            "ndcg@5": 0.5147714448836774,
+            "recall@10": 0.7142857142857143,
+            "precision@10": 0.5,
+            "ndcg@10": 0.5882850282131459,
+            "mrr": 0.5
+          },
+          "first_hit_rank": 2,
+          "misses": [
+            "2608.10008",
+            "2607.03615"
+          ],
+          "elapsed_ms": 33.69
+        },
+        {
+          "query_id": "hop_01",
+          "query_class": "multi_hop",
+          "query": "neutrino mass and cosmological structure formation",
+          "retrieved_ids": [
+            "2607.24742",
+            "2607.19340",
+            "2608.06460",
+            "2609.00907",
+            "2608.10062",
+            "2608.05150",
+            "2609.01716",
+            "2606.09288",
+            "2606.03745",
+            "2606.02751"
+          ],
+          "relevant_ids": [
+            "2607.24742",
+            "2608.06460"
+          ],
+          "metrics": {
+            "recall@1": 0.5,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 1.0,
+            "precision@5": 0.4,
+            "ndcg@5": 0.9197207891481876,
+            "recall@10": 1.0,
+            "precision@10": 0.2,
+            "ndcg@10": 0.9197207891481876,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 39.42
+        },
+        {
+          "query_id": "hop_02",
+          "query_class": "multi_hop",
+          "query": "machine learning applied to particle detector reconstruction",
+          "retrieved_ids": [
+            "2606.14373",
+            "2606.30485",
+            "2606.26089",
+            "2608.09531",
+            "2608.21327",
+            "2605.29391",
+            "2608.14278",
+            "2608.28314",
+            "2607.21702",
+            "2608.11330"
+          ],
+          "relevant_ids": [
+            "2606.14373",
+            "2606.30485",
+            "2607.11585",
+            "2609.00611",
+            "2606.26089",
+            "2608.22873",
+            "2605.29391",
+            "2607.04723",
+            "2608.21327"
+          ],
+          "metrics": {
+            "recall@1": 0.1111111111111111,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.4444444444444444,
+            "precision@5": 0.8,
+            "ndcg@5": 0.8539316501572937,
+            "recall@10": 0.5555555555555556,
+            "precision@10": 0.5,
+            "ndcg@10": 0.6755184993100496,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2607.11585",
+            "2609.00611",
+            "2608.22873",
+            "2607.04723"
+          ],
+          "elapsed_ms": 37.18
+        },
+        {
+          "query_id": "hop_03",
+          "query_class": "multi_hop",
+          "query": "dark matter effects on neutron star collapse",
+          "retrieved_ids": [
+            "2608.26274",
+            "2608.20921",
+            "2608.10594",
+            "2608.06224",
+            "2608.24796",
+            "2608.25587",
+            "2608.18198",
+            "2608.16064",
+            "2609.00118",
+            "2608.30995"
+          ],
+          "relevant_ids": [
+            "2608.10594",
+            "2608.06224",
+            "2608.20921",
+            "2609.03964",
+            "2608.16064"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.6,
+            "precision@5": 0.6,
+            "ndcg@5": 0.5296347172140421,
+            "recall@10": 0.8,
+            "precision@10": 0.4,
+            "ndcg@10": 0.6366278495813058,
+            "mrr": 0.5
+          },
+          "first_hit_rank": 2,
+          "misses": [
+            "2609.03964"
+          ],
+          "elapsed_ms": 35.87
+        },
+        {
+          "query_id": "hop_04",
+          "query_class": "multi_hop",
+          "query": "gravitational wave observations and black hole population statistics",
+          "retrieved_ids": [
+            "2608.25715",
+            "2609.01784",
+            "2609.02678",
+            "2608.23957",
+            "2608.25507",
+            "2609.00945",
+            "2608.29059",
+            "2609.01193",
+            "2608.23209",
+            "2608.21609"
+          ],
+          "relevant_ids": [
+            "2608.29072",
+            "2609.01784",
+            "2609.02678",
+            "2609.03859",
+            "2608.21609"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.4,
+            "precision@5": 0.4,
+            "ndcg@5": 0.38356636737133565,
+            "recall@10": 0.6,
+            "precision@10": 0.3,
+            "ndcg@10": 0.48160565320269266,
+            "mrr": 0.5
+          },
+          "first_hit_rank": 2,
+          "misses": [
+            "2608.29072",
+            "2609.03859"
+          ],
+          "elapsed_ms": 34.99
+        },
+        {
+          "query_id": "hop_05",
+          "query_class": "multi_hop",
+          "query": "transformer efficiency for sparse detector data",
+          "retrieved_ids": [
+            "2606.17631",
+            "2606.20437",
+            "2608.16061",
+            "2608.02583",
+            "2608.25528",
+            "2607.17184",
+            "2608.16309",
+            "2608.02735",
+            "2607.10109",
+            "2608.26090"
+          ],
+          "relevant_ids": [
+            "2606.17631",
+            "2606.20437",
+            "2608.02735",
+            "2608.16061"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.75,
+            "precision@5": 0.6,
+            "ndcg@5": 0.8318724637288826,
+            "recall@10": 1.0,
+            "precision@10": 0.4,
+            "ndcg@10": 0.9550236580992475,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 37.18
+        },
+        {
+          "query_id": "hop_06",
+          "query_class": "multi_hop",
+          "query": "axion searches with haloscopes and with colliders",
+          "retrieved_ids": [
+            "2607.28883",
+            "2608.07718",
+            "2606.20422",
+            "2608.10292",
+            "2609.03879",
+            "2608.12616",
+            "2609.02828",
+            "2609.00123",
+            "2607.28095",
+            "2607.21363"
+          ],
+          "relevant_ids": [
+            "2607.28883",
+            "2608.07718",
+            "2608.10292",
+            "2606.20422",
+            "2609.02828",
+            "2609.03879",
+            "2607.07800",
+            "2608.18506"
+          ],
+          "metrics": {
+            "recall@1": 0.125,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.625,
+            "precision@5": 1.0,
+            "ndcg@5": 1.0,
+            "recall@10": 0.75,
+            "precision@10": 0.6,
+            "ndcg@10": 0.8301054527851841,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2607.07800",
+            "2608.18506"
+          ],
+          "elapsed_ms": 34.86
+        },
+        {
+          "query_id": "hop_07",
+          "query_class": "multi_hop",
+          "query": "large language models used for recommendation ranking",
+          "retrieved_ids": [
+            "2608.00669",
+            "2607.04270",
+            "2608.18952",
+            "2607.21519",
+            "2608.10187",
+            "2608.12184",
+            "2607.19739",
+            "2609.01240",
+            "2608.06213",
+            "2607.25346"
+          ],
+          "relevant_ids": [
+            "2608.10257",
+            "2608.00669",
+            "2607.04270",
+            "2608.09605",
+            "2608.18952",
+            "2606.29947",
+            "2608.03091",
+            "2608.12184"
+          ],
+          "metrics": {
+            "recall@1": 0.125,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.375,
+            "precision@5": 0.6,
+            "ndcg@5": 0.7227265726449519,
+            "recall@10": 0.5,
+            "precision@10": 0.4,
+            "ndcg@10": 0.6291031399287498,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.10257",
+            "2608.09605",
+            "2606.29947",
+            "2608.03091"
+          ],
+          "elapsed_ms": 37.99
+        },
+        {
+          "query_id": "hop_08",
+          "query_class": "multi_hop",
+          "query": "supernova modelling constrained by neutrino observations",
+          "retrieved_ids": [
+            "2606.27007",
+            "2606.18337",
+            "2608.17681",
+            "2607.01339",
+            "2609.01716",
+            "2606.14015",
+            "2608.26847",
+            "2608.27567",
+            "2606.30756",
+            "2606.29381"
+          ],
+          "relevant_ids": [
+            "2606.30756",
+            "2606.18337",
+            "2608.26847",
+            "2606.27007"
+          ],
+          "metrics": {
+            "recall@1": 0.25,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.5,
+            "precision@5": 0.4,
+            "ndcg@5": 0.6366824387328317,
+            "recall@10": 1.0,
+            "precision@10": 0.4,
+            "ndcg@10": 0.8843252268199594,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [],
+          "elapsed_ms": 36.52
+        },
+        {
+          "query_id": "hop_09",
+          "query_class": "multi_hop",
+          "query": "evaluation datasets for scientific claim retrieval",
+          "retrieved_ids": [
+            "2607.15875",
+            "2607.04043",
+            "2607.24803",
+            "2608.03860",
+            "2608.03756",
+            "2608.27394",
+            "2608.27746",
+            "2607.05970",
+            "2608.15624",
+            "2607.28618"
+          ],
+          "relevant_ids": [
+            "2607.15875",
+            "2607.04043",
+            "2607.24803",
+            "2608.15624",
+            "2608.27394",
+            "2608.11415"
+          ],
+          "metrics": {
+            "recall@1": 0.16666666666666666,
+            "precision@1": 1.0,
+            "ndcg@1": 1.0,
+            "recall@5": 0.5,
+            "precision@5": 0.6,
+            "ndcg@5": 0.7227265726449519,
+            "recall@10": 0.8333333333333334,
+            "precision@10": 0.5,
+            "ndcg@10": 0.843706044175124,
+            "mrr": 1.0
+          },
+          "first_hit_rank": 1,
+          "misses": [
+            "2608.11415"
+          ],
+          "elapsed_ms": 41.57
+        },
+        {
+          "query_id": "hop_10",
+          "query_class": "multi_hop",
+          "query": "quantum field theory methods applied to condensed matter systems",
+          "retrieved_ids": [
+            "2608.01989",
+            "2608.00670",
+            "2608.06449",
+            "2607.27920",
+            "2608.07655",
+            "2608.31080",
+            "2608.08855",
+            "2608.04387",
+            "2608.27457",
+            "2608.20311"
+          ],
+          "relevant_ids": [
+            "2608.06449",
+            "2607.27920",
+            "2608.07655",
+            "2608.13664"
+          ],
+          "metrics": {
+            "recall@1": 0.0,
+            "precision@1": 0.0,
+            "ndcg@1": 0.0,
+            "recall@5": 0.75,
+            "precision@5": 0.6,
+            "ndcg@5": 0.5143371794949736,
+            "recall@10": 0.75,
+            "precision@10": 0.3,
+            "ndcg@10": 0.5143371794949736,
+            "mrr": 0.3333333333333333
+          },
+          "first_hit_rank": 3,
+          "misses": [
+            "2608.13664"
+          ],
+          "elapsed_ms": 36.07
+        },
+        {
+          "query_id": "none_01",
+          "query_class": "unanswerable",
+          "query": "protein folding structure prediction from amino acid sequence",
+          "retrieved_ids": [
+            "2608.16050",
+            "2608.11262",
+            "2608.12986",
+            "2609.01556",
+            "2608.27005",
+            "2608.22183",
+            "2606.02785",
+            "2608.11946",
+            "2608.21218",
+            "2606.24524"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 33.34
+        },
+        {
+          "query_id": "none_02",
+          "query_class": "unanswerable",
+          "query": "CRISPR off-target editing effects in human cells",
+          "retrieved_ids": [
+            "2609.03450",
+            "2608.10688",
+            "2608.23214",
+            "2608.25370",
+            "2608.05227",
+            "2608.20707",
+            "2608.08944",
+            "2608.18952",
+            "2608.13786",
+            "2608.24924"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 35.96
+        },
+        {
+          "query_id": "none_03",
+          "query_class": "unanswerable",
+          "query": "predicting mortgage default risk from credit history",
+          "retrieved_ids": [
+            "2608.23221",
+            "2608.17618",
+            "2607.14331",
+            "2608.22751",
+            "2608.13874",
+            "2608.16872",
+            "2608.23356",
+            "2609.03290",
+            "2607.14157",
+            "2608.03647"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 39.94
+        },
+        {
+          "query_id": "none_04",
+          "query_class": "unanswerable",
+          "query": "diagnosing diabetic retinopathy from retinal photographs",
+          "retrieved_ids": [
+            "2608.11037",
+            "2608.29336",
+            "2607.19836",
+            "2608.23920",
+            "2608.18694",
+            "2609.00667",
+            "2609.02012",
+            "2607.27763",
+            "2609.03810",
+            "2606.29718"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 35.87
+        },
+        {
+          "query_id": "none_05",
+          "query_class": "unanswerable",
+          "query": "randomised controlled trial of a new hypertension drug",
+          "retrieved_ids": [
+            "2607.14604",
+            "2608.24815",
+            "2608.13874",
+            "2607.06507",
+            "2607.20938",
+            "2608.15382",
+            "2607.24829",
+            "2608.25294",
+            "2608.07622",
+            "2608.06068"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 38.06
+        },
+        {
+          "query_id": "none_06",
+          "query_class": "unanswerable",
+          "query": "automated review of commercial lease contracts",
+          "retrieved_ids": [
+            "2608.26145",
+            "2608.26091",
+            "2607.10179",
+            "2608.08776",
+            "2608.19526",
+            "2608.13710",
+            "2606.13535",
+            "2607.26075",
+            "2608.16096",
+            "2607.05582"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 39.63
+        },
+        {
+          "query_id": "none_07",
+          "query_class": "unanswerable",
+          "query": "coral reef bleaching and ocean acidification",
+          "retrieved_ids": [
+            "2606.20780",
+            "2606.15680",
+            "2608.28193",
+            "2606.13273",
+            "2609.02648",
+            "2607.10245",
+            "2608.18201",
+            "2608.28344",
+            "2608.24181",
+            "2608.18481"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 25.81
+        },
+        {
+          "query_id": "none_08",
+          "query_class": "unanswerable",
+          "query": "congestion pricing in urban road networks",
+          "retrieved_ids": [
+            "2606.31857",
+            "2608.04432",
+            "2608.23876",
+            "2609.02062",
+            "2607.12578",
+            "2609.01628",
+            "2607.23419",
+            "2608.27840",
+            "2608.16922",
+            "2608.30449"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 41.2
+        },
+        {
+          "query_id": "none_09",
+          "query_class": "unanswerable",
+          "query": "second language acquisition in bilingual children",
+          "retrieved_ids": [
+            "2608.30052",
+            "2607.13304",
+            "2608.15909",
+            "2607.22042",
+            "2607.29274",
+            "2608.26150",
+            "2608.28649",
+            "2607.24651",
+            "2608.26754",
+            "2608.10441"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 38.54
+        },
+        {
+          "query_id": "none_10",
+          "query_class": "unanswerable",
+          "query": "supply chain inventory optimisation for perishable goods",
+          "retrieved_ids": [
+            "2607.03880",
+            "2609.01628",
+            "2607.25823",
+            "2608.04809",
+            "2608.29430",
+            "2607.29104",
+            "2608.30333",
+            "2607.05242",
+            "2609.03822",
+            "2608.20246"
+          ],
+          "relevant_ids": [],
+          "metrics": {},
+          "first_hit_rank": null,
+          "misses": [],
+          "elapsed_ms": 35.43
+        }
+      ]
+    }
+  }
+}

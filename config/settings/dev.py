@@ -24,5 +24,14 @@ REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = [  # noqa: F405
     "rest_framework.renderers.BrowsableAPIRenderer",
 ]
 
-# Throttling gets in the way when clicking around locally.
-REST_FRAMEWORK["DEFAULT_THROTTLE_RATES"] = {"anon": "10000/hour"}  # noqa: F405
+# Throttling gets in the way when clicking around locally, so raise the ceiling -
+# but raise it for every scope base declares rather than writing out a new dict.
+# Replacing the dict wholesale is how /api/search/ came to return 500 for every
+# request in development: the "search" scope vanished, ScopedRateThrottle raised
+# ImproperlyConfigured, and no test noticed because tests use test.py. Deriving
+# the keys from base means a scope added later cannot be dropped here by
+# omission.
+REST_FRAMEWORK["DEFAULT_THROTTLE_RATES"] = dict.fromkeys(  # noqa: F405
+    REST_FRAMEWORK["DEFAULT_THROTTLE_RATES"],  # noqa: F405
+    "10000/hour",
+)

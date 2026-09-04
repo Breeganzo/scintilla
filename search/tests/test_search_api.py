@@ -2,6 +2,12 @@
 
 from __future__ import annotations
 
+import json
+import os
+import subprocess
+import sys
+from pathlib import Path
+
 import pytest
 from django.core.cache import cache
 from rest_framework.test import APIClient
@@ -297,6 +303,94 @@ class TestThrottling:
         cache.clear()
 
         assert codes == [200, 200, 429]
+
+
+# Printed by the subprocess below. Walks the real URLconf rather than naming
+# views, so a future throttled endpoint is covered without editing this test.
+_AUDIT = """
+import json
+import django
+
+django.setup()
+
+from django.conf import settings
+from django.urls import get_resolver
+
+
+def scopes(patterns):
+    found = set()
+    for entry in patterns:
+        if hasattr(entry, "url_patterns"):
+            found |= scopes(entry.url_patterns)
+            continue
+        view = getattr(entry.callback, "cls", None)
+        scope = getattr(view, "throttle_scope", None)
+        if scope:
+            found.add(scope)
+    return found
+
+
+rates = settings.REST_FRAMEWORK.get("DEFAULT_THROTTLE_RATES", {})
+print(json.dumps({
+    "scopes": sorted(scopes(get_resolver().url_patterns)),
+    "declared": sorted(rates),
+}))
+"""
+
+
+@pytest.mark.parametrize(
+    ("module", "extra_env"),
+    [
+        ("config.settings.base", {}),
+        ("config.settings.dev", {}),
+        ("config.settings.test", {}),
+        (
+            "config.settings.prod",
+            {
+                "DJANGO_SECRET_KEY": "test-only-not-a-real-key",
+                "DJANGO_ALLOWED_HOSTS": "example.invalid",
+                "CORS_ALLOWED_ORIGINS": "https://example.invalid",
+            },
+        ),
+    ],
+)
+def test_every_throttle_scope_has_a_rate_in_every_environment(module, extra_env):
+    """A view's throttle scope must be declared wherever that view can be served.
+
+    ``ScopedRateThrottle`` does not fall back to "unlimited" when its scope is
+    missing - it raises ``ImproperlyConfigured``, so the endpoint returns 500 for
+    every request. This is not hypothetical: ``dev.py`` reassigned
+    ``DEFAULT_THROTTLE_RATES`` to a fresh dict holding only ``anon``, which took
+    ``/api/search/`` offline in development while the whole suite stayed green,
+    because tests run under ``test.py``.
+
+    Each module is checked in a subprocess. Importing them here would not work:
+    ``from .base import *`` binds base's ``REST_FRAMEWORK`` dict by reference, so
+    each override mutates it in place and would corrupt the settings of the run
+    doing the checking.
+    """
+    root = Path(__file__).resolve().parents[2]
+    env = {**os.environ, "DJANGO_SETTINGS_MODULE": module, **extra_env}
+    env.pop("PYTEST_CURRENT_TEST", None)
+
+    proc = subprocess.run(  # noqa: S603
+        [sys.executable, "-c", _AUDIT],
+        cwd=root,
+        env=env,
+        capture_output=True,
+        text=True,
+        timeout=120,
+    )
+    assert proc.returncode == 0, f"{module} failed to load:\n{proc.stderr}"
+
+    report = json.loads(proc.stdout)
+    missing = set(report["scopes"]) - set(report["declared"])
+
+    assert report["scopes"], "no throttled views found - the URLconf walk is broken"
+    assert not missing, (
+        f"{module} serves {sorted(missing)} but declares no rate for them; "
+        f"those endpoints will return 500. Declared: {report['declared']}"
+    )
 
 
 class TestSchema:

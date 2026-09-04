@@ -34,8 +34,15 @@ PASSWORD_HASHERS = ["django.contrib.auth.hashers.MD5PasswordHasher"]
 # Throttling would make the suite non-deterministic. A rate of None disables a
 # scope without unwiring it, so the search view keeps its ScopedRateThrottle -
 # tests that care about throttling switch it back on with override_settings.
+#
+# Keys are derived from base rather than written out. A scope that base declares
+# but an override omits does not fall back to "unlimited", it raises
+# ImproperlyConfigured on every request to the view that uses it.
 REST_FRAMEWORK["DEFAULT_THROTTLE_CLASSES"] = []  # noqa: F405
-REST_FRAMEWORK["DEFAULT_THROTTLE_RATES"] = {"search": None}  # noqa: F405
+REST_FRAMEWORK["DEFAULT_THROTTLE_RATES"] = dict.fromkeys(  # noqa: F405
+    REST_FRAMEWORK["DEFAULT_THROTTLE_RATES"],  # noqa: F405
+    None,
+)
 
 # Keep test output readable.
 LOGGING["root"]["level"] = "WARNING"  # noqa: F405

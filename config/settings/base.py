@@ -70,6 +70,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "papers",
+    "search",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -147,6 +148,15 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # Django REST Framework
 # ---------------------------------------------------------------------------
 
+# Search gets its own throttle bucket. It is the endpoint the evaluation harness
+# drives, and 50 queries across 3 modes is 150 requests in under a minute - the
+# shared 100/hour allowance would have returned 429 for a third of an ablation
+# run, which the harness would have recorded as "no results" rather than
+# "refused". A named constant so the test suite can assert the shipped default
+# is large enough, which it cannot do through REST_FRAMEWORK: test.py mutates
+# that dict in place and would be asserting against its own override.
+SEARCH_THROTTLE_RATE = os.getenv("SEARCH_THROTTLE_RATE", "60/minute")
+
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
@@ -165,6 +175,7 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_THROTTLE_RATES": {
         "anon": "100/hour",
+        "search": SEARCH_THROTTLE_RATE,
     },
 }
 

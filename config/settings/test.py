@@ -31,9 +31,11 @@ if not os.getenv("DATABASE_URL"):
 # not care about hash strength, so use the cheapest hasher available.
 PASSWORD_HASHERS = ["django.contrib.auth.hashers.MD5PasswordHasher"]
 
-# Throttling would make the suite non-deterministic.
+# Throttling would make the suite non-deterministic. A rate of None disables a
+# scope without unwiring it, so the search view keeps its ScopedRateThrottle -
+# tests that care about throttling switch it back on with override_settings.
 REST_FRAMEWORK["DEFAULT_THROTTLE_CLASSES"] = []  # noqa: F405
-REST_FRAMEWORK["DEFAULT_THROTTLE_RATES"] = {}  # noqa: F405
+REST_FRAMEWORK["DEFAULT_THROTTLE_RATES"] = {"search": None}  # noqa: F405
 
 # Keep test output readable.
 LOGGING["root"]["level"] = "WARNING"  # noqa: F405

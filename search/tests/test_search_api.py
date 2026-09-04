@@ -3,8 +3,11 @@
 from __future__ import annotations
 
 import pytest
+from django.core.cache import cache
 from rest_framework.test import APIClient
+from rest_framework.throttling import ScopedRateThrottle
 
+from config.settings import base as base_settings
 from search.retrievers import (
     MODES,
     BM25Retriever,
@@ -15,7 +18,7 @@ from search.retrievers import (
 )
 from search.serializers import MAX_QUERY_LENGTH, MAX_TOP_K
 from search.tests.conftest import StubRetriever, ranked
-from search.views import hydrate
+from search.views import SearchView, hydrate
 
 URL = "/api/search/"
 
@@ -211,6 +214,89 @@ class TestHydration:
 
     def test_empty_input(self, db):
         assert hydrate([]) == []
+
+    def test_ranks_stay_contiguous_when_a_result_is_dropped(self, db, make_paper):
+        """Dropping rank 2 must not emit 1, 3, 4 to anything treating rank as a position."""
+        make_paper("2401.00001")
+        make_paper("2401.00003")
+
+        hydrated = hydrate(ranked("2401.00001", "2401.99999", "2401.00003"))
+
+        assert [item["rank"] for item in hydrated] == [1, 2]
+
+    def test_ranks_are_unchanged_when_nothing_is_dropped(self, db, make_paper):
+        for n in range(1, 4):
+            make_paper(f"2401.0000{n}")
+
+        hydrated = hydrate(ranked("2401.00002", "2401.00003", "2401.00001"))
+
+        assert [item["rank"] for item in hydrated] == [1, 2, 3]
+
+
+class TestResponseConsistency:
+    """The envelope must never disagree with the array it describes."""
+
+    def test_count_matches_the_number_of_results_returned(
+        self, db, client, make_paper, stub_search
+    ):
+        make_paper("2401.00001")
+        make_paper("2401.00002")
+        stub_search(ranked("2401.00001", "2401.00002"))
+
+        response = client.post(URL, {"query": "higgs"}, format="json")
+
+        assert response.data["count"] == len(response.data["results"])
+
+    def test_count_matches_even_when_a_paper_is_missing(self, db, client, make_paper, stub_search):
+        """Counting the pre-hydration list reported 3 beside an array of 2."""
+        make_paper("2401.00001")
+        make_paper("2401.00002")
+        stub_search(ranked("2401.00001", "2401.99999", "2401.00002"))
+
+        response = client.post(URL, {"query": "higgs"}, format="json")
+
+        assert len(response.data["results"]) == 2
+        assert response.data["count"] == 2
+
+
+class TestThrottling:
+    """Search is throttled on its own scope, not the shared anonymous bucket.
+
+    The project default is 100/hour, which is fine for browsing metadata and far
+    too low for the evaluation harness: 50 queries across 3 modes is 150 requests
+    in under a minute. These tests exist because the suite disables throttling
+    globally, so nothing else here would notice if the wiring were wrong.
+    """
+
+    def test_the_view_uses_its_own_scope(self):
+        assert SearchView.throttle_scope == "search"
+        assert ScopedRateThrottle in SearchView.throttle_classes
+
+    def test_the_configured_rate_admits_a_full_ablation_run(self):
+        """150 requests must fit inside the window, or an ablation is silently truncated."""
+        count, period = base_settings.SEARCH_THROTTLE_RATE.split("/")
+        seconds = {"s": 1, "m": 60, "h": 3600, "d": 86400}[period[0]]
+        per_hour = int(count) * (3600 / seconds)
+
+        assert per_hour >= 150
+
+    def test_the_limit_is_actually_enforced(self, db, client, stub_search, monkeypatch):
+        """A named scope that never refuses anything is not a rate limit.
+
+        Patched on the throttle class rather than through ``override_settings``
+        because DRF binds ``SimpleRateThrottle.THROTTLE_RATES`` at import time.
+        Overriding the setting updates ``api_settings`` and leaves the throttle
+        reading its original copy, so the obvious version of this test passes
+        while measuring nothing.
+        """
+        cache.clear()
+        monkeypatch.setattr(ScopedRateThrottle, "THROTTLE_RATES", {"search": "2/minute"})
+        stub_search([])
+
+        codes = [client.post(URL, {"query": "higgs"}, format="json").status_code for _ in range(3)]
+        cache.clear()
+
+        assert codes == [200, 200, 429]
 
 
 class TestSchema:

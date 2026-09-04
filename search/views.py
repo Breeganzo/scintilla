@@ -22,6 +22,7 @@ import time
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.response import Response
+from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
 
 from papers.models import Paper
@@ -46,6 +47,12 @@ def hydrate(results: list[RetrievalResult]) -> list[dict]:
     means the index is ahead of the database - possible if a paper were deleted
     between indexing and querying - and a hit that cannot be displayed is worse
     than one fewer hit. It is logged because it should never happen quietly.
+
+    Ranks are renumbered over the surviving rows. Dropping the paper ranked
+    second would otherwise emit ranks 1, 3, 4, and every client that treats
+    rank as a position - the frontend, the evaluation harness, anything reading
+    the JSON - would be quietly wrong. Renumbering is a no-op in the normal
+    case where nothing is dropped.
     """
     if not results:
         return []
@@ -65,7 +72,7 @@ def hydrate(results: list[RetrievalResult]) -> list[dict]:
         hydrated.append(
             {
                 "arxiv_id": paper.arxiv_id,
-                "rank": result.rank,
+                "rank": len(hydrated) + 1,
                 "score": result.score,
                 "title": paper.title,
                 "abstract": paper.abstract,
@@ -80,7 +87,19 @@ def hydrate(results: list[RetrievalResult]) -> list[dict]:
 
 
 class SearchView(APIView):
-    """Hybrid search over the corpus."""
+    """Hybrid search over the corpus.
+
+    Throttled on its own scope rather than the project-wide anonymous bucket.
+    Search is the most expensive endpoint - a dense query loads a model and
+    scans an HNSW index - so it deserves a limit of its own, and the shared
+    100/hour default was low enough that a single ablation run (50 queries x 3
+    modes = 150 requests in well under a minute) would have been cut off after
+    the hundredth with no error anywhere except an HTTP status the harness had
+    no reason to inspect.
+    """
+
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "search"
 
     @extend_schema(
         summary="Search the corpus",
@@ -108,14 +127,20 @@ class SearchView(APIView):
         # Only hybrid reports fusion detail; the baselines have none to report.
         diagnostics = retriever.diagnostics() if hasattr(retriever, "diagnostics") else {}
 
+        # Hydrate first, then count. Counting the pre-hydration list would
+        # report a number that disagreed with the array beside it whenever a
+        # result was dropped - the response would be internally inconsistent
+        # and still look perfectly well formed.
+        hydrated = hydrate(results)
+
         payload = {
             "query": params["query"],
             "mode": params["mode"],
             "top_k": params["top_k"],
-            "count": len(results),
+            "count": len(hydrated),
             "took_ms": round(took_ms, 2),
             "diagnostics": diagnostics,
-            "results": hydrate(results),
+            "results": hydrated,
         }
         # Serialised on the way out as well as in. It costs a few milliseconds
         # and guarantees the response matches the schema the frontend generates

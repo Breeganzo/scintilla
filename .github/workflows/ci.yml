@@ -81,8 +81,64 @@ jobs:
         # otherwise.
         run: python manage.py makemigrations --check --dry-run
 
+      - name: Check the committed API schema is current
+        # schema.yaml is the contract the frontend generates its types from.
+        # If a serializer changes and the schema is not regenerated, the
+        # frontend keeps compiling against a shape the API no longer returns -
+        # and nothing fails until a user sees an undefined field. Regenerating
+        # here and diffing turns that into a red build.
+        run: |
+          python manage.py spectacular --file /tmp/schema.yaml
+          diff -u schema.yaml /tmp/schema.yaml || {
+            echo "::error::schema.yaml is stale. Run: python manage.py spectacular --file schema.yaml"
+            exit 1
+          }
+
       - name: Run tests
         run: pytest --cov --cov-report=term-missing
+
+  frontend:
+    name: Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        working-directory: frontend
+        # `npm ci` rather than `npm install`: it installs exactly the lockfile
+        # and fails if package.json and the lockfile disagree, so CI cannot
+        # silently test a different dependency tree than the one committed.
+        run: npm ci
+
+      - name: Check the generated API types are current
+        working-directory: frontend
+        # The same argument as the schema check above, one link further down
+        # the chain. schema.d.ts is generated, never edited; if someone edits
+        # it by hand or forgets to regenerate it, this fails.
+        run: |
+          npm run generate:api
+          git diff --exit-code src/api/schema.d.ts || {
+            echo "::error::src/api/schema.d.ts is stale. Run: npm run generate:api"
+            exit 1
+          }
+
+      - name: Typecheck
+        working-directory: frontend
+        run: npm run typecheck
+
+      - name: Lint
+        working-directory: frontend
+        run: npm run lint
+
+      - name: Build
+        working-directory: frontend
+        run: npm run build
 
   regression:
     name: Retrieval regression gate

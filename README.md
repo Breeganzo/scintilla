@@ -20,7 +20,7 @@ works.
 | 1 · Foundation | Django, PostgreSQL, containers, CI | ✅ Complete |
 | 2 · Ingestion | arXiv harvesting, embeddings, indexing, Airflow | ✅ Complete |
 | 3 · Retrieval & evaluation | BM25, dense, RRF, golden set, metrics, CI gate | ✅ Complete |
-| 4 · Ship | React frontend, MCP server, deployment, hardening | ⬜ Not started |
+| 4 · Ship | React frontend ✅ · MCP server ⬜ · deployment ⬜ · hardening ⬜ | 🟡 In progress |
 
 Phase 1 means the foundation is verified, not that the system does anything
 useful yet: a clean clone installs, migrates against PostgreSQL 16, serves a
@@ -371,6 +371,49 @@ To compare all three modes on the same queries:
 ```bash
 python scripts/compare_modes.py
 ```
+
+### The interface
+
+```bash
+cd frontend
+npm install
+npm run dev          # http://localhost:3000, proxies /api to :8001
+```
+
+The frontend is React 18 + TypeScript + Tailwind, built with Vite. It does two
+things the API alone cannot.
+
+**It exposes the retrieval mode.** Most search interfaces would hide this.
+`mode` is the ablation mechanism — the evaluation harness calls the same
+endpoint once per mode — so the thing that was measured is the thing you are
+using, and hiding it would make the published table a claim about some other
+system. Each option carries its measured nDCG@10, which stops the interface
+from implying that the most elaborate strategy is the best one. It is not.
+
+**It explains the ranking.** Every result opens a *why this result* panel
+showing each retriever's rank, its raw score, and the `1 / (k + rank)` it
+contributed to the fused total. A result found by only one retriever is called
+out explicitly, because that is the visible evidence for why fusion exists —
+and it is where a wrong-looking ranking is usually explained.
+
+The example query *"how bright was the beam when the collisions were recorded"*
+is a good one to open. In hybrid mode the tenth result is a paper about CPT
+violation in neutrino oscillation, which has nothing to do with beam
+luminosity. The panel shows why: **BM25 ranked it first** on surface word
+overlap, dense did not return it at all, and fusion demoted it to tenth. That
+single card is the argument for the whole architecture and, simultaneously, the
+reason BM25 alone scores 0.473 nDCG@10.
+
+Two timings appear on that page and they do not agree, which the interface says
+out loud: the figures on the mode cards are from the published evaluation and
+time retrieval in-process, while the figure under your results is measured
+end-to-end through HTTP. The first query after a restart is slower again,
+because the embedding model loads on demand.
+
+Types are generated from the committed `schema.yaml` and never hand-written, so
+a serializer change that breaks the client is a **build error rather than a
+runtime one**. CI regenerates both the schema and the types and fails if either
+is stale.
 
 ---
 

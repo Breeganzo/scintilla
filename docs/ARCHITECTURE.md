@@ -553,6 +553,95 @@ behaviour — not a replacement for tests.
 
 ---
 
+## 7d. The interface ✅
+
+React 18 + TypeScript + Tailwind 4, built with Vite. A single page, four
+hundred lines of application code, no router and no state library — the
+application has one screen and one request in flight, and anything heavier
+would be scaffolding around a problem that does not exist.
+
+```mermaid
+graph LR
+    SER["DRF serializers"] --> SCH["schema.yaml<br/>drf-spectacular"]
+    SCH --> TYP["src/api/schema.d.ts<br/>openapi-typescript"]
+    TYP --> CLI["client.ts"]
+    CLI --> APP["App.tsx"]
+    SCH -.->|"CI regenerates<br/>and diffs"| GATE{{"red build<br/>if stale"}}
+    TYP -.-> GATE
+```
+
+### The contract is generated, not written
+
+`schema.yaml` is produced by `drf-spectacular` from the serializers and
+committed. `src/api/schema.d.ts` is produced from that by `openapi-typescript`
+and committed. Neither is ever hand-edited, and CI regenerates both and fails on
+any difference.
+
+The point is where a mistake surfaces. Hand-written frontend types are a *copy*
+of the backend's shape, and a copy drifts silently — the failure appears as an
+`undefined` in a user's browser, far from the serializer edit that caused it.
+Generating them makes that same edit fail `tsc --noEmit` in CI instead. This was
+proved rather than assumed: adding one field to `SearchResponseSerializer` turns
+both checks red, naming the field.
+
+The `debug` field is the honest exception. It is a `DictField`, so the schema
+types it `Record<string, unknown>` — which is *true*. There is no contract to
+generate. It is therefore narrowed once, at runtime, in `api/explain.ts`, with
+guards that **fail closed**: an unrecognised shape renders "no explanation
+available" rather than a plausible-looking panel assembled from `undefined`. An
+explanation that is quietly wrong is worse than none, because this panel is
+precisely what you reach for when a ranking looks odd.
+
+### Three decisions
+
+**The retrieval mode is exposed, with its score.** `mode` is the ablation
+mechanism; hiding it would make the published table a claim about a different
+system than the one being used. Each option shows its measured nDCG@10, which
+prevents the interface from implying the most elaborate strategy is the best
+one. The panel next to the toggle states the negative result — hybrid − dense
+is −0.041, CI [−0.103, +0.020], p = 0.194 — and explains why `k` was not
+retuned to the sweep's optimum.
+
+**Failure is a value, not an exception.** `client.ts` returns a discriminated
+union with four failure kinds, so a caller cannot render the success branch
+without first proving it is on it. "Forgot to handle the error" is not
+expressible. Throwing would let a 429 from the search throttle surface as a
+blank page and a console message nobody reads; instead it renders as an amber
+panel explaining the 60/minute scoped limit and why search has one.
+
+**One request in flight, older ones aborted.** Switching mode twice quickly
+otherwise leaves two dense searches racing, and the slower can land last — so
+the results on screen would belong to a mode the toggle no longer shows. In an
+application whose entire claim is about ranking, that bug presents as *the
+ranking is wrong*, which is the most expensive possible misdiagnosis.
+
+### What it makes visible
+
+Degradation is the one thing the UI refuses to be quiet about. When a retriever
+fails, hybrid keeps working by silently becoming dense-only — correct runtime
+behaviour, and disastrous to leave invisible, because every number on the page
+then describes a different system than the label claims. It renders as an amber
+banner saying so, in the envelope and again inside the affected result. This
+project has already shipped two defects whose whole character was "it kept
+working and stopped telling anyone"; not a third.
+
+The clearest thing the panel shows is a failure of the system it is part of. On
+*"how bright was the beam when the collisions were recorded"*, hybrid's tenth
+result is a paper on CPT violation in neutrino oscillation — nothing to do with
+beam luminosity. The panel gives the reason: **BM25 ranked it first** on surface
+words, dense did not return it at all, and fusion demoted it to tenth. That one
+card is simultaneously the argument for fusing two retrievers and the reason
+BM25 alone scores 0.473.
+
+### Not built here
+
+No answer generation. §7b measures it and it is not served, so the interface
+does not show it. No pagination, no filters by category or date, no saved
+queries — none of them are needed to demonstrate or to falsify the retrieval
+claim, which is what this interface is for.
+
+---
+
 ## 8. Deployment ⬜
 
 ```mermaid
@@ -594,13 +683,14 @@ trigger DAGs and exposes connection metadata.
 | pgvector HNSW dense index | ✅ |
 | OpenSearch BM25 index, versioned behind an alias | ✅ |
 | Airflow DAG, daily, verified idempotent | ✅ |
-| CI — lint, tests, dependency audit, container build, compose config | ✅ |
+| CI — lint, tests, frontend, regression gate, dependency audit, container build, compose config | ✅ |
 | Retrieval interface, three retrievers, RRF fusion | ✅ |
 | `POST /api/search/` with mode selection | ✅ |
 | Golden set, metrics, ablation, significance testing | ✅ |
 | Grounded answering, abstention and citation checking | ✅ measured, not yet served |
 | CI regression gate, proven by injected faults | ✅ |
-| React frontend, MCP server, deployment | ⬜ Phase 4 |
+| React frontend, types generated from the OpenAPI schema | ✅ |
+| MCP server, deployment, hardening | ⬜ Phase 4 |
 
 Corpus at time of writing: **3,377 papers / 3,465 chunks** across `hep-ex`,
 `hep-th`, `hep-ph`, `cs.IR` and `astro-ph.HE`, fully embedded and indexed.

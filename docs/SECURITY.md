@@ -52,6 +52,33 @@ not hours.
   scheme before dereferencing it, so a typo in the environment cannot turn a
   health check into a local file read.
 
+### The language model boundary
+
+The answering layer sends retrieved abstracts to a third-party API, which
+creates two exposures worth naming explicitly rather than discovering later.
+
+- **Retrieved text is untrusted input to the model.** Every passage in the
+  prompt is an arXiv abstract — text written by someone else, retrieved by
+  similarity, and placed inside an instruction. An abstract containing
+  "ignore previous instructions" is a prompt injection, and nothing in the
+  current design prevents one from being followed. What *is* in place: the
+  model has no tools, no network access and no write path, so the worst
+  outcome is a wrong or attacker-chosen answer, not an action. Citations are
+  parsed and validated against the passages actually supplied, so an injected
+  reference to a source that was never provided is detected and counted.
+  Treating the passages as data rather than instructions — via structural
+  separation or a second validation pass — is **not** implemented and is
+  listed under deferred work.
+- **Abstracts leave the system.** Only publicly published arXiv text is sent,
+  and no user identity accompanies it, but a query is a user's own words and
+  is transmitted to the provider. Any deployment handling non-public corpora
+  would need a self-hosted model instead.
+- **The API key is read from the environment and never logged.** Provider
+  errors are surfaced with the response body truncated to 300 characters,
+  which carries the provider's reason without carrying request contents. An
+  unset key degrades to search-only rather than failing open in some other
+  direction.
+
 ### Transport and browser controls
 
 - `CORS_ALLOWED_ORIGINS` is an explicit allowlist. **`*` is never used**, in
@@ -88,11 +115,12 @@ to close it.
 | Gap | Why it is acceptable today | What closing it needs |
 |---|---|---|
 | **No authentication on the API** | The corpus is public arXiv metadata; there is nothing to authorise | Token or session auth, plus per-user rate limits |
-| **No rate limiting** | Single-user portfolio deployment | DRF throttling, or rate limiting at the Cloudflare edge |
+| **No rate limiting beyond the application layer** | DRF throttling is enabled — 100/hour anonymous, 60/minute on search — but it is per-process and in-memory, so it does not hold across replicas | A shared cache backend for the throttle, or rate limiting at the Cloudflare edge |
 | **OpenSearch runs with its security plugin disabled locally** | It listens on `localhost` only, on a development machine | Enable the security plugin and set credentials in the production stack |
 | **PostgreSQL uses passwordless local trust auth** | Local development, `localhost` socket only | Password or certificate auth in production |
 | **No Content Security Policy** | No frontend is deployed yet | Set CSP headers when the React app ships |
 | **No audit logging** | No authenticated actors to audit | Structured request logging with retention |
+| **No prompt-injection defence** | The model has no tools, no network and no write path, so an injected instruction can change an answer but cannot cause an action; citations are still validated against the supplied passages | Structural separation of instructions from retrieved text, and a second pass that checks the answer against the passages it claims to cite |
 | **Container full-stack boot is unverified** | No Docker available on the development machine; the image builds and Compose config validates in CI | Boot the full stack on the deployment VM |
 
 ---

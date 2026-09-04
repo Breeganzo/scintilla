@@ -382,33 +382,174 @@ conceptual queries they agreed on nothing at all. In two of the four cases
 hybrid's top result was ranked first by *neither* retriever — it won on
 agreement. That is the behaviour RRF is supposed to produce.
 
-**These are impressions, not measurements.** They are recorded as hypotheses for
-the ablation to confirm or refute, and it is entirely possible the numbers will
-contradict them. Nothing here should be read as a quality claim until §7 exists.
+**These were impressions, not measurements.** They were recorded as hypotheses
+for the ablation to confirm or refute. It refuted the main one: §7 shows hybrid
+does not beat dense on this corpus. Nothing in this section should be read as a
+quality claim — §7 is where the claims live.
 
 ---
 
-## 7. Evaluation ⬜
+## 7. Evaluation ✅
 
-Not built, and it is the part of this project that matters most.
+The part of this project that matters most, and the only reason any number
+elsewhere in these docs is allowed to be stated as a fact.
 
 ```mermaid
 graph LR
-    G["golden set<br/>query + relevant ids"] --> R["run each mode"]
-    R --> M["recall@k, MRR, nDCG"]
+    G["golden set<br/>50 queries, 5 classes"] --> R["run each mode<br/>via get_retriever()"]
+    R --> M["recall@k, MRR, nDCG@10"]
     M --> A["ablation table"]
-    M --> GATE["CI regression gate"]
-    GATE -->|"metrics drop"| FAIL["build fails"]
+    M --> S["paired bootstrap<br/>+ permutation test"]
+    A --> RM["README"]
+    S --> RM
 ```
 
-The intent is an ablation table comparing BM25, dense and hybrid on the same
-golden set with the same metrics, **including the cases where hybrid performs
-worse than its components**, plus a CI gate that fails the build when retrieval
-quality regresses — demonstrated by deliberately injecting a regression and
-showing the gate catch it.
+**The harness resolves retrievers through `get_retriever()` — the same call the
+API view makes.** This is the design decision the whole layer rests on. The
+usual way retrieval evaluation goes wrong is not a faulty metric, it is a
+harness that re-implements retrieval and therefore measures the harness. Sharing
+the entry point means a measured improvement is an improvement to shipped code.
 
-Until that exists, **no claim about retrieval quality in this repository is
-defensible**, and none is made.
+Metrics are written from scratch in `evaluation/metrics.py` rather than imported
+from `pytrec_eval` or `ranx`, and they refuse rather than guess in two cases:
+duplicate document IDs in the retrieved list (a paper counted twice inflates
+recall) and an empty relevant set (0/0 — scoring it 0 punishes a correct
+refusal, scoring it 1 rewards anything). The ten unanswerable queries are held
+out of retrieval scoring for exactly that reason and measured separately in §7b.
+
+### The result
+
+40 answerable queries, top-10, macro-averaged:
+
+| mode | recall@10 | MRR | nDCG@10 | median ms |
+|---|---:|---:|---:|---:|
+| bm25 | 0.527 | 0.565 | 0.473 | 5 |
+| dense | **0.744** | 0.775 | **0.691** | 24 |
+| hybrid | 0.682 | **0.776** | 0.649 | 33 |
+
+**Hybrid did not win.** A paired bootstrap over 10,000 resamples puts
+`hybrid − dense` on nDCG@10 at −0.041 with a 95% interval of [−0.103, +0.020]
+and p = 0.194: the two are statistically indistinguishable, and the point
+estimate favours the simpler system. Against BM25 both are significant
+(p = 0.0001).
+
+The cause is visible per class. RRF discards scores by construction — that is
+how it avoids mixing a BM25 score of 14.2 with a cosine similarity of 0.82 — so
+it weights both lists equally and cannot know that BM25 is nearly useless on
+paraphrase queries (recall@10 0.206 against dense's 0.615). Fusing a strong
+ranker with a weak one at equal weight produces something in between: hybrid
+scores 0.397 on that class. §6 hypothesised hybrid would win; the measurement
+says otherwise, and the hypothesis is wrong.
+
+A sweep of the RRF `k` constant shows performance falling monotonically as `k`
+rises, with the published default of 60 close to the worst setting for this
+corpus. **`k` was deliberately left at 60.** Retuning it to the best observed
+value on the same 40 queries that are then reported would be overfitting to the
+test set — the precise failure this project exists to argue against.
+
+---
+
+## 7b. Grounded answering ✅
+
+```mermaid
+graph LR
+    Q["query"] --> RET["dense retrieval"]
+    RET --> P["top 5 abstracts<br/>numbered [1]..[5]"]
+    P --> LLM["LLMProvider"]
+    LLM --> PARSE["parse citations"]
+    PARSE --> OUT["answer + sources"]
+    LLM -->|"sentinel token"| ABS["abstained"]
+    LLM -->|"no key / 5xx / timeout"| DEG["degraded — search only"]
+```
+
+Retrieval answers *did the right documents come back*. That is necessary and not
+sufficient: a system can retrieve perfectly and still fabricate, and it can
+retrieve badly and still be safe if it refuses.
+
+**Abstention is a sentinel token, not a phrase.** The prompt requires
+`INSUFFICIENT_CONTEXT` alone on the first line, and refusal is defined as
+emitting it. Grepping free text for "I don't know" is unreliable in both
+directions — a model can refuse in unrecognised wording, and can answer fully
+while noting some detail is unknown. A decidable rule is the only way to put a
+number on it. Checking only the *first* line means an answer that hedges at the
+end counts as an answer, so the abstention rate can be understated but never
+inflated.
+
+**Degradation is reported, never silent.** No key, a 5xx or a timeout sets
+`degraded` on the result rather than returning empty text, because an empty
+answer is indistinguishable from a refusal and would drive the abstention rate
+to 100% for the wrong reason. Search still returns its results.
+
+Measured over all 50 golden queries, `openai/gpt-oss-120b` at temperature 0:
+
+| measure | count | rate |
+|---|---:|---:|
+| abstained on unanswerable | 10/10 | **100%** |
+| abstained on answerable | 4/40 | 10% |
+| citation precision | 24 answers cited | **100%** |
+| citation grounding | 40 answerable | 78% |
+| answers with no citation | 12 | — |
+| hallucinated citation numbers | 0 | — |
+
+Both rates are reported because either alone is gameable: a system that refuses
+everything scores 100% on the first and 100% on the second. Two numbers are
+worse than they look. A third of answers carried no citation at all, so the
+100% precision is measured over the two thirds that complied. And all four
+false abstentions had a labelled-relevant paper already in the prompt — one had
+four — so they are a prompt-design cost, not a retrieval failure.
+
+**Not measured:** whether a cited passage genuinely *supports* the sentence
+attached to it. That needs a human reader or a judge model, and neither was
+used, so no claim is made.
+
+**Not yet served.** The answering layer is exercised by the evaluation harness
+only; `POST /api/search/` still returns results without prose. Wiring it to the
+API is Phase 4 work.
+
+---
+
+## 7c. The CI regression gate ✅
+
+```mermaid
+graph LR
+    FIX["340 abstracts<br/>raw text fixture"] --> CHK["real chunker"]
+    CHK --> EMB["deterministic<br/>hashing embedder"]
+    EMB --> VEC["real pgvector store"]
+    VEC --> RANK["real ranking path"]
+    RANK --> SC["score 20 gated queries"]
+    SC --> CMP{"vs committed<br/>baseline"}
+    CMP -->|"any metric drops > 0.02"| RED["build fails"]
+    CMP -->|"within tolerance"| GREEN["pass"]
+```
+
+CI has no arXiv corpus and no OpenSearch, so the gate carries its own: 340
+abstracts committed as raw text and rebuilt on every run by the real chunker,
+the real vector store and the real ranking path. Only the model weights are
+substituted, for a deterministic hashing embedder — no download, no network, no
+PyTorch.
+
+These scores are **not** a measure of search quality and are not comparable to
+§7. The embedder has lexical signal and no semantic signal, and a 340-paper
+corpus gives retrieval less to be wrong about. Paraphrase and conceptual queries
+are excluded because a bag-of-words embedder scores near zero on them, and a
+metric pinned at zero cannot detect a regression. The only question the gate
+answers is *did this commit rank worse than the last one, on identical inputs*.
+
+Baseline: recall@5 0.234, recall@10 0.314, MRR 0.511, nDCG@10 0.306 over 20
+gated queries. Two runs of unchanged code produce **identical** scores, so the
+0.02 tolerance is not absorbing noise — there is none — it absorbs deliberate
+change, and anything larger has to be signed off by updating the baseline in a
+commit that says why. Each metric is checked on its own; a blended score would
+let a collapse in recall hide behind a gain in MRR. Provenance — corpus size,
+chunk count, golden set version, top-k — is compared before any metric, because
+a run against a different corpus is a different experiment, not a regression.
+
+**Proven by injection.** Dropping the title from the embedded text moves
+recall@10 from 0.314 to 0.167 and the gate names the fourteen queries that got
+worse. Worth recording honestly: the existing unit tests caught that fault, and
+three other injected faults, *before* the gate did. The gate is a second net
+measuring a different property — ranking quality rather than component
+behaviour — not a replacement for tests.
 
 ---
 
@@ -456,15 +597,18 @@ trigger DAGs and exposes connection metadata.
 | CI — lint, tests, dependency audit, container build, compose config | ✅ |
 | Retrieval interface, three retrievers, RRF fusion | ✅ |
 | `POST /api/search/` with mode selection | ✅ |
-| Golden set, metrics, ablation, regression gate | ⬜ Phase 3 |
-| Grounded answering | ⬜ Phase 3 |
+| Golden set, metrics, ablation, significance testing | ✅ |
+| Grounded answering, abstention and citation checking | ✅ measured, not yet served |
+| CI regression gate, proven by injected faults | ✅ |
 | React frontend, MCP server, deployment | ⬜ Phase 4 |
 
 Corpus at time of writing: **3,377 papers / 3,465 chunks** across `hep-ex`,
 `hep-th`, `hep-ph`, `cs.IR` and `astro-ph.HE`, fully embedded and indexed.
 
-**Retrieval works; nothing is measured.** The system stores, schedules, serves
-and now ranks. Whether it ranks *well* is unknown: there is no golden set, no
-metric and no ablation table, so every impression recorded in §6 is a hypothesis
-rather than a result. Making that distinction is the whole argument of this
-project, so it would be a poor place to blur it.
+**Retrieval works, and is now measured.** The headline result is that the hybrid
+retriever this architecture was built around does not beat plain dense
+retrieval on this corpus, and the confidence interval says the two are
+indistinguishable. That is published rather than buried, because a system that
+can tell you its design assumption was wrong is worth more than one that cannot
+tell you anything. The impressions recorded in §6 were hypotheses; §7 promoted
+some to results and refuted others.

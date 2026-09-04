@@ -101,3 +101,32 @@ class TestOverlongAbstracts:
         chunks = chunk_paper(TITLE, monster, max_tokens=100)
         assert len(chunks) == 1
         assert chunks[0].text.startswith(TITLE)
+
+
+class TestInjectedTokenCounter:
+    """The embedding model's tokenizer must be able to drive chunk boundaries.
+
+    The whitespace heuristic under-counted 94% of a 2,975-paper sample and let
+    69 abstracts past the 512-token ceiling, where the model truncated them
+    silently. These tests pin the fix: a caller can supply the real counter,
+    and it is what the ceiling is actually enforced against.
+    """
+
+    def test_injected_counter_is_used_for_token_count(self) -> None:
+        chunks = chunk_paper(TITLE, ABSTRACT, count_tokens=lambda text: len(text))
+        assert chunks[0].token_count == len(chunks[0].text)
+
+    def test_injected_counter_triggers_the_split_the_heuristic_would_miss(self) -> None:
+        # The heuristic sees a short document and returns one chunk.
+        assert len(chunk_paper(TITLE, ABSTRACT)) == 1
+
+        # A tokenizer that counts characters sees the same text as far over the
+        # ceiling, and the split happens. This is the 69-paper case in
+        # miniature: same input, different tokenizer, different answer.
+        chunks = chunk_paper(TITLE, ABSTRACT, max_tokens=120, count_tokens=lambda text: len(text))
+        assert len(chunks) > 1
+
+    def test_defaults_to_the_heuristic_when_no_counter_is_given(self) -> None:
+        assert chunk_paper(TITLE, ABSTRACT)[0].token_count == estimate_tokens(
+            build_document_text(TITLE, ABSTRACT)
+        )

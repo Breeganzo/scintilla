@@ -42,7 +42,7 @@ from django.db import transaction
 from django.utils import timezone
 
 from ingestion.arxiv_client import ArxivClient, ArxivPaper
-from ingestion.chunking import chunk_paper
+from ingestion.chunking import TokenCounter, chunk_paper
 from papers.models import Chunk, IngestionRun, Paper
 
 logger = logging.getLogger(__name__)
@@ -89,8 +89,15 @@ def resolve_watermark(categories: list[str]) -> datetime | None:
     return last_success.watermark if last_success else None
 
 
-def _chunks_for(paper: Paper, source: ArxivPaper) -> tuple[list[Chunk], bool]:
-    pieces = chunk_paper(source.title, source.abstract, arxiv_id=source.arxiv_id)
+def _chunks_for(
+    paper: Paper, source: ArxivPaper, count_tokens: TokenCounter | None = None
+) -> tuple[list[Chunk], bool]:
+    pieces = chunk_paper(
+        source.title,
+        source.abstract,
+        arxiv_id=source.arxiv_id,
+        count_tokens=count_tokens,
+    )
     chunks = [
         Chunk(
             paper=paper,
@@ -110,7 +117,7 @@ def _chunks_for(paper: Paper, source: ArxivPaper) -> tuple[list[Chunk], bool]:
 
 
 @transaction.atomic
-def _create_paper(source: ArxivPaper) -> tuple[int, bool]:
+def _create_paper(source: ArxivPaper, count_tokens: TokenCounter | None = None) -> tuple[int, bool]:
     paper = Paper.objects.create(
         arxiv_id=source.arxiv_id,
         version=source.version,
@@ -124,13 +131,15 @@ def _create_paper(source: ArxivPaper) -> tuple[int, bool]:
         abs_url=source.abs_url,
         pdf_url=source.pdf_url,
     )
-    chunks, was_split = _chunks_for(paper, source)
+    chunks, was_split = _chunks_for(paper, source, count_tokens)
     Chunk.objects.bulk_create(chunks)
     return len(chunks), was_split
 
 
 @transaction.atomic
-def _update_paper(paper: Paper, source: ArxivPaper) -> tuple[int, bool]:
+def _update_paper(
+    paper: Paper, source: ArxivPaper, count_tokens: TokenCounter | None = None
+) -> tuple[int, bool]:
     paper.version = source.version
     paper.title = source.title
     paper.abstract = source.abstract
@@ -150,7 +159,7 @@ def _update_paper(paper: Paper, source: ArxivPaper) -> tuple[int, bool]:
     # changes, so matching old chunks to new ones is guesswork; deleting inside
     # the same transaction is exact and cheap at one chunk per paper.
     paper.chunks.all().delete()
-    chunks, was_split = _chunks_for(paper, source)
+    chunks, was_split = _chunks_for(paper, source, count_tokens)
     Chunk.objects.bulk_create(chunks)
     return len(chunks), was_split
 
@@ -164,11 +173,16 @@ def ingest(
     triggered_by: str = "manual",
     since: datetime | None = None,
     use_watermark: bool = True,
+    count_tokens: TokenCounter | None = None,
 ) -> IngestionResult:
     """Harvest ``categories`` from arXiv into PostgreSQL.
 
     Every run writes an :class:`~papers.models.IngestionRun` row, including
     failed ones. A run that leaves no trace is a run nobody can debug.
+
+    ``count_tokens`` is the embedding model's tokenizer. Passing it makes the
+    chunk-size ceiling exact; leaving it out falls back to a whitespace
+    heuristic that under-counts LaTeX-heavy abstracts.
     """
     categories = sorted(categories)
     client = client or ArxivClient(
@@ -201,7 +215,7 @@ def ingest(
                 incoming_hash = Paper.compute_content_hash(source.title, source.abstract)
 
                 if existing is None:
-                    written, was_split = _create_paper(source)
+                    written, was_split = _create_paper(source, count_tokens)
                     result.created += 1
                 elif existing.content_hash == incoming_hash:
                     # Mechanism 1. Nothing that affects retrieval has changed,
@@ -212,7 +226,7 @@ def ingest(
                     result.skipped += 1
                     continue
                 else:
-                    written, was_split = _update_paper(existing, source)
+                    written, was_split = _update_paper(existing, source, count_tokens)
                     result.updated += 1
 
                 result.chunks_written += written

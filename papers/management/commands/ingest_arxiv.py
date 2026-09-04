@@ -12,6 +12,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.utils.dateparse import parse_datetime
 
+from ingestion.embedding import get_token_counter
 from ingestion.pipeline import ingest
 
 
@@ -73,6 +74,11 @@ class Command(BaseCommand):
             since=since,
             use_watermark=not options["full_scan"],
             triggered_by=options["triggered_by"],
+            # Count tokens with the embedding model's own tokenizer. Chunking
+            # decides what the model is asked to embed, so counting with a
+            # different tokenizer means the 512-token ceiling is enforced
+            # against the wrong number and long abstracts get truncated.
+            count_tokens=get_token_counter(),
         )
 
         style = self.style.SUCCESS if result.status == "success" else self.style.WARNING

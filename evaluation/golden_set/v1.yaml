@@ -1,0 +1,453 @@
+# Scintilla golden set, version 1.
+#
+# Fifty queries, ten in each of five classes, labelled by hand against the
+# corpus snapshot recorded below. Read golden_set/README.md before using this
+# file or quoting any number derived from it: the biases are documented there,
+# and several of them are large enough to change how a result should be read.
+#
+# arXiv identifiers are QUOTED. Unquoted, "2607.07800" is valid YAML for the
+# float 2607.078, which silently truncates the identifier and produces a set
+# that looks fine and matches nothing. A test asserts every id is a string.
+
+version: 1
+
+corpus:
+  # The snapshot these labels were assigned against. Relevance is a property of
+  # a query AND a collection; move the collection and the labels expire.
+  papers: 3377
+  chunks: 3465
+  captured: 2026-09-04
+  categories: [hep-ex, hep-th, hep-ph, cs.IR, astro-ph.HE]
+
+pool:
+  # How candidates were surfaced for judging. See README, "Pooling bias".
+  retrievers: [bm25, dense]
+  depth: 12
+  cross_pollinated: true
+
+classes:
+  exact_term: Technical vocabulary a specialist would type. Lexical retrieval should win.
+  paraphrase: The same information need in everyday words. Dense retrieval should win.
+  conceptual: A why or how question with no single obvious answer document.
+  multi_hop: Two topics that must both be satisfied.
+  unanswerable: Plausible research questions with no answer in this corpus. Nothing should win.
+
+queries:
+  # ---------------------------------------------------------------- exact_term
+  - id: exact_01
+    class: exact_term
+    query: axion-like particle diphoton decay search
+    relevant_ids: ["2607.07800", "2608.18506", "2608.12616", "2607.29205", "2608.24161", "2609.00123"]
+    notes: >-
+      ALP searches that proceed through the photon coupling. Excluded
+      2607.21168 (electrophilic, electron coupling) and 2606.20525 (invisible
+      mode) as off-channel, and 2607.28381 (vector-like quarks with a diphoton
+      final state) because the spin-0 there is not framed as an ALP - a graded
+      scale would have scored it partially relevant.
+
+  - id: exact_02
+    class: exact_term
+    query: look-elsewhere effect trials factor
+    relevant_ids: ["2608.24872", "2606.13780", "2608.19764"]
+    notes: >-
+      Excluded 2606.11230 (TAMBO), which mentions the look-elsewhere effect in
+      its abstract but is a telescope proposal. Mentioning a term is not being
+      about it, and BM25 cannot tell the difference.
+
+  - id: exact_03
+    class: exact_term
+    query: pseudo-relevance feedback query expansion
+    relevant_ids: ["2607.18626", "2607.12098", "2608.25521", "2608.15851", "2608.17632", "2609.00844"]
+    notes: >-
+      PRF and LLM-based query expansion. Excluded 2608.16071 (pseudo-query
+      generation for skill retrieval) and 2608.01738 (query reformulation for
+      e-commerce) as adjacent tasks rather than the same one.
+
+  - id: exact_04
+    class: exact_term
+    query: hyperon bulk viscosity neutron star inspiral
+    relevant_ids: ["2608.28000", "2608.20989", "2608.20921", "2607.09280"]
+    notes: >-
+      One exact match plus three papers on hyperonic neutron-star matter. Many
+      other neutron-star papers were retrieved and rejected; the query is about
+      hyperons specifically, not about neutron stars.
+
+  - id: exact_05
+    class: exact_term
+    query: core-collapse supernova shock revival simulation
+    relevant_ids: ["2608.28358", "2608.24578", "2606.30756", "2608.26681", "2608.18198"]
+    notes: >-
+      Simulation work bearing on the explosion mechanism. Excluded 2609.00200,
+      which simulates core collapse to a black hole - no shock revival.
+
+  - id: exact_06
+    class: exact_term
+    query: charged-current quasi-elastic cross section
+    relevant_ids: ["2608.12293", "2606.00745", "2607.10644", "2608.23057"]
+    notes: >-
+      CCQE and CC0pi (quasi-elastic-like) measurements plus one modelling
+      paper. Excluded high-energy CC measurements (2606.14669) which share the
+      vocabulary but not the kinematic regime.
+
+  - id: exact_07
+    class: exact_term
+    query: Hough transform online track reconstruction
+    relevant_ids: ["2607.04067", "2607.04723", "2607.04271"]
+    notes: >-
+      Two Hough-transform tracking papers and the companion pattern-matching
+      paper from the same detector. Deliberately narrow: a large number of
+      general tracking papers were retrieved and rejected.
+
+  - id: exact_08
+    class: exact_term
+    query: fast radio burst dispersion measure
+    relevant_ids: ["2608.23868", "2608.27779", "2608.23522"]
+    notes: >-
+      FRB papers where dispersion measure is the object of study. The corpus
+      holds many more FRB papers that merely use DM as an instrument.
+
+  - id: exact_09
+    class: exact_term
+    query: blazar jet accretion regime
+    relevant_ids: ["2609.03435", "2609.02550", "2608.25763", "2608.18707"]
+    notes: Jet physics tied to the accretion state.
+
+  - id: exact_10
+    class: exact_term
+    query: integrated luminosity measurement proton-proton collisions
+    relevant_ids: ["2606.26832", "2609.02989"]
+    notes: >-
+      Only two papers MEASURE the luminosity. Dozens report an integrated
+      luminosity as the size of their dataset, and BM25 ranks several of them
+      highly. This query exists to punish that confusion.
+
+  # ---------------------------------------------------------------- paraphrase
+  - id: para_01
+    class: paraphrase
+    query: how do websites decide which short clips to show a viewer next
+    relevant_ids: ["2608.29430", "2608.13990", "2608.04807"]
+    notes: >-
+      Short-video recommendation. BM25's top hit was a paper on cognitive
+      behavioural therapy - it matched "decide" and "how".
+
+  - id: para_02
+    class: paraphrase
+    query: improving a search engine by re-reading its own top results
+    relevant_ids: ["2607.18626", "2607.12098", "2608.25521", "2608.15851"]
+    notes: >-
+      A plain-English description of pseudo-relevance feedback. CROSS-POLLINATED:
+      neither retriever surfaced 2607.18626 or 2607.12098 for this phrasing,
+      although both are squarely on topic and both rank top-3 for the jargon
+      form in exact_03. Labelled from exact_03's pool. See README.
+
+  - id: para_03
+    class: paraphrase
+    query: what happens when a star wanders too close to a black hole
+    relevant_ids: ["2608.19402", "2608.28947", "2609.03701", "2608.27596"]
+    notes: Tidal disruption events and star-black hole collisions.
+
+  - id: para_04
+    class: paraphrase
+    query: using neural networks to work out particle paths in a detector
+    relevant_ids: ["2607.04723", "2607.15361", "2606.20437", "2606.30485", "2606.14373", "2607.07263", "2607.04271"]
+    notes: >-
+      CROSS-POLLINATED: 2607.15361 and 2606.20437 are learned tracking papers
+      that this phrasing did not surface but exact_07's did.
+
+  - id: para_05
+    class: paraphrase
+    query: how bright was the beam when the collisions were recorded
+    relevant_ids: ["2606.26832", "2609.02989"]
+    notes: >-
+      Same two answers as exact_10, asked without the word "luminosity". BM25's
+      top hit was a paper on CPT violation - it matched "when" and "how".
+
+  - id: para_06
+    class: paraphrase
+    query: finding a signal that could be anywhere in the data without fooling yourself
+    relevant_ids: ["2608.24872", "2606.13780", "2608.19764", "2605.31103"]
+    notes: The look-elsewhere effect, described rather than named.
+
+  - id: para_07
+    class: paraphrase
+    query: checking whether a scientific statement really came from the work it cites
+    relevant_ids: ["2607.15875", "2607.04043", "2608.30145", "2607.24802", "2607.24803"]
+    notes: Claim-source retrieval and citation verification.
+
+  - id: para_08
+    class: paraphrase
+    query: searching for very light dark matter that barely interacts with ordinary matter
+    relevant_ids: ["2607.19319", "2607.24524", "2606.07008", "2609.02501", "2608.18204", "2608.07136"]
+    notes: >-
+      Reworded during the cold review. The first draft said "extremely light
+      particles that barely interact with matter", which equally describes
+      neutrinos, and the corpus has hundreds of neutrino papers. An ambiguous
+      query does not measure retrieval, it measures which reading the labeller
+      happened to have in mind.
+
+  - id: para_09
+    class: paraphrase
+    query: how a dying massive star manages to explode outward
+    relevant_ids: ["2608.28358", "2608.24578", "2606.30756", "2608.26681"]
+    notes: >-
+      CROSS-POLLINATED, and the clearest case in the set: the pool for this
+      phrasing contained almost none of the explosion-mechanism papers, and
+      BM25's third hit was an information-retrieval paper about memory
+      management in conversational agents. All four labels come from exact_05.
+
+  - id: para_10
+    class: paraphrase
+    query: ranking documents when the reader's words differ from the author's words
+    relevant_ids: ["2608.00452", "2608.15851", "2608.25521"]
+    notes: >-
+      CROSS-POLLINATED. 2608.00452 opens by defining the semantic vocabulary
+      gap - "when a relevant document phrases an answer differently from the
+      query, BM25 never retrieves it" - and neither retriever returned it for a
+      query that describes exactly that. Found via exact_03's pool.
+
+  # ---------------------------------------------------------------- conceptual
+  - id: conc_01
+    class: conceptual
+    query: why is dark matter so hard to detect directly
+    relevant_ids: ["2606.25129", "2608.20745", "2608.10105", "2608.26289", "2607.24448", "2608.10761", "2608.24960"]
+    notes: >-
+      Detection techniques and thresholds, i.e. papers that engage with the
+      difficulty. Broad by nature; a graded scale would separate the review
+      (2608.20745) from the individual experiments.
+
+  - id: conc_02
+    class: conceptual
+    query: why do neutrino experiments need such enormous detectors
+    relevant_ids: ["2607.13143", "2608.28095", "2606.27007", "2606.20780"]
+    notes: >-
+      WEAK SUPPORT. The corpus has no paper whose subject is the smallness of
+      the neutrino cross-section; these four are papers where effective volume
+      or detector mass is the operative constraint. Kept deliberately, because
+      a golden set containing only well-supported queries would overstate how
+      often a real user's question has a good answer.
+
+  - id: conc_03
+    class: conceptual
+    query: what limits the precision of collider measurements
+    relevant_ids: ["2606.26832", "2608.26376", "2606.28498", "2609.02972", "2608.12071"]
+    notes: Luminosity, fit machinery, resolution and systematic modelling.
+
+  - id: conc_04
+    class: conceptual
+    query: how are large language models changing information retrieval
+    relevant_ids: ["2607.15555", "2607.26670", "2608.25663", "2607.15771", "2608.25521", "2608.17632", "2608.18352", "2607.01040"]
+    notes: >-
+      CROSS-POLLINATED (2608.18352, 2607.01040). Restricted to papers about the
+      effect of LLMs on retrieval itself, not the very many papers that merely
+      use an LLM somewhere in a retrieval pipeline.
+
+  - id: conc_05
+    class: conceptual
+    query: how do we learn about black holes if light cannot escape them
+    relevant_ids: ["2608.29466", "2608.10071", "2608.26785", "2608.27637", "2608.18208", "2608.26399", "2608.13643"]
+    notes: Ringdown, lensing, imaging, microlensing and quasinormal modes.
+
+  - id: conc_06
+    class: conceptual
+    query: why is it hard to evaluate a recommender system offline
+    relevant_ids: ["2607.25097", "2607.11354", "2608.16872", "2608.22022", "2609.02499", "2608.29600"]
+    notes: >-
+      CROSS-POLLINATED (2608.29600). The best-supported conceptual query in the
+      set; the corpus has a genuine cluster on offline evaluation validity.
+
+  - id: conc_07
+    class: conceptual
+    query: what makes quantum gravity difficult to test experimentally
+    relevant_ids: ["2608.26420", "2608.28901", "2608.24796", "2607.27313"]
+    notes: Proposed probes, each of which argues from the difficulty.
+
+  - id: conc_08
+    class: conceptual
+    query: why does symmetry violation matter in particle physics
+    relevant_ids: ["2609.02475", "2606.23580", "2609.02691", "2605.28671", "2606.25982", "2606.20830"]
+    notes: >-
+      CROSS-POLLINATED (2606.20830). CPT, CP and lepton-number violation. The
+      corpus contains a great deal of symmetry-breaking theory that is not
+      about violation being observable; that was excluded.
+
+  - id: conc_09
+    class: conceptual
+    query: how does a detector tell one kind of particle from another
+    relevant_ids: ["2608.11028", "2608.19064", "2607.11139", "2608.23773"]
+    notes: >-
+      CROSS-POLLINATED (2607.11139, 2608.23773). Note for the ablation:
+      2608.11028 is titled "Particle Identification at Future Colliders", is
+      the single most on-point paper in the corpus, and was ranked twelfth by
+      dense and not retrieved at all by BM25.
+
+  - id: conc_10
+    class: conceptual
+    query: why do retrieval augmented systems produce confident wrong answers
+    relevant_ids: ["2608.22228", "2608.25487", "2607.25600", "2607.07380", "2608.11922", "2608.10008", "2607.03615"]
+    notes: >-
+      Abstention failure, misleading context, uncertainty calibration. This
+      query describes the failure mode that the unanswerable class tests for,
+      which is why it is worth measuring separately.
+
+  # ----------------------------------------------------------------- multi_hop
+  - id: hop_01
+    class: multi_hop
+    query: neutrino mass and cosmological structure formation
+    relevant_ids: ["2607.24742", "2608.06460"]
+    notes: >-
+      WEAK SUPPORT. Only two papers join both halves. The corpus has plenty on
+      neutrino mass and plenty on cosmology; papers satisfying both are rare,
+      which is the point of the class but makes this query high-variance.
+
+  - id: hop_02
+    class: multi_hop
+    query: machine learning applied to particle detector reconstruction
+    relevant_ids: ["2606.14373", "2606.30485", "2607.11585", "2609.00611", "2606.26089", "2608.22873", "2605.29391", "2607.04723", "2608.21327"]
+    notes: >-
+      The best-supported query in the set. Both halves are strongly represented
+      and the intersection is large, so this one should be easy for everything.
+
+  - id: hop_03
+    class: multi_hop
+    query: dark matter effects on neutron star collapse
+    relevant_ids: ["2608.10594", "2608.06224", "2608.20921", "2609.03964", "2608.16064"]
+    notes: >-
+      Dark-matter-admixed compact stars and induced collapse. Excluded
+      2608.25587 (lensing by such a star) - dark matter and a neutron star, but
+      not collapse.
+
+  - id: hop_04
+    class: multi_hop
+    query: gravitational wave observations and black hole population statistics
+    relevant_ids: ["2608.29072", "2609.01784", "2609.02678", "2609.03859", "2608.21609"]
+    notes: >-
+      Population inference from GW catalogues. Excluded the primordial black
+      hole and pulsar-timing forecasting papers, which are population claims
+      not drawn from observed mergers.
+
+  - id: hop_05
+    class: multi_hop
+    query: transformer efficiency for sparse detector data
+    relevant_ids: ["2606.17631", "2606.20437", "2608.02735", "2608.16061"]
+    notes: >-
+      Both halves required: a transformer, and an argument about inference
+      cost. The corpus also holds efficiency work on sparse RETRIEVAL, which
+      matches the words and not the need.
+
+  - id: hop_06
+    class: multi_hop
+    query: axion searches with haloscopes and with colliders
+    relevant_ids: ["2607.28883", "2608.07718", "2608.10292", "2606.20422", "2609.02828", "2609.03879", "2607.07800", "2608.18506"]
+    notes: >-
+      CROSS-POLLINATED (2608.18506). Deliberately asks for two experimental
+      programmes at once. A system that returns only haloscopes has answered
+      half the question and will still score well on recall@10.
+
+  - id: hop_07
+    class: multi_hop
+    query: large language models used for recommendation ranking
+    relevant_ids: ["2608.10257", "2608.00669", "2607.04270", "2608.09605", "2608.18952", "2606.29947", "2608.03091", "2608.12184"]
+    notes: >-
+      Restricted to LLMs doing the ranking or reranking, not LLMs generating
+      features or explanations for a recommender.
+
+  - id: hop_08
+    class: multi_hop
+    query: supernova modelling constrained by neutrino observations
+    relevant_ids: ["2606.30756", "2606.18337", "2608.26847", "2606.27007"]
+    notes: >-
+      Overlaps exact_05 by one paper (2606.30756). Deliberate: the same
+      document can be the answer to more than one question.
+
+  - id: hop_09
+    class: multi_hop
+    query: evaluation datasets for scientific claim retrieval
+    relevant_ids: ["2607.15875", "2607.04043", "2607.24803", "2608.15624", "2608.27394", "2608.11415"]
+    notes: >-
+      CROSS-POLLINATED (2608.11415). Overlaps para_07 by three papers, which is
+      expected - one asks about the task, the other about how it is measured.
+
+  - id: hop_10
+    class: multi_hop
+    query: quantum field theory methods applied to condensed matter systems
+    relevant_ids: ["2608.06449", "2607.27920", "2608.07655", "2608.13664"]
+    notes: >-
+      Both halves required. The corpus is heavy on hep-th, so most retrieved
+      candidates satisfied only the first.
+
+  # -------------------------------------------------------------- unanswerable
+  # Nothing in the corpus answers these. The correct behaviour is to return
+  # nothing, or to say so. On the day these were written all three modes
+  # returned ten confident, well-formed, irrelevant results for every one.
+  #
+  # These are deliberately HARD negatives: the corpus does contain medical,
+  # financial and biological papers, so the topic areas are not absent - only
+  # the answers are. A system that abstains merely because a query looks
+  # unfamiliar has not solved anything.
+  - id: none_01
+    class: unanswerable
+    query: protein folding structure prediction from amino acid sequence
+    relevant_ids: []
+    notes: Nearest neighbours are chemical structure recognition and crystal property prediction.
+
+  - id: none_02
+    class: unanswerable
+    query: CRISPR off-target editing effects in human cells
+    relevant_ids: []
+    notes: >-
+      The corpus holds biomedical text-mining papers, so "biomedical" is
+      matched while "CRISPR" is not. BM25's top hit was a recommender paper
+      about "editing".
+
+  - id: none_03
+    class: unanswerable
+    query: predicting mortgage default risk from credit history
+    relevant_ids: []
+    notes: Financial QA and asset recommendation papers exist; credit risk modelling does not.
+
+  - id: none_04
+    class: unanswerable
+    query: diagnosing diabetic retinopathy from retinal photographs
+    relevant_ids: []
+    notes: >-
+      The hardest negative in the set. The corpus contains medical imaging work
+      including pancreatic cancer assessment from images, so a system keying on
+      "medical image diagnosis" will answer confidently and wrongly.
+
+  - id: none_05
+    class: unanswerable
+    query: randomised controlled trial of a new hypertension drug
+    relevant_ids: []
+    notes: Clinical and cardiovascular LLM papers exist; no trial of any drug does.
+
+  - id: none_06
+    class: unanswerable
+    query: automated review of commercial lease contracts
+    relevant_ids: []
+    notes: Legal retrieval papers exist (statutory, asylum, tax); contract review does not.
+
+  - id: none_07
+    class: unanswerable
+    query: coral reef bleaching and ocean acidification
+    relevant_ids: []
+    notes: No marine or climate science in the corpus.
+
+  - id: none_08
+    class: unanswerable
+    query: congestion pricing in urban road networks
+    relevant_ids: []
+    notes: No transport economics in the corpus.
+
+  - id: none_09
+    class: unanswerable
+    query: second language acquisition in bilingual children
+    relevant_ids: []
+    notes: >-
+      Multilingual retrieval papers exist and will match on "language" and
+      "multilingual"; language acquisition does not.
+
+  - id: none_10
+    class: unanswerable
+    query: supply chain inventory optimisation for perishable goods
+    relevant_ids: []
+    notes: E-commerce recommendation exists; operations research does not.

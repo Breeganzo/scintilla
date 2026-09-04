@@ -35,14 +35,14 @@ addopts = [
 ]
 # Extended as each package lands: search (Phase 3), ingestion (Phase 2),
 # evaluation (Phase 3). pytest errors on a testpath that does not exist.
-testpaths = ["papers", "ingestion", "search"]
+testpaths = ["papers", "ingestion", "search", "evaluation"]
 markers = [
     "integration: requires a live service (Postgres, OpenSearch) to be running",
     "slow: takes more than a second",
 ]
 
 [tool.coverage.run]
-source = ["papers", "config", "ingestion", "search"]
+source = ["papers", "config", "ingestion", "search", "evaluation"]
 omit = ["*/migrations/*", "*/tests/*", "*/__init__.py", "config/wsgi.py", "config/asgi.py"]
 
 [tool.coverage.report]

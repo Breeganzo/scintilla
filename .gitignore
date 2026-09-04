@@ -17,6 +17,7 @@ build/
 dist/
 *.egg-info/
 .venv/
+.venv-airflow/
 venv/
 env/
 
@@ -56,6 +57,10 @@ airflow/logs/
 airflow/airflow.db
 airflow/airflow.cfg
 airflow/webserver_config.py
+airflow/simple_auth_manager_passwords.json.generated
+airflow/*.pid
+airflow/*.err
+airflow/*.log
 
 # ---- Data ----------------------------------------------------------------
 # Raw harvested data is reproducible from the API, so it is not tracked.

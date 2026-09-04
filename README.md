@@ -18,7 +18,7 @@ works.
 | Phase | Scope | State |
 |---|---|---|
 | 1 · Foundation | Django, PostgreSQL, containers, CI | ✅ Complete |
-| 2 · Ingestion | arXiv harvesting, embeddings, indexing, Airflow | 🔄 Airflow outstanding |
+| 2 · Ingestion | arXiv harvesting, embeddings, indexing, Airflow | ✅ Complete |
 | 3 · Retrieval & evaluation | BM25, dense, RRF, golden set, metrics, CI gate | ⬜ Not started |
 | 4 · Ship | React frontend, MCP server, deployment, hardening | ⬜ Not started |
 
@@ -27,11 +27,25 @@ useful yet: a clean clone installs, migrates against PostgreSQL 16, serves a
 read-only API and passes 29 tests, and CI checks lint, tests, dependencies and
 the container build on every push.
 
-Phase 2 currently harvests arXiv into PostgreSQL, chunks against the embedding
-model's own tokenizer, embeds into pgvector and indexes into OpenSearch. The
-corpus is 2,975 papers across `hep-ex`, `hep-th` and `cs.IR`, and re-running
-either command indexes nothing, which is the property that makes a scheduled
-pipeline safe. Orchestrating that with Airflow is the remaining piece.
+Phase 2 harvests arXiv into PostgreSQL, chunks against the embedding model's
+own tokenizer, embeds into pgvector and indexes into OpenSearch, on a daily
+Airflow schedule. The corpus is 3,101 papers across `hep-ex`, `hep-th`,
+`hep-ph` and `cs.IR`. The phase gate was that the DAG could be triggered twice
+and the second run index nothing; it does exactly that, which is the property
+that makes a scheduled pipeline safe to leave running.
+
+```mermaid
+flowchart LR
+    P[preflight] --> H["harvest<br/>one mapped task per category"]
+    H --> I["index<br/>embed + upsert"]
+    I --> V["verify<br/>assert invariants"]
+```
+
+`preflight` fails fast on a bad environment. `harvest` is mapped per category
+so one category rate-limiting cannot fail the others. `index` touches only what
+changed. `verify` asserts that no chunk is unembedded, that the index document
+count equals the chunk count and that every paper is marked indexed — and fails
+the run if any of those is false.
 
 **Nothing is fused or measured yet.** There is no Reciprocal Rank Fusion, no
 golden set and no retrieval metrics, so no claim is made about retrieval

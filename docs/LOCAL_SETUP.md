@@ -216,16 +216,96 @@ Hugging Face on first use and is cached in `~/.cache/huggingface`. The first
 
 ## 4. Airflow
 
-Added in Phase 2. Airflow runs natively without Docker in standalone mode:
+Airflow orchestrates the daily harvest. It runs natively, without Docker.
+
+### 4a. Its own virtualenv
+
+Airflow pins a large dependency tree of its own. Installing it next to Django
+means neither can be upgraded without negotiating with the other, and a
+resolver conflict in the orchestrator would block work on the application it is
+only supposed to be triggering. So it gets a separate interpreter:
 
 ```bash
-pip install "apache-airflow==2.10.4"
-export AIRFLOW_HOME="$(pwd)/airflow"
-airflow standalone
+python3 -m venv .venv-airflow
+./.venv-airflow/bin/pip install --upgrade pip
+
+AIRFLOW_VERSION=3.3.1
+PYTHON_VERSION="$(./.venv-airflow/bin/python -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')"
+./.venv-airflow/bin/pip install "apache-airflow[postgres]==${AIRFLOW_VERSION}" \
+  --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
 ```
 
-It prints an admin password on first run and serves the UI at
-`http://localhost:8080`.
+The constraints file is not optional. Airflow has hundreds of transitive
+dependencies and pip's resolver will happily pick a combination that imports
+but does not run. The constraints file is the set the Airflow team actually
+tested against that Python version.
+
+> **Why 3.3.1 and not 2.x?** The original plan said 2.10.4. There is no
+> 2.10.4 wheel for Python 3.13 — the 2.x line tops out below the version of
+> Python this project targets. Pinning an older Python purely to run an
+> end-of-life scheduler is the wrong trade.
+
+### 4b. Its own metadata database
+
+Airflow writes constantly: task instances, heartbeats, XComs. Keeping that out
+of the application database means `pg_dump scintilla` is the corpus and nothing
+else, and scheduler churn never shows up in application query plans.
+
+```bash
+createdb scintilla_airflow
+```
+
+### 4c. Environment
+
+Everything Airflow needs is in one sourceable script, so the scheduler and a
+human running the same command by hand agree on every value:
+
+```bash
+source scripts/airflow_env.sh
+```
+
+This is a shell script rather than a `.env` file on purpose: it has to expand
+`$(whoami)` and `$PWD`, and python-dotenv reads `.env` literally — it would
+hand Postgres a role called `$(whoami)`.
+
+### 4d. Initialise and run
+
+```bash
+airflow db migrate      # creates Airflow's tables in scintilla_airflow
+airflow standalone      # api-server + scheduler + dag-processor + triggerer
+```
+
+The UI is at `http://localhost:8080`. The generated admin password is written
+to `airflow/simple_auth_manager_passwords.json.generated`, which is gitignored.
+
+To run the pipeline once without a scheduler — useful for testing:
+
+```bash
+airflow dags test arxiv_ingest
+```
+
+### 4e. What the DAG does
+
+```
+preflight ──▶ harvest[category] ──▶ index ──▶ verify
+```
+
+`preflight` fails fast if the venv, `manage.py`, `DATABASE_URL` or OpenSearch
+are missing, so a misconfiguration surfaces in two seconds rather than after a
+twenty-minute harvest. `harvest` is one mapped task per arXiv category, so one
+category rate-limiting does not fail the others. `index` embeds and indexes
+only what changed. `verify` asserts the three invariants that matter — no
+unembedded chunks, index document count equal to chunk count, every paper
+marked indexed — and fails the run if any of them is false.
+
+Tasks shell out to the management commands rather than importing Django. That
+keeps one interface, not two: the scheduled path and the manual path are the
+same path. The cost is that failures arrive as exit codes and logs rather than
+tracebacks, which is acceptable because both commands raise `CommandError` on
+failure and exit non-zero.
+
+The categories and per-category limit come from `ARXIV_CATEGORIES` and
+`ARXIV_DAILY_LIMIT`, read at DAG parse time.
 
 ---
 
@@ -347,3 +427,7 @@ around 1.2 GB of resident memory, almost all of it PyTorch.
 | `ERROR: Unknown plugin opensearch-knn` | Same cause | Same answer. Do not chase this; there is no macOS build |
 | `sentence-transformers is not installed` | `requirements/ml.txt` was skipped | `pip install -r requirements/ml.txt` |
 | First `index_papers` run hangs for a minute | Downloading the 130 MB model from Hugging Face | Wait. Subsequent runs read from `~/.cache/huggingface` |
+| `airflow standalone` starts, then dies with `FileNotFoundError: 'airflow'` | `standalone` does not run the sub-components in-process. It spawns them by executing the string `airflow`, resolved against `PATH`. Calling `./.venv-airflow/bin/airflow` finds the parent by path but the children by name | `source scripts/airflow_env.sh`, which puts `.venv-airflow/bin` on `PATH` |
+| `airflow dags list` prints `No data found` right after `db migrate` | The DAG table is written by the dag-processor, not by the CLI. Nothing has parsed the folder yet | `airflow dags reserialize`, or just start `airflow standalone` and wait for the processor's first pass |
+| Postgres refuses to start: `FATAL: could not access file "timescaledb"` | `shared_preload_libraries` in `postgresql.conf` names an extension that is not built for this Postgres major version. The server cannot start at all | Comment the line out in `/opt/homebrew/var/postgresql@16/postgresql.conf` and restart. Check what is actually installed with `ls /opt/homebrew/opt/postgresql@16/lib/postgresql/` |
+| `brew services` shows `postgresql@16  error 1` and restarts every few seconds | An orphaned postmaster still holds `postmaster.pid`, so launchd's restart always loses the race. The real error is hidden underneath | `kill` the stale PID named in the lock file, then `brew services start postgresql@16` and read the log again |

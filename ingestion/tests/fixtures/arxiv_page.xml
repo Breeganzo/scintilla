@@ -1,0 +1,3081 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/n1z1YuzuV67LmqwaYajD0DMevq0</id>
+  <title>arXiv Query: search_query=cat:hep-ex&amp;id_list=&amp;start=0&amp;max_results=5</title>
+  <updated>2026-09-03T16:40:45Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=cat:hep-ex&amp;start=0&amp;max_results=5&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>5</opensearch:itemsPerPage>
+  <opensearch:totalResults>61209</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2609.02874v1</id>
+    <title>Radiative and Dalitz decays of $Υ(1S)$ in the light of the ATOMKI X17 anomaly</title>
+    <updated>2026-09-02T17:55:12Z</updated>
+    <link href="https://arxiv.org/abs/2609.02874v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.02874v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We study the radiative decay $Υ(1S)\to η_bγ$ and the Dalitz decay $Υ(1S)\to η_b e^+ e^-$ within the framework of the Covariant Confined Quark Model. We provide theoretical predictions for the hadronic form factor, the radiative decay constant, and the decay branching fractions. Within the Standard Model we predict $Γ(Υ(1S)\toη_b γ) = 9.3(9)\, \textrm{eV}$ and $Γ(Υ(1S)\toη_b e^+ e^-) = 4.8(5)\times 10^{-2}\, \textrm{eV}$. The contribution of the hypothetical ATOMKI $X17$ vector boson to the Dalitz channel is also investigated.</summary>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ex" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="nucl-ex" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-02T17:55:12Z</published>
+    <arxiv:comment>13 pages, 4 figures, Phenikaa International Physics Conference 2025: Celebrating 100 years of quantum physics (PIPC2025) 13/10/2025 - 15/10/2025 Hanoi, Vietnam</arxiv:comment>
+    <arxiv:primary_category term="hep-ph"/>
+    <arxiv:journal_ref>Journal of Physics: Conference Series, Volume 3284, Page 012005 (2026)</arxiv:journal_ref>
+    <author>
+      <name>Chien-Thang Tran</name>
+    </author>
+    <author>
+      <name>Mikhail A. Ivanov</name>
+    </author>
+    <arxiv:doi>10.1088/1742-6596/3284/1/012005</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1088/1742-6596/3284/1/012005" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.02828v1</id>
+    <title>Effective Sub-Quantum Readout for Non-Monochromatic Axion Signals in High-$Q$ Haloscopes</title>
+    <updated>2026-09-02T17:13:44Z</updated>
+    <link href="https://arxiv.org/abs/2609.02828v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.02828v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The search for wave-like dark matter using microwave cavity haloscopes is constrained by the Standard Quantum Limit, which dictates that phase-preserving linear amplification results in a minimum of one quantum of total system noise for a narrow-band signal. We demonstrate that this limit is effectively halved for a non-monochromatic axion signal coupled to a high-$Q$ cavity. By operating a Josephson Parametric Amplifier such that the cavity resonance is centered exactly at the half-pump frequency, the axion signal symmetrically populates both the signal and idler bands. Through quadrature analysis of the homodyne readout, we show that the incoherent sum of these mirrored spectral components doubles the measured signal power while the vacuum noise remains constant. This operation yields an effective noise limit of 0.5 quanta per frequency bin, translating to an overall effective limit of $1/\sqrt{2}$ quanta after optimal matched filtering.</summary>
+    <category term="hep-ex" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="quant-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-02T17:13:44Z</published>
+    <arxiv:comment>4 pages</arxiv:comment>
+    <arxiv:primary_category term="hep-ex"/>
+    <author>
+      <name>Junu Jeong</name>
+    </author>
+    <author>
+      <name>Max Silva-Feaver</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.02823v1</id>
+    <title>Search for dark matter particle interactions in an extended nuclear recoil energy window with the LUX-ZEPLIN (LZ) experiment</title>
+    <updated>2026-09-02T17:11:17Z</updated>
+    <link href="https://arxiv.org/abs/2609.02823v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.02823v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We report on a search for dark matter particles interacting with xenon nuclei in an exposure of 2.84 tonne-years with the LUX-ZEPLIN (LZ) experiment. An extended nuclear recoil energy window up to approximately 270 keV enables searches for effective field theory and inelastic models of dark matter where high-energy recoils account for a larger fraction of the predicted recoil spectrum compared to the nominal spin independent interaction. We observe one event with characteristics consistent with a nuclear recoil of $248\pm23\,\mathrm{(stat)}\pm23\,\mathrm{(sys)}$ keV, in a region where the known background expectation is low. A profile likelihood ratio test finds tension with the background-only hypothesis at a global significance of 2.6$σ$ when accounting for look-elsewhere effects, with a maximum local significance of 3.4$σ$ across the models tested. We describe the analysis and event of interest, the background model used in the statistical inference, and detail several of the rare background topologies considered.</summary>
+    <category term="hep-ex" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-02T17:11:17Z</published>
+    <arxiv:comment>25 pages including supplemental, 13 figures including supplemental. Data release at https://doi.org/10.17182/hepdata.182472.v1</arxiv:comment>
+    <arxiv:primary_category term="hep-ex"/>
+    <author>
+      <name>D. S. Akerib</name>
+    </author>
+    <author>
+      <name>A. K. Al Musalhi</name>
+    </author>
+    <author>
+      <name>B. J. Almquist</name>
+    </author>
+    <author>
+      <name>C. S. Amarasinghe</name>
+    </author>
+    <author>
+      <name>A. Ames</name>
+    </author>
+    <author>
+      <name>T. Anderson</name>
+    </author>
+    <author>
+      <name>N. Angelides</name>
+    </author>
+    <author>
+      <name>H. M. Araújo</name>
+    </author>
+    <author>
+      <name>J. E. Armstrong</name>
+    </author>
+    <author>
+      <name>M. Arthurs</name>
+    </author>
+    <author>
+      <name>A. Baker</name>
+    </author>
+    <author>
+      <name>S. Balashov</name>
+    </author>
+    <author>
+      <name>J. Bang</name>
+    </author>
+    <author>
+      <name>J. W. Bargemann</name>
+    </author>
+    <author>
+      <name>E. E. Barillier</name>
+    </author>
+    <author>
+      <name>D. Bauer</name>
+    </author>
+    <author>
+      <name>K. Beattie</name>
+    </author>
+    <author>
+      <name>A. Beauchene</name>
+    </author>
+    <author>
+      <name>T. L. Benson</name>
+    </author>
+    <author>
+      <name>A. Bhatti</name>
+    </author>
+    <author>
+      <name>T. P. Biesiadzinski</name>
+    </author>
+    <author>
+      <name>H. J. Birch</name>
+    </author>
+    <author>
+      <name>E. Bishop</name>
+    </author>
+    <author>
+      <name>G. M. Blockinger</name>
+    </author>
+    <author>
+      <name>B. Boxer</name>
+    </author>
+    <author>
+      <name>C. A. J. Brew</name>
+    </author>
+    <author>
+      <name>P. Brás</name>
+    </author>
+    <author>
+      <name>S. Burdin</name>
+    </author>
+    <author>
+      <name>M. C. Carmona-Benitez</name>
+    </author>
+    <author>
+      <name>M. Carter</name>
+    </author>
+    <author>
+      <name>A. Chawla</name>
+    </author>
+    <author>
+      <name>J. J. Cherwinka</name>
+    </author>
+    <author>
+      <name>Y. T. Chin</name>
+    </author>
+    <author>
+      <name>S. Contreras</name>
+    </author>
+    <author>
+      <name>M. V. Converse</name>
+    </author>
+    <author>
+      <name>R. Coronel</name>
+    </author>
+    <author>
+      <name>A. Cottle</name>
+    </author>
+    <author>
+      <name>C. Coulson</name>
+    </author>
+    <author>
+      <name>G. Cox</name>
+    </author>
+    <author>
+      <name>C. E. Dahl</name>
+    </author>
+    <author>
+      <name>I. Darlington</name>
+    </author>
+    <author>
+      <name>S. Dave</name>
+    </author>
+    <author>
+      <name>J. Delgaudio</name>
+    </author>
+    <author>
+      <name>S. Desai</name>
+    </author>
+    <author>
+      <name>S. Dey</name>
+    </author>
+    <author>
+      <name>L. de Viveiros</name>
+    </author>
+    <author>
+      <name>L. Di Felice</name>
+    </author>
+    <author>
+      <name>C. Ding</name>
+    </author>
+    <author>
+      <name>J. E. Y. Dobson</name>
+    </author>
+    <author>
+      <name>E. Druszkiewicz</name>
+    </author>
+    <author>
+      <name>S. Dubey</name>
+    </author>
+    <author>
+      <name>C. L. Dunbar</name>
+    </author>
+    <author>
+      <name>S. R. Eriksen</name>
+    </author>
+    <author>
+      <name>S. Fayer</name>
+    </author>
+    <author>
+      <name>N. Fieldhouse</name>
+    </author>
+    <author>
+      <name>S. Fiorucci</name>
+    </author>
+    <author>
+      <name>H. Flaecher</name>
+    </author>
+    <author>
+      <name>E. D. Fraser</name>
+    </author>
+    <author>
+      <name>T. M. A. Fruth</name>
+    </author>
+    <author>
+      <name>P. W. Gaemers</name>
+    </author>
+    <author>
+      <name>R. J. Gaitskell</name>
+    </author>
+    <author>
+      <name>A. Geffre</name>
+    </author>
+    <author>
+      <name>J. Genovesi</name>
+    </author>
+    <author>
+      <name>C. Ghag</name>
+    </author>
+    <author>
+      <name>J. Ghamsari</name>
+    </author>
+    <author>
+      <name>A. Ghosh</name>
+    </author>
+    <author>
+      <name>S. Ghosh</name>
+    </author>
+    <author>
+      <name>R. Gibbons</name>
+    </author>
+    <author>
+      <name>S. Gokhale</name>
+    </author>
+    <author>
+      <name>J. Green</name>
+    </author>
+    <author>
+      <name>M. G. D. van der Grinten</name>
+    </author>
+    <author>
+      <name>J. J. Haiston</name>
+    </author>
+    <author>
+      <name>C. R. Hall</name>
+    </author>
+    <author>
+      <name>T. Hall</name>
+    </author>
+    <author>
+      <name>R. N. Hampp</name>
+    </author>
+    <author>
+      <name>S. J. Haselschwardt</name>
+    </author>
+    <author>
+      <name>M. A. Hernandez</name>
+    </author>
+    <author>
+      <name>S. A. Hertel</name>
+    </author>
+    <author>
+      <name>G. J. Homenides</name>
+    </author>
+    <author>
+      <name>M. Horn</name>
+    </author>
+    <author>
+      <name>T. Horoho</name>
+    </author>
+    <author>
+      <name>D. Q. Huang</name>
+    </author>
+    <author>
+      <name>W. Hulse</name>
+    </author>
+    <author>
+      <name>D. Hunt</name>
+    </author>
+    <author>
+      <name>E. Jacquet</name>
+    </author>
+    <author>
+      <name>R. S. James</name>
+    </author>
+    <author>
+      <name>K. R. Jenkins</name>
+    </author>
+    <author>
+      <name>A. C. Kaboth</name>
+    </author>
+    <author>
+      <name>A. C. Kamaha</name>
+    </author>
+    <author>
+      <name>D. Khaitan</name>
+    </author>
+    <author>
+      <name>A. Khazov</name>
+    </author>
+    <author>
+      <name>J. Kim</name>
+    </author>
+    <author>
+      <name>Y. D. Kim</name>
+    </author>
+    <author>
+      <name>D. Kodroff</name>
+    </author>
+    <author>
+      <name>Q. C. Kong</name>
+    </author>
+    <author>
+      <name>E. V. Korolkova</name>
+    </author>
+    <author>
+      <name>H. Kraus</name>
+    </author>
+    <author>
+      <name>S. Kravitz</name>
+    </author>
+    <author>
+      <name>L. Kreczko</name>
+    </author>
+    <author>
+      <name>V. A. Kudryavtsev</name>
+    </author>
+    <author>
+      <name>C. Lawes</name>
+    </author>
+    <author>
+      <name>E. B. Leon</name>
+    </author>
+    <author>
+      <name>D. S. Leonard</name>
+    </author>
+    <author>
+      <name>K. T. Lesko</name>
+    </author>
+    <author>
+      <name>C. Levy</name>
+    </author>
+    <author>
+      <name>Z. Li</name>
+    </author>
+    <author>
+      <name>J. Lin</name>
+    </author>
+    <author>
+      <name>A. Lindote</name>
+    </author>
+    <author>
+      <name>W. H. Lippincott</name>
+    </author>
+    <author>
+      <name>J. Long</name>
+    </author>
+    <author>
+      <name>M. I. Lopes</name>
+    </author>
+    <author>
+      <name>W. Lorenzon</name>
+    </author>
+    <author>
+      <name>C. Lu</name>
+    </author>
+    <author>
+      <name>S. Luitz</name>
+    </author>
+    <author>
+      <name>W. Ma</name>
+    </author>
+    <author>
+      <name>V. Mahajan</name>
+    </author>
+    <author>
+      <name>P. A. Majewski</name>
+    </author>
+    <author>
+      <name>A. Manalaysay</name>
+    </author>
+    <author>
+      <name>R. L. Mannino</name>
+    </author>
+    <author>
+      <name>R. J. Matheson</name>
+    </author>
+    <author>
+      <name>C. Maupin</name>
+    </author>
+    <author>
+      <name>M. E. McCarthy</name>
+    </author>
+    <author>
+      <name>D. N. McKinsey</name>
+    </author>
+    <author>
+      <name>J. McLaughlin</name>
+    </author>
+    <author>
+      <name>J. B. McLaughlin</name>
+    </author>
+    <author>
+      <name>B. Mitra</name>
+    </author>
+    <author>
+      <name>E. Mizrachi</name>
+    </author>
+    <author>
+      <name>M. E. Monzani</name>
+    </author>
+    <author>
+      <name>K. Morå</name>
+    </author>
+    <author>
+      <name>E. Morrison</name>
+    </author>
+    <author>
+      <name>B. J. Mount</name>
+    </author>
+    <author>
+      <name>J. Munski</name>
+    </author>
+    <author>
+      <name>M. Murdy</name>
+    </author>
+    <author>
+      <name>A. St. J. Murphy</name>
+    </author>
+    <author>
+      <name>H. N. Nelson</name>
+    </author>
+    <author>
+      <name>F. Neves</name>
+    </author>
+    <author>
+      <name>A. Nguyen</name>
+    </author>
+    <author>
+      <name>C. L. O'Brien</name>
+    </author>
+    <author>
+      <name>F. H. O'Shea</name>
+    </author>
+    <author>
+      <name>I. Olcina</name>
+    </author>
+    <author>
+      <name>K. C. Oliver-Mallory</name>
+    </author>
+    <author>
+      <name>J. Orpwood</name>
+    </author>
+    <author>
+      <name>K. Y Oyulmaz</name>
+    </author>
+    <author>
+      <name>K. J. Palladino</name>
+    </author>
+    <author>
+      <name>N. J. Pannifer</name>
+    </author>
+    <author>
+      <name>S. J. Patton</name>
+    </author>
+    <author>
+      <name>B. Penning</name>
+    </author>
+    <author>
+      <name>G. Pereira</name>
+    </author>
+    <author>
+      <name>R. Peres</name>
+    </author>
+    <author>
+      <name>E. Perry</name>
+    </author>
+    <author>
+      <name>T. Pershing</name>
+    </author>
+    <author>
+      <name>A. Piepke</name>
+    </author>
+    <author>
+      <name>S. S. Poudel</name>
+    </author>
+    <author>
+      <name>Y. Qie</name>
+    </author>
+    <author>
+      <name>J. Reichenbacher</name>
+    </author>
+    <author>
+      <name>G. R. C. Rischbieter</name>
+    </author>
+    <author>
+      <name>E. Ritchey</name>
+    </author>
+    <author>
+      <name>H. S. Riyat</name>
+    </author>
+    <author>
+      <name>R. Rosero</name>
+    </author>
+    <author>
+      <name>N. J. Rowe</name>
+    </author>
+    <author>
+      <name>T. Rushton</name>
+    </author>
+    <author>
+      <name>D. Rynders</name>
+    </author>
+    <author>
+      <name>S. Saltão</name>
+    </author>
+    <author>
+      <name>I. Sargeant</name>
+    </author>
+    <author>
+      <name>A. B. M. R. Sazzad</name>
+    </author>
+    <author>
+      <name>R. W. Schnee</name>
+    </author>
+    <author>
+      <name>G. Sehr</name>
+    </author>
+    <author>
+      <name>M. Severson B. Shafer</name>
+    </author>
+    <author>
+      <name>S. Shaw</name>
+    </author>
+    <author>
+      <name>L. Sherman</name>
+    </author>
+    <author>
+      <name>K. Shi</name>
+    </author>
+    <author>
+      <name>T. Shutt</name>
+    </author>
+    <author>
+      <name>C. Silva</name>
+    </author>
+    <author>
+      <name>G. Sinev</name>
+    </author>
+    <author>
+      <name>J. Siniscalco</name>
+    </author>
+    <author>
+      <name>A. M. Softley-Brown</name>
+    </author>
+    <author>
+      <name>V. N. Solovov</name>
+    </author>
+    <author>
+      <name>P. Sorensen</name>
+    </author>
+    <author>
+      <name>J. Soria</name>
+    </author>
+    <author>
+      <name>T. J. Sumner</name>
+    </author>
+    <author>
+      <name>M. Szydagis</name>
+    </author>
+    <author>
+      <name>C. F. Tang</name>
+    </author>
+    <author>
+      <name>K. Thieme</name>
+    </author>
+    <author>
+      <name>D. R. Tiedt</name>
+    </author>
+    <author>
+      <name>D. R. Tovey</name>
+    </author>
+    <author>
+      <name>J. Tranter</name>
+    </author>
+    <author>
+      <name>M. Trask</name>
+    </author>
+    <author>
+      <name>K. Trengove</name>
+    </author>
+    <author>
+      <name>B. Twigg</name>
+    </author>
+    <author>
+      <name>A. Usón</name>
+    </author>
+    <author>
+      <name>A. C. Vaitkus</name>
+    </author>
+    <author>
+      <name>O. Valentino</name>
+    </author>
+    <author>
+      <name>A. Wang</name>
+    </author>
+    <author>
+      <name>J. J. Wang</name>
+    </author>
+    <author>
+      <name>Y. Wang</name>
+    </author>
+    <author>
+      <name>L. Weeldreyer</name>
+    </author>
+    <author>
+      <name>T. J. Whitis</name>
+    </author>
+    <author>
+      <name>K. Wild</name>
+    </author>
+    <author>
+      <name>M. Williams</name>
+    </author>
+    <author>
+      <name>J. Winnicki</name>
+    </author>
+    <author>
+      <name>M. S. Witherell</name>
+    </author>
+    <author>
+      <name>L. Wolf</name>
+    </author>
+    <author>
+      <name>F. L. H. Wolfs</name>
+    </author>
+    <author>
+      <name>S. Woodford</name>
+    </author>
+    <author>
+      <name>D. Woodward</name>
+    </author>
+    <author>
+      <name>C. J. Wright</name>
+    </author>
+    <author>
+      <name>Q. Xia</name>
+    </author>
+    <author>
+      <name>J. Xu</name>
+    </author>
+    <author>
+      <name>Y. Xu</name>
+    </author>
+    <author>
+      <name>M. Yeh</name>
+    </author>
+    <author>
+      <name>D. Yeum</name>
+    </author>
+    <author>
+      <name>J. Young</name>
+    </author>
+    <author>
+      <name>H. D. Zenger</name>
+    </author>
+    <author>
+      <name>W. Zha</name>
+    </author>
+    <author>
+      <name>H. Zhang</name>
+    </author>
+    <author>
+      <name>T. Zhang</name>
+    </author>
+    <author>
+      <name>Y. Zhou</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.02775v1</id>
+    <title>Strong Constraints on Higgsino Dark Matter from Solar Capture</title>
+    <updated>2026-09-02T16:11:46Z</updated>
+    <link href="https://arxiv.org/abs/2609.02775v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.02775v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Higgsino dark matter remains one of the most convincing dark matter candidates. It can exist in a ``quasi-Dirac" regime, when the splitting between two Majorana components is on the order of $O(\rm few~\,MeV)$ or less. Owing to the strong gravitational pull of the Sun, the DM particles accelerate to up to $\sim 1400$\,km/sec in the solar core, which allows for inelastic scattering on heavy elements and very effective capture onto solar-bound trajectories. We evaluate the expected flux of the neutrinos from the expected $χχ\to W^+W^-,ZZ$ annihilation for the cosmologically preferred mass, $m_χ\simeq 1.08$\,TeV while keeping the mass splitting $δ$ as a free parameter. Confronting it with the non-observation of high-energy neutrinos from the Sun by the IceCube experiment, we obtain a robust limit, $δ&gt;566$\,keV. These limits exclude the interpretation of the recent LZ event in terms of endothermic inelastic scattering of Higgsino dark matter on xenon nuclei.</summary>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="astro-ph.CO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ex" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-02T16:11:46Z</published>
+    <arxiv:comment>6 pages, 4 figures</arxiv:comment>
+    <arxiv:primary_category term="hep-ph"/>
+    <author>
+      <name>Maxim Pospelov</name>
+    </author>
+    <author>
+      <name>Harikrishnan Ramani</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.02584v1</id>
+    <title>Measurement of inelastic scattering $Λ(\overlineΛ)+p\toΣ^{0}(\overlineΣ^{0})+p$ via $e^+e^-\to J/ψ\toΛ\overlineΛ$</title>
+    <updated>2026-09-02T13:26:57Z</updated>
+    <link href="https://arxiv.org/abs/2609.02584v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.02584v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Using a sample of $(10087\pm44)\times10^{6}$ $J/ψ$ events collected with the BESIII detector, we investigate the inelastic scattering processes $Λ+p\toΣ^{0}+p$ and $\overlineΛ+p\to\overlineΣ^{0}+p$, exploiting hyperons from $J/ψ\toΛ\overlineΛ$ decays as an effective beam and the beam-pipe materials as targets. The processes $Λ+{}^{9}\mathrm{Be}\toΣ^{0}+p+{}^{8}\mathrm{Li}$ and $\overlineΛ+{}^{9}\mathrm{Be}\to\overlineΣ^{0}+p+{}^{8}\mathrm{Li}$ are measured at a hyperon momentum of $1.074~\mathrm{GeV}/c$, with cross sections of $(10.1\pm1.4_{\rm stat}\pm0.7_{\rm syst})$ mb and $(1.7\pm0.6_{\rm stat}\pm0.4_{\rm syst})$ mb, respectively. Under the assumption of surface-dominated hyperon-nucleus scattering, these measurements are used to extract the corresponding proton-target cross sections. Independently, direct measurements using the hydrogen component of the beam-pipe oil yield $(3.2\pm1.1_{\rm stat}\pm0.5_{\rm syst})$ mb for $Λ+p\toΣ^{0}+p$ and $(1.5\pm0.5_{\rm stat}\pm0.1_{\rm syst})$ mb for $\overlineΛ+p\to\overlineΣ^{0}+p$, consistent with the indirect determinations. The combined cross sections are $(4.7\pm0.7)$ mb and $(1.1\pm0.3)$ mb, respectively. The $\overlineΛ+p\to\overlineΣ^{0}+p$ signal constitutes the first evidence for anti-hyperon inelastic scattering with baryonic final states, with a significance of $3.1σ$. The pronounced difference between the $Λp$ and $\overlineΛp$ inelastic scattering cross sections provides new experimental constraints on hyperon-nucleon and anti-hyperon-nucleon interactions.</summary>
+    <category term="hep-ex" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-02T13:26:57Z</published>
+    <arxiv:primary_category term="hep-ex"/>
+    <author>
+      <name> BESIII Collaboration</name>
+    </author>
+    <author>
+      <name>M. Ablikim</name>
+    </author>
+    <author>
+      <name>M. N. Achasov</name>
+    </author>
+    <author>
+      <name>P. Adlarson</name>
+    </author>
+    <author>
+      <name>X. C. Ai</name>
+    </author>
+    <author>
+      <name>C. S. Akondi</name>
+    </author>
+    <author>
+      <name>R. Aliberti</name>
+    </author>
+    <author>
+      <name>A. Amoroso</name>
+    </author>
+    <author>
+      <name>Q. An</name>
+    </author>
+    <author>
+      <name>M. S. Anderson</name>
+    </author>
+    <author>
+      <name>Y. Bai</name>
+    </author>
+    <author>
+      <name>O. Bakina</name>
+    </author>
+    <author>
+      <name>H. R. Bao</name>
+    </author>
+    <author>
+      <name>X. L. Bao</name>
+    </author>
+    <author>
+      <name>M. Barbagiovanni</name>
+    </author>
+    <author>
+      <name>V. Batozskaya</name>
+    </author>
+    <author>
+      <name>K. Begzsuren</name>
+    </author>
+    <author>
+      <name>N. Berger</name>
+    </author>
+    <author>
+      <name>M. Berlowski</name>
+    </author>
+    <author>
+      <name>M. B. Bertani</name>
+    </author>
+    <author>
+      <name>D. Bettoni</name>
+    </author>
+    <author>
+      <name>F. Bianchi</name>
+    </author>
+    <author>
+      <name>E. Bianco</name>
+    </author>
+    <author>
+      <name>A. Bortone</name>
+    </author>
+    <author>
+      <name>I. Boyko</name>
+    </author>
+    <author>
+      <name>R. A. Briere</name>
+    </author>
+    <author>
+      <name>A. Brueggemann</name>
+    </author>
+    <author>
+      <name>D. Cabiati</name>
+    </author>
+    <author>
+      <name>H. Cai</name>
+    </author>
+    <author>
+      <name>M. H. Cai</name>
+    </author>
+    <author>
+      <name>X. Cai</name>
+    </author>
+    <author>
+      <name>A. Calcaterra</name>
+    </author>
+    <author>
+      <name>G. F. Cao</name>
+    </author>
+    <author>
+      <name>N. Cao</name>
+    </author>
+    <author>
+      <name>S. A. Cetin</name>
+    </author>
+    <author>
+      <name>X. Y. Chai</name>
+    </author>
+    <author>
+      <name>J. F. Chang</name>
+    </author>
+    <author>
+      <name>T. T. Chang</name>
+    </author>
+    <author>
+      <name>G. R. Che</name>
+    </author>
+    <author>
+      <name>Y. Z. Che</name>
+    </author>
+    <author>
+      <name>C. H. Chen</name>
+    </author>
+    <author>
+      <name>Chao Chen</name>
+    </author>
+    <author>
+      <name>G. Chen</name>
+    </author>
+    <author>
+      <name>H. S. Chen</name>
+    </author>
+    <author>
+      <name>H. Y. Chen</name>
+    </author>
+    <author>
+      <name>M. L. Chen</name>
+    </author>
+    <author>
+      <name>S. J. Chen</name>
+    </author>
+    <author>
+      <name>S. M. Chen</name>
+    </author>
+    <author>
+      <name>T. Chen</name>
+    </author>
+    <author>
+      <name>W. Chen</name>
+    </author>
+    <author>
+      <name>X. R. Chen</name>
+    </author>
+    <author>
+      <name>X. T. Chen</name>
+    </author>
+    <author>
+      <name>X. Y. Chen</name>
+    </author>
+    <author>
+      <name>Y. B. Chen</name>
+    </author>
+    <author>
+      <name>Y. Q. Chen</name>
+    </author>
+    <author>
+      <name>Z. K. Chen</name>
+    </author>
+    <author>
+      <name>J. Cheng</name>
+    </author>
+    <author>
+      <name>L. N. Cheng</name>
+    </author>
+    <author>
+      <name>S. K. Choi</name>
+    </author>
+    <author>
+      <name>X. Chu</name>
+    </author>
+    <author>
+      <name>G. Cibinetto</name>
+    </author>
+    <author>
+      <name>F. Cossio</name>
+    </author>
+    <author>
+      <name>J. Cottee-Meldrum</name>
+    </author>
+    <author>
+      <name>H. L. Dai</name>
+    </author>
+    <author>
+      <name>J. P. Dai</name>
+    </author>
+    <author>
+      <name>X. C. Dai</name>
+    </author>
+    <author>
+      <name>A. Dbeyssi</name>
+    </author>
+    <author>
+      <name>R. E. de Boer</name>
+    </author>
+    <author>
+      <name>D. Dedovich</name>
+    </author>
+    <author>
+      <name>C. Q. Deng</name>
+    </author>
+    <author>
+      <name>Z. Y. Deng</name>
+    </author>
+    <author>
+      <name>A. Denig</name>
+    </author>
+    <author>
+      <name>I. Denisenko</name>
+    </author>
+    <author>
+      <name>M. Destefanis</name>
+    </author>
+    <author>
+      <name>F. De Mori</name>
+    </author>
+    <author>
+      <name>E. Di Fiore</name>
+    </author>
+    <author>
+      <name>X. X. Ding</name>
+    </author>
+    <author>
+      <name>Y. Ding</name>
+    </author>
+    <author>
+      <name>Y. X. Ding</name>
+    </author>
+    <author>
+      <name>J. Dong</name>
+    </author>
+    <author>
+      <name>L. Y. Dong</name>
+    </author>
+    <author>
+      <name>M. Y. Dong</name>
+    </author>
+    <author>
+      <name>X. Dong</name>
+    </author>
+    <author>
+      <name>Z. J. Dong</name>
+    </author>
+    <author>
+      <name>M. C. Du</name>
+    </author>
+    <author>
+      <name>S. X. Du</name>
+    </author>
+    <author>
+      <name>Shaoxu Du</name>
+    </author>
+    <author>
+      <name>X. L. Du</name>
+    </author>
+    <author>
+      <name>Y. Q. Du</name>
+    </author>
+    <author>
+      <name>Y. Y. Duan</name>
+    </author>
+    <author>
+      <name>Z. H. Duan</name>
+    </author>
+    <author>
+      <name>P. Egorov</name>
+    </author>
+    <author>
+      <name>G. F. Fan</name>
+    </author>
+    <author>
+      <name>J. J. Fan</name>
+    </author>
+    <author>
+      <name>K. X. Fan</name>
+    </author>
+    <author>
+      <name>Y. H. Fan</name>
+    </author>
+    <author>
+      <name>J. Fang</name>
+    </author>
+    <author>
+      <name>Jin Fang</name>
+    </author>
+    <author>
+      <name>S. S. Fang</name>
+    </author>
+    <author>
+      <name>W. X. Fang</name>
+    </author>
+    <author>
+      <name>Y. Q. Fang</name>
+    </author>
+    <author>
+      <name>L. Fava</name>
+    </author>
+    <author>
+      <name>F. Feldbauer</name>
+    </author>
+    <author>
+      <name>G. Felici</name>
+    </author>
+    <author>
+      <name>C. Q. Feng</name>
+    </author>
+    <author>
+      <name>J. H. Feng</name>
+    </author>
+    <author>
+      <name>Q. X. Feng</name>
+    </author>
+    <author>
+      <name>Y. T. Feng</name>
+    </author>
+    <author>
+      <name>M. Fritsch</name>
+    </author>
+    <author>
+      <name>C. D. Fu</name>
+    </author>
+    <author>
+      <name>J. L. Fu</name>
+    </author>
+    <author>
+      <name>Y. W. Fu</name>
+    </author>
+    <author>
+      <name>H. Gao</name>
+    </author>
+    <author>
+      <name>Xu Gao</name>
+    </author>
+    <author>
+      <name>Y. Gao</name>
+    </author>
+    <author>
+      <name>Y. N. Gao</name>
+    </author>
+    <author>
+      <name>Y. Y. Gao</name>
+    </author>
+    <author>
+      <name>Yunong Gao</name>
+    </author>
+    <author>
+      <name>Z. Gao</name>
+    </author>
+    <author>
+      <name>S. Garbolino</name>
+    </author>
+    <author>
+      <name>I. Garzia</name>
+    </author>
+    <author>
+      <name>L. Ge</name>
+    </author>
+    <author>
+      <name>P. T. Ge</name>
+    </author>
+    <author>
+      <name>Z. W. Ge</name>
+    </author>
+    <author>
+      <name>C. Geng</name>
+    </author>
+    <author>
+      <name>A. Gilman</name>
+    </author>
+    <author>
+      <name>K. Goetzen</name>
+    </author>
+    <author>
+      <name>J. Gollub</name>
+    </author>
+    <author>
+      <name>J. B. Gong</name>
+    </author>
+    <author>
+      <name>J. D. Gong</name>
+    </author>
+    <author>
+      <name>L. Gong</name>
+    </author>
+    <author>
+      <name>W. X. Gong</name>
+    </author>
+    <author>
+      <name>W. Gradl</name>
+    </author>
+    <author>
+      <name>M. Greco</name>
+    </author>
+    <author>
+      <name>M. D. Gu</name>
+    </author>
+    <author>
+      <name>M. H. Gu</name>
+    </author>
+    <author>
+      <name>C. Y. Guan</name>
+    </author>
+    <author>
+      <name>A. Q. Guo</name>
+    </author>
+    <author>
+      <name>H. Guo</name>
+    </author>
+    <author>
+      <name>J. N. Guo</name>
+    </author>
+    <author>
+      <name>L. B. Guo</name>
+    </author>
+    <author>
+      <name>M. J. Guo</name>
+    </author>
+    <author>
+      <name>R. P. Guo</name>
+    </author>
+    <author>
+      <name>X. Guo</name>
+    </author>
+    <author>
+      <name>Y. P. Guo</name>
+    </author>
+    <author>
+      <name>Z. Guo</name>
+    </author>
+    <author>
+      <name>A. Guskov</name>
+    </author>
+    <author>
+      <name>J. Gutierrez</name>
+    </author>
+    <author>
+      <name>J. Y. Han</name>
+    </author>
+    <author>
+      <name>T. T. Han</name>
+    </author>
+    <author>
+      <name>X. Han</name>
+    </author>
+    <author>
+      <name>F. Hanisch</name>
+    </author>
+    <author>
+      <name>J. Y. Hao</name>
+    </author>
+    <author>
+      <name>K. D. Hao</name>
+    </author>
+    <author>
+      <name>X. Q. Hao</name>
+    </author>
+    <author>
+      <name>F. A. Harris</name>
+    </author>
+    <author>
+      <name>C. Z. He</name>
+    </author>
+    <author>
+      <name>K. K. He</name>
+    </author>
+    <author>
+      <name>K. L. He</name>
+    </author>
+    <author>
+      <name>F. H. Heinsius</name>
+    </author>
+    <author>
+      <name>C. H. Heinz</name>
+    </author>
+    <author>
+      <name>Y. K. Heng</name>
+    </author>
+    <author>
+      <name>C. Herold</name>
+    </author>
+    <author>
+      <name>P. C. Hong</name>
+    </author>
+    <author>
+      <name>G. Y. Hou</name>
+    </author>
+    <author>
+      <name>X. T. Hou</name>
+    </author>
+    <author>
+      <name>Y. R. Hou</name>
+    </author>
+    <author>
+      <name>Z. L. Hou</name>
+    </author>
+    <author>
+      <name>H. M. Hu</name>
+    </author>
+    <author>
+      <name>J. F. Hu</name>
+    </author>
+    <author>
+      <name>Q. P. Hu</name>
+    </author>
+    <author>
+      <name>S. L. Hu</name>
+    </author>
+    <author>
+      <name>T. Hu</name>
+    </author>
+    <author>
+      <name>Y. Hu</name>
+    </author>
+    <author>
+      <name>Y. X. Hu</name>
+    </author>
+    <author>
+      <name>Z. M. Hu</name>
+    </author>
+    <author>
+      <name>G. S. Huang</name>
+    </author>
+    <author>
+      <name>K. X. Huang</name>
+    </author>
+    <author>
+      <name>L. Q. Huang</name>
+    </author>
+    <author>
+      <name>P. Huang</name>
+    </author>
+    <author>
+      <name>X. T. Huang</name>
+    </author>
+    <author>
+      <name>Y. P. Huang</name>
+    </author>
+    <author>
+      <name>Y. S. Huang</name>
+    </author>
+    <author>
+      <name>T. Hussain</name>
+    </author>
+    <author>
+      <name>N. Hüsken</name>
+    </author>
+    <author>
+      <name>N. in der Wiesche</name>
+    </author>
+    <author>
+      <name>J. Jackson</name>
+    </author>
+    <author>
+      <name>Q. Ji</name>
+    </author>
+    <author>
+      <name>Q. P. Ji</name>
+    </author>
+    <author>
+      <name>W. Ji</name>
+    </author>
+    <author>
+      <name>X. B. Ji</name>
+    </author>
+    <author>
+      <name>X. L. Ji</name>
+    </author>
+    <author>
+      <name>Y. Y. Ji</name>
+    </author>
+    <author>
+      <name>L. K. Jia</name>
+    </author>
+    <author>
+      <name>X. Q. Jia</name>
+    </author>
+    <author>
+      <name>D. Jiang</name>
+    </author>
+    <author>
+      <name>S. J. Jiang</name>
+    </author>
+    <author>
+      <name>X. S. Jiang</name>
+    </author>
+    <author>
+      <name>Y. Jiang</name>
+    </author>
+    <author>
+      <name>J. B. Jiao</name>
+    </author>
+    <author>
+      <name>J. K. Jiao</name>
+    </author>
+    <author>
+      <name>Z. Jiao</name>
+    </author>
+    <author>
+      <name>L. C. L. Jin</name>
+    </author>
+    <author>
+      <name>S. Jin</name>
+    </author>
+    <author>
+      <name>Y. Jin</name>
+    </author>
+    <author>
+      <name>M. Q. Jing</name>
+    </author>
+    <author>
+      <name>X. M. Jing</name>
+    </author>
+    <author>
+      <name>T. Johansson</name>
+    </author>
+    <author>
+      <name>S. Kabana</name>
+    </author>
+    <author>
+      <name>X. L. Kang</name>
+    </author>
+    <author>
+      <name>X. S. Kang</name>
+    </author>
+    <author>
+      <name>B. C. Ke</name>
+    </author>
+    <author>
+      <name>V. Khachatryan</name>
+    </author>
+    <author>
+      <name>A. Khoukaz</name>
+    </author>
+    <author>
+      <name>O. B. Kolcu</name>
+    </author>
+    <author>
+      <name>B. Kopf</name>
+    </author>
+    <author>
+      <name>L. Kröger</name>
+    </author>
+    <author>
+      <name>L. Krümmel</name>
+    </author>
+    <author>
+      <name>Y. Y. Kuang</name>
+    </author>
+    <author>
+      <name>M. Kuessner</name>
+    </author>
+    <author>
+      <name>X. Kui</name>
+    </author>
+    <author>
+      <name>N. Kumar</name>
+    </author>
+    <author>
+      <name>A. Kupsc</name>
+    </author>
+    <author>
+      <name>W. Kühn</name>
+    </author>
+    <author>
+      <name>Q. Lan</name>
+    </author>
+    <author>
+      <name>W. N. Lan</name>
+    </author>
+    <author>
+      <name>T. T. Lei</name>
+    </author>
+    <author>
+      <name>M. Lellmann</name>
+    </author>
+    <author>
+      <name>T. Lenz</name>
+    </author>
+    <author>
+      <name>C. Li</name>
+    </author>
+    <author>
+      <name>C. H. Li</name>
+    </author>
+    <author>
+      <name>C. K. Li</name>
+    </author>
+    <author>
+      <name>Cong Li</name>
+    </author>
+    <author>
+      <name>D. M. Li</name>
+    </author>
+    <author>
+      <name>F. Li</name>
+    </author>
+    <author>
+      <name>G. Li</name>
+    </author>
+    <author>
+      <name>H. B. Li</name>
+    </author>
+    <author>
+      <name>H. J. Li</name>
+    </author>
+    <author>
+      <name>H. L. Li</name>
+    </author>
+    <author>
+      <name>H. N. Li</name>
+    </author>
+    <author>
+      <name>H. P. Li</name>
+    </author>
+    <author>
+      <name>Hui Li</name>
+    </author>
+    <author>
+      <name>J. N. Li</name>
+    </author>
+    <author>
+      <name>J. S. Li</name>
+    </author>
+    <author>
+      <name>J. W. Li</name>
+    </author>
+    <author>
+      <name>K. Li</name>
+    </author>
+    <author>
+      <name>K. L. Li</name>
+    </author>
+    <author>
+      <name>L. J. Li</name>
+    </author>
+    <author>
+      <name>L. K. Li</name>
+    </author>
+    <author>
+      <name>Lei Li</name>
+    </author>
+    <author>
+      <name>M. H. Li</name>
+    </author>
+    <author>
+      <name>M. R. Li</name>
+    </author>
+    <author>
+      <name>M. T. Li</name>
+    </author>
+    <author>
+      <name>P. L. Li</name>
+    </author>
+    <author>
+      <name>P. R. Li</name>
+    </author>
+    <author>
+      <name>Q. M. Li</name>
+    </author>
+    <author>
+      <name>Q. X. Li</name>
+    </author>
+    <author>
+      <name>R. Li</name>
+    </author>
+    <author>
+      <name>S. Li</name>
+    </author>
+    <author>
+      <name>S. X. Li</name>
+    </author>
+    <author>
+      <name>S. Y. Li</name>
+    </author>
+    <author>
+      <name>Shanshan Li</name>
+    </author>
+    <author>
+      <name>T. Li</name>
+    </author>
+    <author>
+      <name>T. Y. Li</name>
+    </author>
+    <author>
+      <name>W. D. Li</name>
+    </author>
+    <author>
+      <name>W. G. Li</name>
+    </author>
+    <author>
+      <name>X. Li</name>
+    </author>
+    <author>
+      <name>X. H. Li</name>
+    </author>
+    <author>
+      <name>X. K. Li</name>
+    </author>
+    <author>
+      <name>X. L. Li</name>
+    </author>
+    <author>
+      <name>X. Y. Li</name>
+    </author>
+    <author>
+      <name>X. Z. Li</name>
+    </author>
+    <author>
+      <name>Y. Li</name>
+    </author>
+    <author>
+      <name>Y. H. Li</name>
+    </author>
+    <author>
+      <name>Y. B. Li</name>
+    </author>
+    <author>
+      <name>Y. C. Li</name>
+    </author>
+    <author>
+      <name>Y. G. Li</name>
+    </author>
+    <author>
+      <name>Y. P. Li</name>
+    </author>
+    <author>
+      <name>Yi Li</name>
+    </author>
+    <author>
+      <name>Z. H. Li</name>
+    </author>
+    <author>
+      <name>Z. J. Li</name>
+    </author>
+    <author>
+      <name>Z. L. Li</name>
+    </author>
+    <author>
+      <name>Z. X. Li</name>
+    </author>
+    <author>
+      <name>Z. Y. Li</name>
+    </author>
+    <author>
+      <name>Zaiyi Li</name>
+    </author>
+    <author>
+      <name>C. Liang</name>
+    </author>
+    <author>
+      <name>H. Liang</name>
+    </author>
+    <author>
+      <name>Y. F. Liang</name>
+    </author>
+    <author>
+      <name>Y. T. Liang</name>
+    </author>
+    <author>
+      <name>Z. Z. Liang</name>
+    </author>
+    <author>
+      <name>G. R. Liao</name>
+    </author>
+    <author>
+      <name>L. B. Liao</name>
+    </author>
+    <author>
+      <name>M. H. Liao</name>
+    </author>
+    <author>
+      <name>Y. P. Liao</name>
+    </author>
+    <author>
+      <name>J. Libby</name>
+    </author>
+    <author>
+      <name>A. Limphirat</name>
+    </author>
+    <author>
+      <name>C. C. Lin</name>
+    </author>
+    <author>
+      <name>C. X. Lin</name>
+    </author>
+    <author>
+      <name>D. X. Lin</name>
+    </author>
+    <author>
+      <name>T. Lin</name>
+    </author>
+    <author>
+      <name>B. J. Liu</name>
+    </author>
+    <author>
+      <name>B. X. Liu</name>
+    </author>
+    <author>
+      <name>C. Liu</name>
+    </author>
+    <author>
+      <name>C. X. Liu</name>
+    </author>
+    <author>
+      <name>F. Liu</name>
+    </author>
+    <author>
+      <name>F. H. Liu</name>
+    </author>
+    <author>
+      <name>Feng Liu</name>
+    </author>
+    <author>
+      <name>G. M. Liu</name>
+    </author>
+    <author>
+      <name>H. Liu</name>
+    </author>
+    <author>
+      <name>H. B. Liu</name>
+    </author>
+    <author>
+      <name>H. M. Liu</name>
+    </author>
+    <author>
+      <name>Huihui Liu</name>
+    </author>
+    <author>
+      <name>J. B. Liu</name>
+    </author>
+    <author>
+      <name>K. Liu</name>
+    </author>
+    <author>
+      <name>K. Y. Liu</name>
+    </author>
+    <author>
+      <name>Ke Liu</name>
+    </author>
+    <author>
+      <name>Kun Liu</name>
+    </author>
+    <author>
+      <name>L. Liu</name>
+    </author>
+    <author>
+      <name>L. C. Liu</name>
+    </author>
+    <author>
+      <name>Lu Liu</name>
+    </author>
+    <author>
+      <name>M. H. Liu</name>
+    </author>
+    <author>
+      <name>P. L. Liu</name>
+    </author>
+    <author>
+      <name>Q. Liu</name>
+    </author>
+    <author>
+      <name>S. B. Liu</name>
+    </author>
+    <author>
+      <name>T. Liu</name>
+    </author>
+    <author>
+      <name>W. M. Liu</name>
+    </author>
+    <author>
+      <name>W. T. Liu</name>
+    </author>
+    <author>
+      <name>X. Liu</name>
+    </author>
+    <author>
+      <name>X. K. Liu</name>
+    </author>
+    <author>
+      <name>X. L. Liu</name>
+    </author>
+    <author>
+      <name>X. P. Liu</name>
+    </author>
+    <author>
+      <name>X. T. Liu</name>
+    </author>
+    <author>
+      <name>X. Y. Liu</name>
+    </author>
+    <author>
+      <name>Y. Liu</name>
+    </author>
+    <author>
+      <name>Y. B. Liu</name>
+    </author>
+    <author>
+      <name>Yi Liu</name>
+    </author>
+    <author>
+      <name>Z. A. Liu</name>
+    </author>
+    <author>
+      <name>Z. D. Liu</name>
+    </author>
+    <author>
+      <name>Z. Q. Liu</name>
+    </author>
+    <author>
+      <name>Z. X. Liu</name>
+    </author>
+    <author>
+      <name>Z. Y. Liu</name>
+    </author>
+    <author>
+      <name>Ziqiang Liu</name>
+    </author>
+    <author>
+      <name>X. C. Lou</name>
+    </author>
+    <author>
+      <name>H. J. Lu</name>
+    </author>
+    <author>
+      <name>J. G. Lu</name>
+    </author>
+    <author>
+      <name>X. L. Lu</name>
+    </author>
+    <author>
+      <name>Y. Lu</name>
+    </author>
+    <author>
+      <name>Y. H. Lu</name>
+    </author>
+    <author>
+      <name>Y. P. Lu</name>
+    </author>
+    <author>
+      <name>Z. H. Lu</name>
+    </author>
+    <author>
+      <name>C. L. Luo</name>
+    </author>
+    <author>
+      <name>J. R. Luo</name>
+    </author>
+    <author>
+      <name>J. S. Luo</name>
+    </author>
+    <author>
+      <name>M. X. Luo</name>
+    </author>
+    <author>
+      <name>T. Luo</name>
+    </author>
+    <author>
+      <name>X. L. Luo</name>
+    </author>
+    <author>
+      <name>Z. Y. Lv</name>
+    </author>
+    <author>
+      <name>X. R. Lyu</name>
+    </author>
+    <author>
+      <name>Y. F. Lyu</name>
+    </author>
+    <author>
+      <name>Y. H. Lyu</name>
+    </author>
+    <author>
+      <name>C. L. Ma</name>
+    </author>
+    <author>
+      <name>F. C. Ma</name>
+    </author>
+    <author>
+      <name>H. L. Ma</name>
+    </author>
+    <author>
+      <name>Heng Ma</name>
+    </author>
+    <author>
+      <name>J. L. Ma</name>
+    </author>
+    <author>
+      <name>L. L. Ma</name>
+    </author>
+    <author>
+      <name>L. R. Ma</name>
+    </author>
+    <author>
+      <name>Q. M. Ma</name>
+    </author>
+    <author>
+      <name>R. Q. Ma</name>
+    </author>
+    <author>
+      <name>R. Y. Ma</name>
+    </author>
+    <author>
+      <name>T. Ma</name>
+    </author>
+    <author>
+      <name>X. T. Ma</name>
+    </author>
+    <author>
+      <name>X. Y. Ma</name>
+    </author>
+    <author>
+      <name>F. E. Maas</name>
+    </author>
+    <author>
+      <name>I. MacKay</name>
+    </author>
+    <author>
+      <name>M. Maggiora</name>
+    </author>
+    <author>
+      <name>S. Maity</name>
+    </author>
+    <author>
+      <name>S. Malde</name>
+    </author>
+    <author>
+      <name>Y. J. Mao</name>
+    </author>
+    <author>
+      <name>Z. P. Mao</name>
+    </author>
+    <author>
+      <name>S. Marcello</name>
+    </author>
+    <author>
+      <name>A. Marshall</name>
+    </author>
+    <author>
+      <name>F. M. Melendi</name>
+    </author>
+    <author>
+      <name>Y. H. Meng</name>
+    </author>
+    <author>
+      <name>Z. X. Meng</name>
+    </author>
+    <author>
+      <name>G. Mezzadri</name>
+    </author>
+    <author>
+      <name>H. Miao</name>
+    </author>
+    <author>
+      <name>T. J. Min</name>
+    </author>
+    <author>
+      <name>R. E. Mitchell</name>
+    </author>
+    <author>
+      <name>X. H. Mo</name>
+    </author>
+    <author>
+      <name>B. Moses</name>
+    </author>
+    <author>
+      <name>N. Yu. Muchnoi</name>
+    </author>
+    <author>
+      <name>J. Muskalla</name>
+    </author>
+    <author>
+      <name>Y. Nefedov</name>
+    </author>
+    <author>
+      <name>F. Nerling</name>
+    </author>
+    <author>
+      <name>H. Neuwirth</name>
+    </author>
+    <author>
+      <name>Z. Ning</name>
+    </author>
+    <author>
+      <name>S. Nisar</name>
+    </author>
+    <author>
+      <name>Q. L. Niu</name>
+    </author>
+    <author>
+      <name>W. D. Niu</name>
+    </author>
+    <author>
+      <name>Y. Niu</name>
+    </author>
+    <author>
+      <name>C. Normand</name>
+    </author>
+    <author>
+      <name>S. L. Olsen</name>
+    </author>
+    <author>
+      <name>Q. Ouyang</name>
+    </author>
+    <author>
+      <name>I. V. Ovtin</name>
+    </author>
+    <author>
+      <name>S. Pacetti</name>
+    </author>
+    <author>
+      <name>Y. Pan</name>
+    </author>
+    <author>
+      <name>C. Y. Pang</name>
+    </author>
+    <author>
+      <name>A. Pathak</name>
+    </author>
+    <author>
+      <name>Y. P. Pei</name>
+    </author>
+    <author>
+      <name>M. Pelizaeus</name>
+    </author>
+    <author>
+      <name>G. L. Peng</name>
+    </author>
+    <author>
+      <name>H. P. Peng</name>
+    </author>
+    <author>
+      <name>X. J. Peng</name>
+    </author>
+    <author>
+      <name>Y. Y. Peng</name>
+    </author>
+    <author>
+      <name>K. Peters</name>
+    </author>
+    <author>
+      <name>K. Petridis</name>
+    </author>
+    <author>
+      <name>J. L. Ping</name>
+    </author>
+    <author>
+      <name>R. G. Ping</name>
+    </author>
+    <author>
+      <name>S. Plura</name>
+    </author>
+    <author>
+      <name>V. Prasad</name>
+    </author>
+    <author>
+      <name>L. Pöpping</name>
+    </author>
+    <author>
+      <name>F. Z. Qi</name>
+    </author>
+    <author>
+      <name>H. R. Qi</name>
+    </author>
+    <author>
+      <name>L. Y. Qian</name>
+    </author>
+    <author>
+      <name>S. Qian</name>
+    </author>
+    <author>
+      <name>W. B. Qian</name>
+    </author>
+    <author>
+      <name>C. F. Qiao</name>
+    </author>
+    <author>
+      <name>J. H. Qiao</name>
+    </author>
+    <author>
+      <name>J. J. Qin</name>
+    </author>
+    <author>
+      <name>J. L. Qin</name>
+    </author>
+    <author>
+      <name>L. Q. Qin</name>
+    </author>
+    <author>
+      <name>L. Y. Qin</name>
+    </author>
+    <author>
+      <name>P. B. Qin</name>
+    </author>
+    <author>
+      <name>X. P. Qin</name>
+    </author>
+    <author>
+      <name>X. S. Qin</name>
+    </author>
+    <author>
+      <name>Z. H. Qin</name>
+    </author>
+    <author>
+      <name>J. F. Qiu</name>
+    </author>
+    <author>
+      <name>Z. H. Qu</name>
+    </author>
+    <author>
+      <name>J. Rademacker</name>
+    </author>
+    <author>
+      <name>K. Ravindran</name>
+    </author>
+    <author>
+      <name>C. F. Redmer</name>
+    </author>
+    <author>
+      <name>A. Rivetti</name>
+    </author>
+    <author>
+      <name>M. Rolo</name>
+    </author>
+    <author>
+      <name>G. Rong</name>
+    </author>
+    <author>
+      <name>S. S. Rong</name>
+    </author>
+    <author>
+      <name>F. Rosini</name>
+    </author>
+    <author>
+      <name>Ch. Rosner</name>
+    </author>
+    <author>
+      <name>M. Q. Ruan</name>
+    </author>
+    <author>
+      <name>W. R. Ruangyoo</name>
+    </author>
+    <author>
+      <name>N. Salone</name>
+    </author>
+    <author>
+      <name>A. Sarantsev</name>
+    </author>
+    <author>
+      <name>Y. Schelhaas</name>
+    </author>
+    <author>
+      <name>M. Schernau</name>
+    </author>
+    <author>
+      <name>K. Schoenning</name>
+    </author>
+    <author>
+      <name>M. Scodeggio</name>
+    </author>
+    <author>
+      <name>W. Shan</name>
+    </author>
+    <author>
+      <name>X. Y. Shan</name>
+    </author>
+    <author>
+      <name>Z. J. Shang</name>
+    </author>
+    <author>
+      <name>J. F. Shangguan</name>
+    </author>
+    <author>
+      <name>L. G. Shao</name>
+    </author>
+    <author>
+      <name>M. Shao</name>
+    </author>
+    <author>
+      <name>C. P. Shen</name>
+    </author>
+    <author>
+      <name>H. F. Shen</name>
+    </author>
+    <author>
+      <name>W. H. Shen</name>
+    </author>
+    <author>
+      <name>X. Y. Shen</name>
+    </author>
+    <author>
+      <name>B. A. Shi</name>
+    </author>
+    <author>
+      <name>Ch. Y. Shi</name>
+    </author>
+    <author>
+      <name>H. Shi</name>
+    </author>
+    <author>
+      <name>J. L. Shi</name>
+    </author>
+    <author>
+      <name>J. Y. Shi</name>
+    </author>
+    <author>
+      <name>M. H. Shi</name>
+    </author>
+    <author>
+      <name>S. Shi</name>
+    </author>
+    <author>
+      <name>S. Y. Shi</name>
+    </author>
+    <author>
+      <name>X. Shi</name>
+    </author>
+    <author>
+      <name>H. L. Song</name>
+    </author>
+    <author>
+      <name>J. J. Song</name>
+    </author>
+    <author>
+      <name>M. H. Song</name>
+    </author>
+    <author>
+      <name>T. Z. Song</name>
+    </author>
+    <author>
+      <name>W. M. Song</name>
+    </author>
+    <author>
+      <name>Zirong Song</name>
+    </author>
+    <author>
+      <name>S. Sosio</name>
+    </author>
+    <author>
+      <name>S. Spataro</name>
+    </author>
+    <author>
+      <name>S. Stansilaus</name>
+    </author>
+    <author>
+      <name>F. Stieler</name>
+    </author>
+    <author>
+      <name>M. Stolte</name>
+    </author>
+    <author>
+      <name>S. S Su</name>
+    </author>
+    <author>
+      <name>G. B. Sun</name>
+    </author>
+    <author>
+      <name>G. X. Sun</name>
+    </author>
+    <author>
+      <name>H. Sun</name>
+    </author>
+    <author>
+      <name>H. K. Sun</name>
+    </author>
+    <author>
+      <name>J. F. Sun</name>
+    </author>
+    <author>
+      <name>K. Sun</name>
+    </author>
+    <author>
+      <name>L. Sun</name>
+    </author>
+    <author>
+      <name>R. Sun</name>
+    </author>
+    <author>
+      <name>S. S. Sun</name>
+    </author>
+    <author>
+      <name>T. Sun</name>
+    </author>
+    <author>
+      <name>W. Y. Sun</name>
+    </author>
+    <author>
+      <name>Y. C. Sun</name>
+    </author>
+    <author>
+      <name>Y. H. Sun</name>
+    </author>
+    <author>
+      <name>Y. J. Sun</name>
+    </author>
+    <author>
+      <name>Y. Z. Sun</name>
+    </author>
+    <author>
+      <name>Z. Q. Sun</name>
+    </author>
+    <author>
+      <name>Z. T. Sun</name>
+    </author>
+    <author>
+      <name>H. Tabaharizato</name>
+    </author>
+    <author>
+      <name>N. T. Tagsinsit</name>
+    </author>
+    <author>
+      <name>C. J. Tang</name>
+    </author>
+    <author>
+      <name>G. Y. Tang</name>
+    </author>
+    <author>
+      <name>J. Tang</name>
+    </author>
+    <author>
+      <name>J. J. Tang</name>
+    </author>
+    <author>
+      <name>L. F. Tang</name>
+    </author>
+    <author>
+      <name>Y. A. Tang</name>
+    </author>
+    <author>
+      <name>Z. H. Tang</name>
+    </author>
+    <author>
+      <name>L. Y. Tao</name>
+    </author>
+    <author>
+      <name>M. Tat</name>
+    </author>
+    <author>
+      <name>J. X. Teng</name>
+    </author>
+    <author>
+      <name>J. Y. Tian</name>
+    </author>
+    <author>
+      <name>W. H. Tian</name>
+    </author>
+    <author>
+      <name>Y. Tian</name>
+    </author>
+    <author>
+      <name>Z. F. Tian</name>
+    </author>
+    <author>
+      <name>K. Yu. Todyshev</name>
+    </author>
+    <author>
+      <name>I. Uman</name>
+    </author>
+    <author>
+      <name>E. van der Smagt</name>
+    </author>
+    <author>
+      <name>B. Wang</name>
+    </author>
+    <author>
+      <name>Bin Wang</name>
+    </author>
+    <author>
+      <name>Bo Wang</name>
+    </author>
+    <author>
+      <name>C. Wang</name>
+    </author>
+    <author>
+      <name>Chao Wang</name>
+    </author>
+    <author>
+      <name>Cong Wang</name>
+    </author>
+    <author>
+      <name>D. Y. Wang</name>
+    </author>
+    <author>
+      <name>F. K. Wang</name>
+    </author>
+    <author>
+      <name>H. J. Wang</name>
+    </author>
+    <author>
+      <name>H. R. Wang</name>
+    </author>
+    <author>
+      <name>J. Wang</name>
+    </author>
+    <author>
+      <name>J. H. Wang</name>
+    </author>
+    <author>
+      <name>J. J. Wang</name>
+    </author>
+    <author>
+      <name>J. P. Wang</name>
+    </author>
+    <author>
+      <name>K. Wang</name>
+    </author>
+    <author>
+      <name>L. L. Wang</name>
+    </author>
+    <author>
+      <name>L. W. Wang</name>
+    </author>
+    <author>
+      <name>M. Wang</name>
+    </author>
+    <author>
+      <name>Mi Wang</name>
+    </author>
+    <author>
+      <name>N. Y. Wang</name>
+    </author>
+    <author>
+      <name>S. Wang</name>
+    </author>
+    <author>
+      <name>Shun Wang</name>
+    </author>
+    <author>
+      <name>T. Wang</name>
+    </author>
+    <author>
+      <name>W. Wang</name>
+    </author>
+    <author>
+      <name>W. P. Wang</name>
+    </author>
+    <author>
+      <name>X. F. Wang</name>
+    </author>
+    <author>
+      <name>X. L. Wang</name>
+    </author>
+    <author>
+      <name>X. N. Wang</name>
+    </author>
+    <author>
+      <name>Xin Wang</name>
+    </author>
+    <author>
+      <name>Y. Wang</name>
+    </author>
+    <author>
+      <name>Y. D. Wang</name>
+    </author>
+    <author>
+      <name>Y. F. Wang</name>
+    </author>
+    <author>
+      <name>Y. H. Wang</name>
+    </author>
+    <author>
+      <name>Y. J. Wang</name>
+    </author>
+    <author>
+      <name>Y. L. Wang</name>
+    </author>
+    <author>
+      <name>Y. N. Wang</name>
+    </author>
+    <author>
+      <name>Yanning Wang</name>
+    </author>
+    <author>
+      <name>Yaqian Wang</name>
+    </author>
+    <author>
+      <name>Yi Wang</name>
+    </author>
+    <author>
+      <name>Yuan Wang</name>
+    </author>
+    <author>
+      <name>Z. Wang</name>
+    </author>
+    <author>
+      <name>Z. L. Wang</name>
+    </author>
+    <author>
+      <name>Z. Q. Wang</name>
+    </author>
+    <author>
+      <name>Z. Y. Wang</name>
+    </author>
+    <author>
+      <name>Zhi Wang</name>
+    </author>
+    <author>
+      <name>Ziyi Wang</name>
+    </author>
+    <author>
+      <name>D. Wei</name>
+    </author>
+    <author>
+      <name>D. H. Wei</name>
+    </author>
+    <author>
+      <name>D. J. Wei</name>
+    </author>
+    <author>
+      <name>H. R. Wei</name>
+    </author>
+    <author>
+      <name>F. Weidner</name>
+    </author>
+    <author>
+      <name>H. R. Wen</name>
+    </author>
+    <author>
+      <name>S. P. Wen</name>
+    </author>
+    <author>
+      <name>U. Wiedner</name>
+    </author>
+    <author>
+      <name>G. Wilkinson</name>
+    </author>
+    <author>
+      <name>M. Wolke</name>
+    </author>
+    <author>
+      <name>J. F. Wu</name>
+    </author>
+    <author>
+      <name>L. H. Wu</name>
+    </author>
+    <author>
+      <name>L. J. Wu</name>
+    </author>
+    <author>
+      <name>Lianjie Wu</name>
+    </author>
+    <author>
+      <name>S. G. Wu</name>
+    </author>
+    <author>
+      <name>S. M. Wu</name>
+    </author>
+    <author>
+      <name>X. W. Wu</name>
+    </author>
+    <author>
+      <name>Z. Wu</name>
+    </author>
+    <author>
+      <name>H. L. Xia</name>
+    </author>
+    <author>
+      <name>L. Xia</name>
+    </author>
+    <author>
+      <name>B. H. Xiang</name>
+    </author>
+    <author>
+      <name>D. Xiao</name>
+    </author>
+    <author>
+      <name>G. Y. Xiao</name>
+    </author>
+    <author>
+      <name>H. Xiao</name>
+    </author>
+    <author>
+      <name>Y. L. Xiao</name>
+    </author>
+    <author>
+      <name>Z. J. Xiao</name>
+    </author>
+    <author>
+      <name>C. Xie</name>
+    </author>
+    <author>
+      <name>K. J. Xie</name>
+    </author>
+    <author>
+      <name>Y. Xie</name>
+    </author>
+    <author>
+      <name>Y. G. Xie</name>
+    </author>
+    <author>
+      <name>Y. H. Xie</name>
+    </author>
+    <author>
+      <name>Z. P. Xie</name>
+    </author>
+    <author>
+      <name>T. Y. Xing</name>
+    </author>
+    <author>
+      <name>D. B. Xiong</name>
+    </author>
+    <author>
+      <name>G. F. Xu</name>
+    </author>
+    <author>
+      <name>H. Y. Xu</name>
+    </author>
+    <author>
+      <name>Q. J. Xu</name>
+    </author>
+    <author>
+      <name>Q. N. Xu</name>
+    </author>
+    <author>
+      <name>T. D. Xu</name>
+    </author>
+    <author>
+      <name>X. P. Xu</name>
+    </author>
+    <author>
+      <name>Y. Xu</name>
+    </author>
+    <author>
+      <name>Y. C. Xu</name>
+    </author>
+    <author>
+      <name>Z. S. Xu</name>
+    </author>
+    <author>
+      <name>F. Yan</name>
+    </author>
+    <author>
+      <name>L. Yan</name>
+    </author>
+    <author>
+      <name>W. B. Yan</name>
+    </author>
+    <author>
+      <name>W. C. Yan</name>
+    </author>
+    <author>
+      <name>W. H. Yan</name>
+    </author>
+    <author>
+      <name>W. P. Yan</name>
+    </author>
+    <author>
+      <name>X. Q. Yan</name>
+    </author>
+    <author>
+      <name>Y. Y. Yan</name>
+    </author>
+    <author>
+      <name>H. J. Yang</name>
+    </author>
+    <author>
+      <name>H. L. Yang</name>
+    </author>
+    <author>
+      <name>H. X. Yang</name>
+    </author>
+    <author>
+      <name>J. H. Yang</name>
+    </author>
+    <author>
+      <name>L. Y. Yang</name>
+    </author>
+    <author>
+      <name>N. Yang</name>
+    </author>
+    <author>
+      <name>R. J. Yang</name>
+    </author>
+    <author>
+      <name>X. Y. Yang</name>
+    </author>
+    <author>
+      <name>Y. Yang</name>
+    </author>
+    <author>
+      <name>Y. G. Yang</name>
+    </author>
+    <author>
+      <name>Y. H. Yang</name>
+    </author>
+    <author>
+      <name>Y. M. Yang</name>
+    </author>
+    <author>
+      <name>Y. Q. Yang</name>
+    </author>
+    <author>
+      <name>Y. Z. Yang</name>
+    </author>
+    <author>
+      <name>Youhua Yang</name>
+    </author>
+    <author>
+      <name>Z. B. Yang</name>
+    </author>
+    <author>
+      <name>W. J. Yao</name>
+    </author>
+    <author>
+      <name>Z. P. Yao</name>
+    </author>
+    <author>
+      <name>M. Ye</name>
+    </author>
+    <author>
+      <name>M. H. Ye</name>
+    </author>
+    <author>
+      <name>Z. J. Ye</name>
+    </author>
+    <author>
+      <name>K. Yi</name>
+    </author>
+    <author>
+      <name>Junhao Yin</name>
+    </author>
+    <author>
+      <name>Z. Y. You</name>
+    </author>
+    <author>
+      <name>B. X. Yu</name>
+    </author>
+    <author>
+      <name>C. X. Yu</name>
+    </author>
+    <author>
+      <name>G. Yu</name>
+    </author>
+    <author>
+      <name>J. S. Yu</name>
+    </author>
+    <author>
+      <name>L. W. Yu</name>
+    </author>
+    <author>
+      <name>T. Yu</name>
+    </author>
+    <author>
+      <name>X. D. Yu</name>
+    </author>
+    <author>
+      <name>Y. C. Yu</name>
+    </author>
+    <author>
+      <name>Yongchao Yu</name>
+    </author>
+    <author>
+      <name>C. Z. Yuan</name>
+    </author>
+    <author>
+      <name>H. Yuan</name>
+    </author>
+    <author>
+      <name>J. Yuan</name>
+    </author>
+    <author>
+      <name>Jie Yuan</name>
+    </author>
+    <author>
+      <name>L. Yuan</name>
+    </author>
+    <author>
+      <name>M. K. Yuan</name>
+    </author>
+    <author>
+      <name>S. H. Yuan</name>
+    </author>
+    <author>
+      <name>Y. Yuan</name>
+    </author>
+    <author>
+      <name>C. X. Yue</name>
+    </author>
+    <author>
+      <name>Ying Yue</name>
+    </author>
+    <author>
+      <name>A. A. Zafar</name>
+    </author>
+    <author>
+      <name>F. R. Zeng</name>
+    </author>
+    <author>
+      <name>S. H. Zeng</name>
+    </author>
+    <author>
+      <name>X. Zeng</name>
+    </author>
+    <author>
+      <name>Y. J. Zeng</name>
+    </author>
+    <author>
+      <name>Yujie Zeng</name>
+    </author>
+    <author>
+      <name>Y. C. Zhai</name>
+    </author>
+    <author>
+      <name>Y. H. Zhan</name>
+    </author>
+    <author>
+      <name>B. L. Zhang</name>
+    </author>
+    <author>
+      <name>B. R. Zhang</name>
+    </author>
+    <author>
+      <name>B. X. Zhang</name>
+    </author>
+    <author>
+      <name>D. H. Zhang</name>
+    </author>
+    <author>
+      <name>G. Y. Zhang</name>
+    </author>
+    <author>
+      <name>Gengyuan Zhang</name>
+    </author>
+    <author>
+      <name>H. Zhang</name>
+    </author>
+    <author>
+      <name>H. C. Zhang</name>
+    </author>
+    <author>
+      <name>H. H. Zhang</name>
+    </author>
+    <author>
+      <name>H. L. Zhang</name>
+    </author>
+    <author>
+      <name>H. Q. Zhang</name>
+    </author>
+    <author>
+      <name>H. R. Zhang</name>
+    </author>
+    <author>
+      <name>H. Y. Zhang</name>
+    </author>
+    <author>
+      <name>Han Zhang</name>
+    </author>
+    <author>
+      <name>J. Zhang</name>
+    </author>
+    <author>
+      <name>J. J. Zhang</name>
+    </author>
+    <author>
+      <name>J. L. Zhang</name>
+    </author>
+    <author>
+      <name>J. Q. Zhang</name>
+    </author>
+    <author>
+      <name>J. S. Zhang</name>
+    </author>
+    <author>
+      <name>J. W. Zhang</name>
+    </author>
+    <author>
+      <name>J. X. Zhang</name>
+    </author>
+    <author>
+      <name>J. Y. Zhang</name>
+    </author>
+    <author>
+      <name>J. Z. Zhang</name>
+    </author>
+    <author>
+      <name>Jianyu Zhang</name>
+    </author>
+    <author>
+      <name>Jin Zhang</name>
+    </author>
+    <author>
+      <name>Jiyuan Zhang</name>
+    </author>
+    <author>
+      <name>L. M. Zhang</name>
+    </author>
+    <author>
+      <name>Lei Zhang</name>
+    </author>
+    <author>
+      <name>N. Zhang</name>
+    </author>
+    <author>
+      <name>P. Zhang</name>
+    </author>
+    <author>
+      <name>Q. Zhang</name>
+    </author>
+    <author>
+      <name>Q. Y. Zhang</name>
+    </author>
+    <author>
+      <name>Q. Z. Zhang</name>
+    </author>
+    <author>
+      <name>R. Y. Zhang</name>
+    </author>
+    <author>
+      <name>S. H. Zhang</name>
+    </author>
+    <author>
+      <name>S. N. Zhang</name>
+    </author>
+    <author>
+      <name>Shulei Zhang</name>
+    </author>
+    <author>
+      <name>X. M. Zhang</name>
+    </author>
+    <author>
+      <name>X. Y. Zhang</name>
+    </author>
+    <author>
+      <name>Y. T. Zhang</name>
+    </author>
+    <author>
+      <name>Y. H. Zhang</name>
+    </author>
+    <author>
+      <name>Y. P. Zhang</name>
+    </author>
+    <author>
+      <name>Yao Zhang</name>
+    </author>
+    <author>
+      <name>Yu Zhang</name>
+    </author>
+    <author>
+      <name>Yu Zhang</name>
+    </author>
+    <author>
+      <name>Z. Zhang</name>
+    </author>
+    <author>
+      <name>Z. D. Zhang</name>
+    </author>
+    <author>
+      <name>Z. H. Zhang</name>
+    </author>
+    <author>
+      <name>Z. L. Zhang</name>
+    </author>
+    <author>
+      <name>Z. R. Zhang</name>
+    </author>
+    <author>
+      <name>Z. X. Zhang</name>
+    </author>
+    <author>
+      <name>Z. Y. Zhang</name>
+    </author>
+    <author>
+      <name>Zh. Zh. Zhang</name>
+    </author>
+    <author>
+      <name>Zhaoke Zhang</name>
+    </author>
+    <author>
+      <name>Zhilong Zhang</name>
+    </author>
+    <author>
+      <name>Ziyang Zhang</name>
+    </author>
+    <author>
+      <name>Ziyu Zhang</name>
+    </author>
+    <author>
+      <name>G. Zhao</name>
+    </author>
+    <author>
+      <name>J. -P. Zhao</name>
+    </author>
+    <author>
+      <name>J. Y. Zhao</name>
+    </author>
+    <author>
+      <name>J. Z. Zhao</name>
+    </author>
+    <author>
+      <name>L. Zhao</name>
+    </author>
+    <author>
+      <name>Lei Zhao</name>
+    </author>
+    <author>
+      <name>M. G. Zhao</name>
+    </author>
+    <author>
+      <name>R. P. Zhao</name>
+    </author>
+    <author>
+      <name>Y. B. Zhao</name>
+    </author>
+    <author>
+      <name>Y. L. Zhao</name>
+    </author>
+    <author>
+      <name>Y. P. Zhao</name>
+    </author>
+    <author>
+      <name>Y. X. Zhao</name>
+    </author>
+    <author>
+      <name>Z. G. Zhao</name>
+    </author>
+    <author>
+      <name>A. Zhemchugov</name>
+    </author>
+    <author>
+      <name>B. Zheng</name>
+    </author>
+    <author>
+      <name>B. M. Zheng</name>
+    </author>
+    <author>
+      <name>J. P. Zheng</name>
+    </author>
+    <author>
+      <name>W. J. Zheng</name>
+    </author>
+    <author>
+      <name>W. Q. Zheng</name>
+    </author>
+    <author>
+      <name>X. R. Zheng</name>
+    </author>
+    <author>
+      <name>Y. H. Zheng</name>
+    </author>
+    <author>
+      <name>B. Zhong</name>
+    </author>
+    <author>
+      <name>C. Zhong</name>
+    </author>
+    <author>
+      <name>X. Zhong</name>
+    </author>
+    <author>
+      <name>H. Zhou</name>
+    </author>
+    <author>
+      <name>J. Q. Zhou</name>
+    </author>
+    <author>
+      <name>S. Zhou</name>
+    </author>
+    <author>
+      <name>X. Zhou</name>
+    </author>
+    <author>
+      <name>X. K. Zhou</name>
+    </author>
+    <author>
+      <name>X. R. Zhou</name>
+    </author>
+    <author>
+      <name>X. Y. Zhou</name>
+    </author>
+    <author>
+      <name>Y. X. Zhou</name>
+    </author>
+    <author>
+      <name>Y. Z. Zhou</name>
+    </author>
+    <author>
+      <name>A. N. Zhu</name>
+    </author>
+    <author>
+      <name>J. Zhu</name>
+    </author>
+    <author>
+      <name>K. Zhu</name>
+    </author>
+    <author>
+      <name>K. J. Zhu</name>
+    </author>
+    <author>
+      <name>K. S. Zhu</name>
+    </author>
+    <author>
+      <name>L. X. Zhu</name>
+    </author>
+    <author>
+      <name>Lin Zhu</name>
+    </author>
+    <author>
+      <name>S. H. Zhu</name>
+    </author>
+    <author>
+      <name>W. D. Zhu</name>
+    </author>
+    <author>
+      <name>W. J. Zhu</name>
+    </author>
+    <author>
+      <name>W. Z. Zhu</name>
+    </author>
+    <author>
+      <name>Y. C. Zhu</name>
+    </author>
+    <author>
+      <name>Z. A. Zhu</name>
+    </author>
+    <author>
+      <name>X. Y. Zhuang</name>
+    </author>
+    <author>
+      <name>M. Zhuge</name>
+    </author>
+    <author>
+      <name>J. H. Zou</name>
+    </author>
+    <author>
+      <name>J. Zu</name>
+    </author>
+  </entry>
+</feed>

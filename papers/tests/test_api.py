@@ -38,7 +38,7 @@ class TestPaperEndpoints:
         """arXiv IDs contain dots, which the default DRF lookup regex rejects."""
         response = client.get(f"/api/papers/{paper.arxiv_id}/")
         assert response.status_code == 200
-        assert response.json()["arxiv_id"] == "2401.12345v1"
+        assert response.json()["arxiv_id"] == "2401.12345"
 
     def test_detail_includes_indexing_state(self, client, paper):
         body = client.get(f"/api/papers/{paper.arxiv_id}/").json()

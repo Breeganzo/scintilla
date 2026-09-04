@@ -11,7 +11,7 @@ from papers.models import Paper
 def paper_kwargs() -> dict:
     """Valid field values for building a Paper."""
     return {
-        "arxiv_id": "2401.12345v1",
+        "arxiv_id": "2401.12345",
         "title": "Measurement of the Higgs boson coupling to tau leptons",
         "abstract": (
             "We present a measurement of the Higgs boson coupling to tau "

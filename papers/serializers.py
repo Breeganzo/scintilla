@@ -45,6 +45,7 @@ class PaperDetailSerializer(serializers.ModelSerializer):
         model = Paper
         fields = [
             "arxiv_id",
+            "version",
             "title",
             "abstract",
             "authors",
@@ -96,7 +97,9 @@ class IngestionRunSerializer(serializers.ModelSerializer):
             "papers_created",
             "papers_updated",
             "papers_skipped",
+            "papers_split",
             "chunks_indexed",
+            "watermark",
             "triggered_by",
             "error_message",
         ]

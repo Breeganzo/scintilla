@@ -12,3 +12,9 @@ dj-database-url>=2.3,<3.0
 django-cors-headers>=4.6,<5.0
 python-dotenv>=1.0,<2.0
 gunicorn>=23.0,<24.0
+
+# Ingestion. defusedxml rather than the stdlib xml.etree: the stdlib parser is
+# vulnerable to entity-expansion attacks, and "the remote XML we parse is
+# trusted" is an assumption that outlives the reason it was true.
+requests>=2.32,<3.0
+defusedxml>=0.7.1,<0.8

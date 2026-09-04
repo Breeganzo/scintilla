@@ -27,7 +27,17 @@ class Paper(models.Model):
         max_length=32,
         unique=True,
         db_index=True,
-        help_text="arXiv identifier including version, e.g. 2401.12345v2",
+        help_text=(
+            "Canonical arXiv identifier with the version suffix stripped, e.g. "
+            "2401.12345. This is the paper's stable identity and what ingestion "
+            "upserts on. Keying on the versioned form instead would make every "
+            "revision look like a new paper and fill the corpus with duplicates."
+        ),
+    )
+
+    version = models.PositiveSmallIntegerField(
+        default=1,
+        help_text="arXiv version number. 2401.12345v3 is stored as arxiv_id + version 3.",
     )
 
     title = models.TextField()
@@ -213,6 +223,26 @@ class IngestionRun(models.Model):
         help_text="Content hash unchanged, so no work was needed",
     )
     chunks_indexed = models.PositiveIntegerField(default=0)
+    papers_split = models.PositiveIntegerField(
+        default=0,
+        help_text=(
+            "Papers whose text exceeded the embedding model's context window and "
+            "had to be sentence-split. Counted because the alternative is the "
+            "model silently truncating them, which degrades retrieval for a "
+            "subset of documents with nothing in any log to explain it."
+        ),
+    )
+
+    watermark = models.DateTimeField(
+        null=True,
+        blank=True,
+        help_text=(
+            "Newest publication date this run saw. The next run queries arXiv "
+            "forward from here instead of re-scanning the whole category. Set "
+            "only on a successful run - advancing it after a failure would skip "
+            "everything the failed run never reached."
+        ),
+    )
 
     error_message = models.TextField(blank=True)
 

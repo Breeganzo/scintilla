@@ -84,6 +84,58 @@ jobs:
       - name: Run tests
         run: pytest --cov --cov-report=term-missing
 
+  regression:
+    name: Retrieval regression gate
+    runs-on: ubuntu-latest
+
+    # The point of this job. Unit tests prove the pieces behave; this proves the
+    # pipeline still *ranks* as well as it did. A chunker that silently starts
+    # truncating, an embedding that stops being written, a fusion step that
+    # loses its ordering - none of those necessarily break a test, and all of
+    # them show up as a lower score against a fixed corpus.
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: scintilla
+          POSTGRES_PASSWORD: scintilla
+          POSTGRES_DB: scintilla_regression
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U scintilla"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    env:
+      DJANGO_SECRET_KEY: ci-only-secret-not-used-anywhere-real
+      DJANGO_DEBUG: "False"
+      DJANGO_SETTINGS_MODULE: config.settings.test
+      DATABASE_URL: postgres://scintilla:scintilla@localhost:5432/scintilla_regression
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements/dev.txt
+
+      - name: Prepare the database
+        run: python manage.py migrate --no-input
+
+      - name: Check retrieval against the committed baseline
+        # Rebuilds 340 papers from a fixture using the real chunker, the real
+        # vector store and the real ranking path, then compares every gated
+        # metric to evaluation/results/ci_baseline.json. Deterministic: two runs
+        # of unchanged code produce identical scores, so a failure here is a
+        # real change, not noise.
+        run: python manage.py check_regression
+
   security:
     name: Dependency audit
     runs-on: ubuntu-latest

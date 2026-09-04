@@ -1,0 +1,904 @@
+{
+  "mode": "dense",
+  "model": "openai/gpt-oss-120b",
+  "top_k": 10,
+  "context_size": 5,
+  "golden_set_version": 1,
+  "degraded": false,
+  "usage": {
+    "prompt_tokens": 89063,
+    "completion_tokens": 16816
+  },
+  "summary": {
+    "abstention_rate": 1.0,
+    "false_abstention_rate": 0.1,
+    "citation_precision": 1.0,
+    "citation_grounding": 0.7784722222222222,
+    "uncited_answers": 12,
+    "hallucinated_citations": 0,
+    "median_latency_ms": 14800,
+    "answerable": 40,
+    "unanswerable": 10
+  },
+  "queries": [
+    {
+      "query_id": "exact_01",
+      "query_class": "exact_term",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 1597,
+      "answer": "A diphoton decay of an axion\u2011like particle is probed in Higgs boson decays where the process \\(h^{0}\\to A_{h}A_{h}\\to (gg)(\\gamma\\gamma)\\) produces a narrow diphoton resonance at the ALP mass; this channel can account for the \\(3.5\\sigma\\) excess reported by CMS at \\(M_{A}\\approx13.6\\;\\text{GeV}\\)\u30101\u3011. The same Higgs\u2011mediated production also yields a four\u2011gluon final state that appears as two wide jets, but the diphoton signature is the primary handle for the search\u30101\u3011. Other recent ALP searches (e.g., with hybrid Cherenkov\u2011scintillation detectors or germanium detectors) focus on different mass ranges and interaction channels rather than a direct diphoton decay signature\u30102\u3011\u30104\u3011."
+    },
+    {
+      "query_id": "exact_02",
+      "query_class": "exact_term",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        1,
+        1
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2608.24872"
+      ],
+      "cited_relevant": 1,
+      "elapsed_ms": 924,
+      "answer": "The look\u2011elsewhere effect is quantified with a trial factor of about\u202f26, as calibrated from the ATLAS Higgs search [1]. This factor reflects the number of independent signal locations effectively scanned when evaluating peak\u2011search significance. Consequently, a global $3\u03c3$ peak\u2011search result corresponds to roughly a $4\u03c3$ binary\u2011test significance for the same observed statistic [1]."
+    },
+    {
+      "query_id": "exact_03",
+      "query_class": "exact_term",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        2,
+        2
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2607.12098"
+      ],
+      "cited_relevant": 1,
+      "elapsed_ms": 1168,
+      "answer": "Pseudo\u2011relevance feedback (PRF) can boost retrieval effectiveness on average, but it often causes query drift that harms a substantial portion of queries. In a participatory audit of 43 TREC Deep Learning 2019 queries, only\u202f20.9\u202f% of queries benefited from PRF while\u202f25.6\u202f% experienced degraded performance, and avoiding such harm was found to be nearly twice as valuable as exploiting successful expansions\u202f[2]. To address this, a two\u2011stage \u201caudit\u2011then\u2011automate\u201d framework was proposed: first, users label which queries are harmed or helped; second, LLM\u2011based rerankers are repurposed as system\u2011preference predictors that automatically replicate these labels using inspectable document evidence, thereby making selective PRF decisions explainable and auditable\u202f[2]."
+    },
+    {
+      "query_id": "exact_04",
+      "query_class": "exact_term",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        1,
+        1,
+        1
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2608.28000"
+      ],
+      "cited_relevant": 1,
+      "elapsed_ms": 808,
+      "answer": "Hyperon bulk viscosity contributes only a very small correction to the gravitational\u2011wave signal during a neutron\u2011star inspiral, producing a phase shift of order\u202f10\u207b\u00b3\u202frad [1].  This shift is far below the sensitivity of current detectors and is unlikely to be isolated even by next\u2011generation observatories [1].  Nevertheless, the same dissipative process can substantially heat the hyperon\u2011rich core, raising its temperature to roughly\u202f5\u202f\u00d7\u202f10\u2078\u202fK [1]."
+    },
+    {
+      "query_id": "exact_05",
+      "query_class": "exact_term",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        1,
+        1
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2608.28358"
+      ],
+      "cited_relevant": 1,
+      "elapsed_ms": 17665,
+      "answer": "Three\u2011dimensional simulations of the final minutes of stellar evolution for several non\u2011rotating, solar\u2011metallicity progenitors show that convection in the oxygen\u2011rich (and sometimes silicon\u2011burning) shells produces multi\u2011dimensional structure that strongly influences the subsequent core\u2011collapse phase. When the collapse is initiated from a fully three\u2011dimensional progenitor, the post\u2011shock region attains 35\u201350\u202f% more non\u2011radial kinetic energy and the average shock radius is 5\u201310\u202f% larger than in angle\u2011averaged or one\u2011dimensional initial conditions, leading to the earliest shock revival among the models tested [1]. The shock revival is therefore accelerated by the presence of realistic, aspherical progenitor perturbations rather than by changes in the gravitational\u2011wave emission, which remains similar across the different initializations [1]."
+    },
+    {
+      "query_id": "exact_06",
+      "query_class": "exact_term",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 14201,
+      "answer": "The NOvA near detector measured the total charged\u2011current quasielastic (CCQE) cross section for muon\u2011antineutrino scattering on hydrogen, \\(\\bar\\nu_{\\mu}{\\rm H}\\to\\mu^{+}n\\), obtaining  \n\\(\\sigma = 0.538 \\pm 0.009_{\\rm stat}\\pm0.010_{\\rm syst}\\pm0.055_{\\rm flux}\\times10^{-38}\\ {\\rm cm}^{2}\\) at an average neutrino energy of 1.9\u202fGeV\u30101\u3011.  \nComparisons of CCQE\u2011like \\(\\nu_{\\mu}\\) interactions on hydrocarbon at mean energies of \u22483\u202fGeV and \u22486\u202fGeV reveal significant discrepancies between data and model predictions, especially in the treatment of final\u2011state interactions of protons and pions\u30102\u3011.  \nSeparate theoretical studies of weak charged\u2011current quasielastic scattering of electrons and positrons on free protons also provide differential and total cross sections, highlighting sensitivity to axial\u2011vector form factors and possible second\u2011class currents\u30104\u3011."
+    },
+    {
+      "query_id": "exact_07",
+      "query_class": "exact_term",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 17702,
+      "answer": "The STCF collaboration has implemented a GPU\u2011accelerated, matrix\u2011based Hough transform to perform online track reconstruction in its drift chamber, reformulating the conformal Hough algorithm into regular matrix operations that map efficiently onto CUDA threads and the GPU memory hierarchy\u30101\u3011. This redesign reduces the retained hit volume to about 35\u202f% of the original while preserving a 93\u202f% signal\u2011retention rate, and processes 1\u202f000 events in roughly 0.14\u202fs, delivering a speedup of \u2248152\u00d7 over a CPU baseline\u30101\u3011. The approach demonstrates that a Hough\u2011transform\u2011driven pipeline can meet the stringent real\u2011time throughput demands of high\u2011luminosity collider experiments\u30101\u3011."
+    },
+    {
+      "query_id": "exact_08",
+      "query_class": "exact_term",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        2,
+        5,
+        1
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2608.23868",
+        "2608.27779",
+        "2608.23522"
+      ],
+      "cited_relevant": 3,
+      "elapsed_ms": 16556,
+      "answer": "Fast radio burst dispersion measures (DMs) contain contributions from the intergalactic medium, the host galaxy, and the immediate local environment of the source. Observations show that the host\u2011frame DM (\\(DM_{\\rm host}\\)) is anti\u2011correlated with host stellar mass, being larger in low\u2011mass dwarf galaxies and arising from gas within \u2272100\u202fpc of the burst rather than the galaxy\u2011averaged ISM or CGM [2]. Extremely high local DMs (\u227310\u00b3\u202fpc\u202fcm\u207b\u00b3) can be produced when FRB\u2011emitting neutron stars are embedded in young, dust\u2011poor H\u202fII regions of massive, low\u2011metallicity stellar associations, a scenario that naturally links large DM excesses to dwarf\u2011galaxy hosts [5]. Simulated analyses can recover a residual DM component, though with modest precision (median absolute errors of \u223c0.3\u20130.6\u202fpc\u202fcm\u207b\u00b3) compared with scattering timescales [1]."
+    },
+    {
+      "query_id": "exact_09",
+      "query_class": "exact_term",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 20678,
+      "answer": "Blazar jets fall into two accretion regimes: sources such as FSRQs and LBLs host strong, relativistic jets that are linked to radiatively efficient (disc\u2011dominated) accretion flows, while HBLs exhibit weaker jets associated with radiatively inefficient (ADAF\u2011type) accretion; IBLs appear to be transitional between these extremes\u30101\u3011. This dichotomy mirrors the broader AGN trend that jets launched from disc\u2011fed, efficient accretion (quasars/FRIIs) attain higher bulk Lorentz factors than those arising from ADAF\u2011fed systems (BL\u202fLacs/FRIs), because the disc magnetic field is much stronger than the ADAF field\u30102\u3011. Consequently, the jet power, Doppler boosting, and observed variability of blazars are regulated primarily by the underlying accretion mode."
+    },
+    {
+      "query_id": "exact_10",
+      "query_class": "exact_term",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 16017,
+      "answer": "The CMS experiment determined the integrated luminosity of 13\u202fTeV proton\u2011proton collisions with a total precision of 0.73\u202f% by calibrating several independent monitors and validating them against Z\u2011boson production rates\u30101\u3011. A complementary approach was used by the HADES collaboration, which extracted the luminosity from elastic pp scattering by normalising to overlapping measurements of the squared four\u2011momentum transfer region\u30102\u3011. In other LHC experiments, the recorded integrated luminosities are 19.3\u202fpb\u207b\u00b9 for the ALICE pp data set taken in 2022\u30103\u3011 and 68.6\u202ffb\u207b\u00b9 for the SND@LHC proton\u2011proton collisions at \u221as\u202f=\u202f13.6\u202fTeV used in the muon\u2011neutrino cross\u2011section analysis\u30105\u3011."
+    },
+    {
+      "query_id": "para_01",
+      "query_class": "paraphrase",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 16212,
+      "answer": "Websites typically allocate a small \u201cexploration\u201d budget that gives newly uploaded short videos an initial set of views, then use the early performance signals (e.g., view counts, watch time) from those exposures to decide how much additional delivery to allocate to each clip\u30101\u3011. This two\u2011stage process\u2014budgeted exploration followed by performance\u2011driven reallocation\u2014allows the system to surface content that proves engaging while still giving fresh videos a chance to be seen\u30101\u3011."
+    },
+    {
+      "query_id": "para_02",
+      "query_class": "paraphrase",
+      "answerable": true,
+      "abstained": true,
+      "correct": false,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 15826,
+      "answer": "INSUFFICIENT_CONTEXT"
+    },
+    {
+      "query_id": "para_03",
+      "query_class": "paraphrase",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        1,
+        4
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2608.19402",
+        "2609.03701"
+      ],
+      "cited_relevant": 2,
+      "elapsed_ms": 17561,
+      "answer": "When a star approaches a black hole closely enough that the black hole\u2019s tidal field exceeds the star\u2019s self\u2011gravity, the star is first stretched and deformed and then torn apart (a tidal\u2011disruption event). The debris is partially unbound, while the bound portion falls back onto the black hole on relativistic orbits, eventually forming an accretion disk that can be accreted by the black hole\u202f[1][4]."
+    },
+    {
+      "query_id": "para_04",
+      "query_class": "paraphrase",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        2,
+        3,
+        4
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2607.04723",
+        "2607.07263",
+        "2606.30485"
+      ],
+      "cited_relevant": 3,
+      "elapsed_ms": 14600,
+      "answer": "Neural networks can be integrated into track\u2011finding pipelines to improve the reconstruction of particle trajectories, for example by taking the Hough\u2011transform parameter\u2011space image as input to a classifier that suppresses spurious candidates and thereby boosts both efficiency and purity of the resulting tracks [2]. Graph\u2011neural\u2011network architectures have also been applied to detector\u2011hit data to label individual hits as belonging to muons or hadrons, which is a key step toward building complete particle paths in a muon telescope [3]. Moreover, end\u2011to\u2011end reconstruction models that use GNNs benefit from detector\u2011aware target definitions, leading to more accurate and robust particle\u2011flow reconstruction that implicitly captures particle trajectories [4]."
+    },
+    {
+      "query_id": "para_05",
+      "query_class": "paraphrase",
+      "answerable": true,
+      "abstained": true,
+      "correct": false,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 14428,
+      "answer": "INSUFFICIENT_CONTEXT"
+    },
+    {
+      "query_id": "para_06",
+      "query_class": "paraphrase",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 15160,
+      "answer": "Model\u2011agnostic AI\u2011based search strategies let you scan the full data set without committing to a specific hypothesis, emphasizing broad exploration while providing validation tools to guard against misinterpretation of apparent excesses\u30101\u3011.  Because such scans involve many effective trials, the look\u2011elsewhere effect raises the local significance required for a global claim, and a two\u2011stage unblinding procedure is recommended as a safeguard against spurious signals in machine\u2011learning searches\u30103\u3011.  Finally, checking that interval constructions retain proper frequentist coverage under plausible model misspecifications further protects against \u201cfooling yourself\u201d when a signal could appear anywhere\u30105\u3011."
+    },
+    {
+      "query_id": "para_07",
+      "query_class": "paraphrase",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 16621,
+      "answer": "To determine whether a cited scientific statement actually originates from the referenced work, systems first retrieve candidate source publications for the claim and then apply verification\u2011based re\u2011ranking that scores how well each candidate supports the claim using attribution and reasoning signals\u30101\u3011\u30103\u3011.  A recent approach further improves this process by normalizing the raw citing claim\u2014rewriting it to resolve scope, perspective, and proposition mismatches\u2014before evidence retrieval, which yields higher\u2011quality evidence and more reliable citation verification\u30105\u3011.  Together, these retrieval\u2011and\u2011verification pipelines provide an automated way to check the provenance of scientific statements against their cited sources."
+    },
+    {
+      "query_id": "para_08",
+      "query_class": "paraphrase",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        2,
+        4
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2606.07008",
+        "2608.15240"
+      ],
+      "cited_relevant": 1,
+      "elapsed_ms": 14436,
+      "answer": "Searches for extremely light, feebly\u2011interacting dark matter rely on precision force or interferometric measurements rather than conventional nuclear\u2011recoil detectors.  The MICROSCOPE satellite uses its concentric test masses as a wave\u2011interferometer for ultralight dark\u2011matter scattering, setting leading limits on quadratic dark\u2011matter\u2013nucleon couplings for masses\u202f\u2248\u202f10\u207b\u00b3\u201310\u207b\u00b2\u202feV, where the interaction is very weak [2].  A proposed space\u2011based decihertz interferometer, IndIGO\u2011D, would extend sensitivity to still lighter masses (\u224810\u207b\u00b9\u2077\u201310\u207b\u00b9\u2074\u202feV) by detecting coherent oscillations of scalar, vector, or tensor dark\u2011matter fields, opening previously unconstrained coupling parameter space for such weakly interacting candidates [4]."
+    },
+    {
+      "query_id": "para_09",
+      "query_class": "paraphrase",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2608.24170"
+      ],
+      "cited_relevant": 0,
+      "elapsed_ms": 24063,
+      "answer": "When the core of a massive star collapses it launches a supernova shock that sweeps up the surrounding material, producing a supernova remnant (SNR) and often a pulsar wind nebula (PWN)\u202f[1]. The shock first expands rapidly into the low\u2011density interior of the wind\u2011blown bubble created by the star\u2019s own wind, filling the cavity before it reaches the massive outer shell of the bubble\u202f[1]. The impact on that shell generates a strong reflected shock that returns energy to the interior, keeping the SNR hot and driving a vigorous reverberation that can enlarge the PWN by several times\u202f[1]. This interaction with the circumstellar bubble helps the dying star\u2019s explosion push outward to large radii and can hide the parent SNR from detection\u202f[1]."
+    },
+    {
+      "query_id": "para_10",
+      "query_class": "paraphrase",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        1,
+        1
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2607.27739"
+      ],
+      "cited_relevant": 0,
+      "elapsed_ms": 15542,
+      "answer": "To evaluate how well a ranking system captures the parts of a document that readers deem important\u2014especially when the readers\u2019 highlighted wording diverges from the author\u2019s original text\u2014one can treat crowd\u2011marked sentences as a non\u2011circular reference and compare them to the system\u2019s importance scores. By matching each highlighted sentence with unmarked sentences at the same relative depth and length rank, and calibrating the estimator on synthetic nulls that control for position and length, the true alignment signal can be isolated\u202f[1]. This approach showed that a language\u2011model importance ranking retained 38.4\u202f% of crowd\u2011marked sentences versus 19.9\u202f% of matched neighbours, demonstrating a measurable enrichment despite differences between reader and author wording\u202f[1]."
+    },
+    {
+      "query_id": "conc_01",
+      "query_class": "conceptual",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        4,
+        5,
+        2,
+        3,
+        5
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2608.10105",
+        "2608.26289",
+        "2608.29546",
+        "2606.25129"
+      ],
+      "cited_relevant": 3,
+      "elapsed_ms": 19321,
+      "answer": "Dark matter interacts only extremely weakly with ordinary matter, producing nuclear\u2011recoil energies that are often below the thresholds of conventional detectors, especially for sub\u2011GeV masses where standard experiments lose sensitivity\u202f[4][5].  Moreover, the expected signals can be very faint\u2014photon\u2013dark\u2011matter scattering yields rates that lie below the effective\u2011field\u2011theory validity range and are weaker than competing cosmological and direct\u2011detection bounds\u202f[2].  These challenges force experiments to pursue novel technologies with sub\u2011eV energy thresholds (e.g., quantum sensors) or to exploit ultra\u2011long integration times in natural minerals, both of which aim to overcome the intrinsic weakness and low\u2011energy nature of the interactions\u202f[3][5]."
+    },
+    {
+      "query_id": "conc_02",
+      "query_class": "conceptual",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 12723,
+      "answer": "Neutrinos interact only via the weak force, so the probability that a neutrino will be captured in a detector is extremely small; consequently a very large target mass is required to obtain enough interaction events for a meaningful measurement\u30101\u3011.  Ton\u2011 to tens\u2011of\u2011kiloton\u2011scale detectors are therefore needed to set useful limits on fission yields from distant explosions, and similarly large liquid\u2011scintillator volumes are essential for studying rare atmospheric\u2011neutrino neutral\u2011current \u201csingle\u2011signal\u201d events and improving background estimates for other rare\u2011event searches\u30105\u3011.  The sheer size of the detector thus compensates for the low interaction cross\u2011section of neutrinos."
+    },
+    {
+      "query_id": "conc_03",
+      "query_class": "conceptual",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2606.26832",
+        "2609.02972",
+        "2606.28498",
+        "2608.12071"
+      ],
+      "cited_relevant": 4,
+      "elapsed_ms": 11111,
+      "answer": "The achievable precision of collider measurements is chiefly limited by systematic uncertainties in the experimental apparatus and calibration, such as the need to control and validate luminosity monitors and detector stability [1].  It is also constrained by the finite resolution of observables, which blurs narrow features of the underlying distributions and is set by the hard dynamics and kinematics of the process [3].  Additional limits arise from systematic biases in background modeling\u2014especially when machine\u2011learning estimators are used\u2014requiring these effects to be treated as statistical uncertainties [4].  Finally, the intrinsic performance of the detector and accelerator (e.g., resolution and stability) determines how close to the natural width of a particle a measurement can approach [5]."
+    },
+    {
+      "query_id": "conc_04",
+      "query_class": "conceptual",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2607.15555",
+        "2607.27178",
+        "2607.26670",
+        "2608.25521"
+      ],
+      "cited_relevant": 3,
+      "elapsed_ms": 15754,
+      "answer": "Large language models are being embedded in IR pipelines as relevance judges and re\u2011rankers, with relevance information that becomes linearly decodable in middle\u2011to\u2011late transformer layers, enabling internal relevance signals to guide ranking decisions [1]. They also form the basis of open\u2011source dense and late\u2011interaction retrieval models that, after massive contrastive pre\u2011training and translate\u2011train, achieve state\u2011of\u2011the\u2011art multilingual performance and better generalization to unseen languages and scripts [2]. In scholarly search, generative LLMs are used to retrieve literature and screen candidate studies against eligibility criteria, reducing dependence on manually crafted queries and extensive manual inspection [3]. Additionally, LLM\u2011generated query expansions can improve dense retrieval when integrated with methods like AnchorQE, which separately encodes the original query and its expansion and interpolates them based on an unsupervised confidence estimate [5]."
+    },
+    {
+      "query_id": "conc_05",
+      "query_class": "conceptual",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        4,
+        5
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2608.10071",
+        "2608.26785"
+      ],
+      "cited_relevant": 2,
+      "elapsed_ms": 15938,
+      "answer": "We infer the properties of black holes from how they affect light that skirts, rather than emerges from, the horizon.  By measuring phenomena such as the Shapiro time delay, Sagnac effect, gravitational redshift, and the orbital precession of nearby stars (e.g., the S2 star around Sgr\u202fA*), we can constrain the spacetime geometry and any additional fields sourced by the black hole\u202f[4].  Strong\u2011deflection gravitational lensing provides another probe: the deflection angle, photon\u2011sphere radius, and related observables acquire characteristic imprints from the black\u2011hole metric (including EFT\u2011induced photon\u2011propagation corrections), allowing a regular Hayward black hole to be distinguished from a Schwarzschild one\u202f[5].  Together, these indirect light\u2011trajectory effects give us observational access to black\u2011hole physics even though light cannot escape from within the horizon."
+    },
+    {
+      "query_id": "conc_06",
+      "query_class": "conceptual",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 12630,
+      "answer": "Offline evaluation of recommender systems is difficult because it typically relies on historical interaction logs that are sparse, incomplete, or biased, making it unclear whether the resulting rankings truly reflect user preferences\u30101\u3011. Most benchmark datasets contain only a small fraction of observed user\u2011item preferences, and the common \u201cmissing\u2011as\u2011negative\u201d assumption treats unjudged items as irrelevant, which can penalize plausible recommendations and favor popular items\u30102\u3011. Moreover, evaluation results can be unstable due to run\u2011to\u2011run stochasticity such as different training seeds, which may change metric scores and recommendation lists even when data partitions are fixed\u30104\u3011."
+    },
+    {
+      "query_id": "conc_07",
+      "query_class": "conceptual",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        1,
+        4,
+        3
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2608.26420",
+        "2608.24796",
+        "2607.27313"
+      ],
+      "cited_relevant": 3,
+      "elapsed_ms": 12733,
+      "answer": "Quantum gravity is hard to test because the relevant energy scale is the Planck regime, which is far beyond the reach of current experiments, so direct signatures are essentially absent [1][4].  In addition, any low\u2011energy quantum\u2011gravity effects are extremely weakly coupled, so detectors only see coarse\u2011grained \u201ceffective\u201d modes and the non\u2011classical signals are suppressed by extra powers of the tiny coupling, demanding resources (e.g., highly squeezed states) that are far beyond present capabilities [3].  Consequently, the predicted signals are typically negligible compared with other physical effects, making experimental observation exceedingly challenging."
+    },
+    {
+      "query_id": "conc_08",
+      "query_class": "conceptual",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 14800,
+      "answer": "Symmetry violation is a key indicator of physics beyond the Standard Model, because any departure from exact global or space\u2011time symmetries (such as lepton\u2011 or baryon\u2011number conservation, CPT or Lorentz invariance) would open new interaction channels that are not allowed in the established theory\u30101\u2020L1-L7\u3011.  Precision tests that look for such violations therefore provide highly sensitive probes of new phenomena, as exemplified by the stringent limits on CPT\u2011 and Lorentz\u2011violating parameters obtained from $B_s^0$ decays\u30102\u2020L1-L7\u3011.  Moreover, theoretical arguments suggest that the minimization of entanglement entropy in scattering may naturally select symmetry\u2011preserving points, implying that the suppression of symmetry\u2011violating interactions could be an underlying principle of particle dynamics\u30101\u2020L8-L13\u3011."
+    },
+    {
+      "query_id": "conc_09",
+      "query_class": "conceptual",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        5,
+        4
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2608.18204",
+        "2606.26856"
+      ],
+      "cited_relevant": 0,
+      "elapsed_ms": 14568,
+      "answer": "Detectors discriminate particle species by exploiting distinct response patterns that depend on the particle\u2019s interaction with the sensor material; for example, an array of quantum\u2011dot targets produces a morphology\u2011dependent \u201cbarcode\u201d of scattering rates that encodes information about the underlying dark\u2011matter particle and interaction type\u202f[5].  Precise timing measurements also provide characteristic signatures that help identify the particle that produced a given signal, as demonstrated by the proANUBIS system whose timing resolution meets the requirements for distinguishing long\u2011lived particle decays\u202f[4]."
+    },
+    {
+      "query_id": "conc_10",
+      "query_class": "conceptual",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        3,
+        4
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2608.25487",
+        "2608.22228"
+      ],
+      "cited_relevant": 2,
+      "elapsed_ms": 16421,
+      "answer": "Retrieval\u2011augmented generation can be misled when the retrieved documents contain deceptive misinformation that is semantically relevant to the question, causing the model to incorporate false facts into its reasoning and output a confidently wrong answer [3]. Prompt\u2011based abstention policies only assess whether evidence is present, not whether it is correct, so models often answer confidently even when the context has been deliberately altered to support an incorrect answer, frequently echoing the wrong entity verbatim [4]. This reliance on seemingly relevant but inaccurate retrieved content, combined with insufficient verification of its factual correctness, explains why RAG systems can produce confident wrong answers."
+    },
+    {
+      "query_id": "hop_01",
+      "query_class": "multi_hop",
+      "answerable": true,
+      "abstained": true,
+      "correct": false,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 19086,
+      "answer": "INSUFFICIENT_CONTEXT"
+    },
+    {
+      "query_id": "hop_02",
+      "query_class": "multi_hop",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2606.14373",
+        "2606.30485",
+        "2608.28314",
+        "2606.26089"
+      ],
+      "cited_relevant": 3,
+      "elapsed_ms": 12951,
+      "answer": "Machine\u2011learning techniques are increasingly used to reconstruct particles directly from detector hits, replacing traditional modular pipelines with end\u2011to\u2011end models that learn shared latent representations of the event [1].  Incorporating detector\u2011aware target definitions\u2014e.g., hit\u2011based merging that respects spatial resolution\u2014improves momentum response, resolution, and robustness to changes in event topology [2].  Graph\u2011neural\u2011network and other deep\u2011learning approaches achieve vertex and track reconstruction performance comparable to classical methods while also providing richer event\u2011shape information for downstream analyses [4].  Frameworks such as Parnassus make these models portable and GPU\u2011accelerated, offering interchangeable detector back\u2011ends and fast simulation\u2011reconstruction cycles across experiments [5]."
+    },
+    {
+      "query_id": "hop_03",
+      "query_class": "multi_hop",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 13079,
+      "answer": "A sufficiently massive, anisotropic dark\u2011matter halo surrounding a neutron star can modify the spacetime metric so that the inverse radial component \\(g_{rr}^{-1}\\) changes sign outside the stellar surface, producing an event horizon while the neutron star remains a regular configuration inside it\u30102\u3011. This \u201cneutron star in a black hole\u201d solution arises for a specific range of halo parameters and does not depend on the choice of nuclear equation of state\u30102\u3011. Thus, dark\u2011matter accretion or halo formation can trigger a collapse\u2011like transition of a neutron star into a black\u2011hole configuration."
+    },
+    {
+      "query_id": "hop_04",
+      "query_class": "multi_hop",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        3,
+        2,
+        4,
+        1,
+        5
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2609.01784",
+        "2608.29072",
+        "2609.03859",
+        "2608.25715",
+        "2608.25507"
+      ],
+      "cited_relevant": 3,
+      "elapsed_ms": 18887,
+      "answer": "Gravitational\u2011wave catalogs now contain enough events to infer distinct black\u2011hole subpopulations, such as a low\u2011mass binary\u2011black\u2011hole group (primary masses \u227215\u202fM\u2299) whose mass\u2011ratio distribution peaks at q\u22480.5\u20130.7 and includes a near\u2011equal\u2011mass component, a pattern naturally produced by isolated binary evolution [3].  Analyses of the LVK O4 data (\u2248100 new detections) have highlighted multiple subpopulations and enabled population\u2011level constraints on spins, masses and formation channels, including evidence for an accretion\u2011driven subpopulation that shows a saturating spin\u2013mass relation with a preferred transition mass near 20.7\u202fM\u2299 [2][4].  Pulsar\u2011timing arrays also probe black\u2011hole demographics at much higher masses, predicting a 10\u201333\u202f% chance of resolving an individual supermassive binary within a decade of MeerKAT observations, especially at frequencies \u227310\u202fnHz where electromagnetic follow\u2011up is easier [1].  Joint electromagnetic searches (e.g., SED deficits and periodic variability) can further identify active supermassive binaries, complementing the gravitational\u2011wave population picture [5]."
+    },
+    {
+      "query_id": "hop_05",
+      "query_class": "multi_hop",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        1,
+        1
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2606.17631"
+      ],
+      "cited_relevant": 1,
+      "elapsed_ms": 14697,
+      "answer": "The dynamic\u2011query transformer decoder dramatically improves efficiency on sparse detector data: by constructing queries from encoder\u2011level measurement representations, reconstruction efficiency rises from\u202f94.1\u202f% to\u202f98.1\u202f% and the fake\u2011track rate is cut by more than half\u202f[1].  Moreover, the Local Strided Cross\u2011Attention (LSCA) layer cuts end\u2011to\u2011end inference latency by almost\u202f50\u202f% and reduces peak memory usage by over ten\u2011fold compared with a fixed\u2011query baseline\u202f[1]."
+    },
+    {
+      "query_id": "hop_06",
+      "query_class": "multi_hop",
+      "answerable": true,
+      "abstained": true,
+      "correct": false,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 13409,
+      "answer": "INSUFFICIENT_CONTEXT"
+    },
+    {
+      "query_id": "hop_07",
+      "query_class": "multi_hop",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2608.10257",
+        "2608.00669",
+        "2606.29947",
+        "2607.04270"
+      ],
+      "cited_relevant": 4,
+      "elapsed_ms": 15402,
+      "answer": "Large language models are being deployed as the core ranking component of recommender systems, replacing traditional feature\u2011heavy rankers with models that ingest verbalized user histories and contextual text (e.g., Netflix\u2019s GenRec fine\u2011tuned on catalog and behavior data) [1]. Graph\u2011grounded frameworks such as GARDRec further enhance LLM\u2011based next\u2011item ranking by integrating semantic\u2011structural item representations, temporally weighted user histories, and explicit decision\u2011level features into the LLM\u2019s prompt [2]. Research also highlights challenges for LLM rankers\u2014retrieval bottlenecks in cold\u2011start scenarios and a systematic length bias that can skew attention and scoring\u2014leading to solutions like learned hybrid retrieval fusion and length\u2011bias reduction techniques to improve ranking effectiveness [4][5]."
+    },
+    {
+      "query_id": "hop_08",
+      "query_class": "multi_hop",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        1,
+        2,
+        5
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2609.01716",
+        "2608.17681",
+        "2606.27007"
+      ],
+      "cited_relevant": 1,
+      "elapsed_ms": 15239,
+      "answer": "Neutrino data from SN\u202f1987A have been used to limit exotic neutrino\u2011scalar interactions that would deplete the supernova neutrino flux, thereby restricting viable supernova emission models and their heavy\u2011flavor content\u202f[1].  Similarly, the diffuse supernova neutrino background measured by Super\u2011Kamiokande provides an upper bound on axion\u2011proton couplings, constraining how axion cooling can modify protoneutron\u2011star evolution and thus affecting supernova\u2011cooling models\u202f[2].  Planned high\u2011statistics observations (e.g., Hyper\u2011Kamiokande) and large\u2011volume detectors such as ESS\u03bdSB are expected to distinguish between different supernova neutrino\u2011flux models, further tightening model\u2011dependent constraints\u202f[5]."
+    },
+    {
+      "query_id": "hop_09",
+      "query_class": "multi_hop",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        1,
+        2,
+        3
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2607.04043",
+        "2607.15875",
+        "2607.24803"
+      ],
+      "cited_relevant": 3,
+      "elapsed_ms": 13120,
+      "answer": "The main evaluation dataset used for scientific claim\u2011source retrieval is the CheckThat!\u202f2026 benchmark, which provides multilingual claim sets (English, German, French) and is the basis for the CheckThat!\u202f2026 Lab Task\u202f1 and the CLEF\u20112026 Task\u202f1 evaluation\u202f[1][2][3]."
+    },
+    {
+      "query_id": "hop_10",
+      "query_class": "multi_hop",
+      "answerable": true,
+      "abstained": false,
+      "correct": true,
+      "degraded": false,
+      "citations": [
+        2,
+        2,
+        5
+      ],
+      "invalid_citations": [],
+      "cited_ids": [
+        "2608.06449",
+        "2607.27920"
+      ],
+      "cited_relevant": 2,
+      "elapsed_ms": 13102,
+      "answer": "Quantum\u2011field\u2011theoretic techniques are being adapted to condensed\u2011matter problems by reorganizing vertex functions into efficient building blocks through composite\u2011field Legendre transforms, a framework that works for any quantum field theory and thus applies to condensed\u2011matter systems [2].  The same formalism enables systematic tree\u2011expansion constructions of higher\u2011order vertices beyond the usual four\u2011point level, providing new analytic tools for many\u2011body calculations [2].  In parallel, the stationary Dirac equation\u2014traditionally a relativistic quantum\u2011field equation\u2014is reformulated with Clifford\u2011analytic methods and applied to a generalized Kronig\u2011Penny model, yielding explicit series solutions for electronic propagation in lattice structures [5].  These approaches demonstrate how QFT methods can be directly employed to analyze condensed\u2011matter phenomena."
+    },
+    {
+      "query_id": "none_01",
+      "query_class": "unanswerable",
+      "answerable": false,
+      "abstained": true,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 17277,
+      "answer": "INSUFFICIENT_CONTEXT"
+    },
+    {
+      "query_id": "none_02",
+      "query_class": "unanswerable",
+      "answerable": false,
+      "abstained": true,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 16800,
+      "answer": "INSUFFICIENT_CONTEXT"
+    },
+    {
+      "query_id": "none_03",
+      "query_class": "unanswerable",
+      "answerable": false,
+      "abstained": true,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 13467,
+      "answer": "INSUFFICIENT_CONTEXT"
+    },
+    {
+      "query_id": "none_04",
+      "query_class": "unanswerable",
+      "answerable": false,
+      "abstained": true,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 14404,
+      "answer": "INSUFFICIENT_CONTEXT"
+    },
+    {
+      "query_id": "none_05",
+      "query_class": "unanswerable",
+      "answerable": false,
+      "abstained": true,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 13247,
+      "answer": "INSUFFICIENT_CONTEXT"
+    },
+    {
+      "query_id": "none_06",
+      "query_class": "unanswerable",
+      "answerable": false,
+      "abstained": true,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 13543,
+      "answer": "INSUFFICIENT_CONTEXT"
+    },
+    {
+      "query_id": "none_07",
+      "query_class": "unanswerable",
+      "answerable": false,
+      "abstained": true,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 16328,
+      "answer": "INSUFFICIENT_CONTEXT"
+    },
+    {
+      "query_id": "none_08",
+      "query_class": "unanswerable",
+      "answerable": false,
+      "abstained": true,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 13475,
+      "answer": "INSUFFICIENT_CONTEXT"
+    },
+    {
+      "query_id": "none_09",
+      "query_class": "unanswerable",
+      "answerable": false,
+      "abstained": true,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 15546,
+      "answer": "INSUFFICIENT_CONTEXT"
+    },
+    {
+      "query_id": "none_10",
+      "query_class": "unanswerable",
+      "answerable": false,
+      "abstained": true,
+      "correct": true,
+      "degraded": false,
+      "citations": [],
+      "invalid_citations": [],
+      "cited_ids": [],
+      "cited_relevant": 0,
+      "elapsed_ms": 13540,
+      "answer": "INSUFFICIENT_CONTEXT"
+    }
+  ],
+  "git_sha": "41ca5a494df2ace1d3030a2829405fff7381804b"
+}

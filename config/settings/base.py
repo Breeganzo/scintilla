@@ -206,7 +206,12 @@ EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "BAAI/bge-small-en-v1.5")
 EMBEDDING_DIM = int(os.getenv("EMBEDDING_DIM", "384"))
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
-LLM_MODEL = os.getenv("LLM_MODEL", "llama-3.3-70b-versatile")
+# The default was llama-3.3-70b-versatile until Groq decommissioned it, which
+# returned a 404 that reads like an authentication problem ("you do not have
+# access to it") and is not. Hosted model names are not a stable interface, so
+# this is configurable and the provider surfaces the API's own message rather
+# than collapsing every failure into "the LLM is down".
+LLM_MODEL = os.getenv("LLM_MODEL", "openai/gpt-oss-120b")
 
 ARXIV_CATEGORIES = env_list("ARXIV_CATEGORIES", "hep-ex,hep-th")
 ARXIV_RATE_LIMIT_SECONDS = float(os.getenv("ARXIV_RATE_LIMIT_SECONDS", "3"))

@@ -19,7 +19,7 @@ works.
 |---|---|---|
 | 1 · Foundation | Django, PostgreSQL, containers, CI | ✅ Complete |
 | 2 · Ingestion | arXiv harvesting, embeddings, indexing, Airflow | ✅ Complete |
-| 3 · Retrieval & evaluation | BM25, dense, RRF, golden set, metrics, CI gate | 🟡 Ablation published, CI gate next |
+| 3 · Retrieval & evaluation | BM25, dense, RRF, golden set, metrics, CI gate | ✅ Complete |
 | 4 · Ship | React frontend, MCP server, deployment, hardening | ⬜ Not started |
 
 Phase 1 means the foundation is verified, not that the system does anything
@@ -156,6 +156,96 @@ medical-imaging papers. All three modes returned ten confident results for
 every one of them. No retriever abstains, because no retriever can: ranking has
 no way to express "none of these". That gap is what the answering layer has to
 close.
+
+### Whether it closes it
+
+The answering layer takes the top five retrieved abstracts, numbers them, and
+requires the model to cite by number or emit a sentinel token and nothing else.
+Abstention is defined as emitting that token on the first line, which turns
+"did it refuse?" from a judgement call into something countable.
+
+All 50 golden queries, dense retrieval, `openai/gpt-oss-120b` at temperature 0:
+
+| measure | count | rate | reading |
+|---|---:|---:|---|
+| abstained on unanswerable | 10/10 | **100%** | higher is better |
+| abstained on answerable | 4/40 | 10% | lower is better |
+| citation precision | 24 answers cited | **100%** | cited a passage that existed |
+| citation grounding | 40 answerable | 78% | cited a paper labelled relevant |
+| answers with no citation | 12 | — | least grounded output possible |
+| hallucinated citation numbers | 0 | — | pointed at a passage never supplied |
+
+The gap the retrievers could not close, the answering layer closes completely:
+ten out of ten unanswerable queries refused, including the ones sitting next to
+topically adjacent real papers. Not one citation pointed at a passage that was
+never supplied.
+
+**Two things in that table are not good, and they are the interesting part.**
+
+A third of the answers — 12 of 36 — carried no citation at all, despite a prompt
+that demands one per claim. Citation precision of 100% is therefore measured
+over the two thirds that complied, and quoting it without the row above it would
+be misleading. An uncited answer is the least grounded thing the system can
+emit and it is the first thing to fix.
+
+Four answerable queries were refused. The obvious explanation is that retrieval
+failed to put anything useful in the prompt — and checking it says otherwise:
+all four had at least one labelled-relevant paper among the five passages, and
+`hop_06` had four. The model was handed relevant material and declined anyway.
+The likely cause is that a golden query is a *search query*, not a question —
+"neutrino mass and cosmological structure formation" is a topic — and a model
+instructed to refuse unless the passages answer the question has a defensible
+reason to balk at a topic. That is a prompt-design problem, not a retrieval one,
+and it is the cost of tuning abstention conservatively: 100% on the queries
+where refusing matters, paid for with 10% on the queries where it does not.
+
+What is **not** measured: whether a cited passage genuinely supports the
+sentence attached to it. That needs a human reader or a judge model, neither of
+which was used, so no claim is made. Full transcripts in
+[`evaluation/results/answers.json`](evaluation/results/answers.json).
+Reproduce with `python manage.py run_answer_eval`.
+
+### The regression gate
+
+Measuring once is a demo. The gate is what makes it a measurement that keeps
+being true.
+
+CI has no OpenSearch and no corpus of 3,377 papers, so the gate carries its own:
+340 abstracts committed as raw text, rebuilt on every run by the real chunker,
+the real vector store and the real ranking path, with only the model weights
+swapped for a deterministic hashing embedder. Twenty gated queries are scored
+and every metric is compared against a committed baseline, individually — a
+blended score would let a collapse in recall hide behind a gain in MRR.
+
+Two runs of unchanged code produce byte-identical scores, so the 0.02 tolerance
+is not absorbing noise; it exists so that deliberate changes to the chunker or
+the fixture do not need a baseline update for a movement of one query across a
+cutoff.
+
+Proving it works meant breaking the pipeline on a branch. Dropping the title
+from the embedded text — a plausible tidy-up, since the abstract "already says
+what the paper is about" — moved every gated metric:
+
+| metric | baseline | with the fault | delta |
+|---|---:|---:|---:|
+| recall@5 | 0.2339 | 0.1176 | −0.1163 |
+| recall@10 | 0.3136 | 0.1672 | −0.1464 |
+| MRR | 0.5106 | 0.3883 | −0.1222 |
+| nDCG@10 | 0.3061 | 0.1839 | −0.1222 |
+
+The gate fails and names the fourteen queries that got worse.
+
+**An honest note on how much the gate adds here.** Four separate faults were
+injected to test it — dropping the title, shrinking the chunk ceiling from 512
+tokens to 48, removing BGE's asymmetric query prefix, and cutting the
+over-fetch depth from 50 to 10 — and the existing unit tests caught all four
+before the gate ever ran. That is a good result for the test suite and a
+reminder that a metric gate is not a substitute for one. What the gate adds is
+a different kind of signal: unit tests assert invariants and answer "is this
+still the code I wrote", while the gate answers "is this still as good as it
+was" — and it reports the magnitude and the location of the loss, which no
+assertion does. It is also the only check that would notice a regression
+originating outside this repository, in a dependency or a model update.
 
 
 ---
